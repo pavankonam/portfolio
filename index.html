@@ -35,7 +35,18 @@
     .links{display:flex;gap:18px}
     .links a{font-weight:600;opacity:.9}
 
-    .hero{padding:72px 0 30px;border-bottom:1px solid rgba(255,255,255,.06);background:radial-gradient(1000px 500px at 20% -10%, rgba(125,211,252,.15), transparent), radial-gradient(1000px 500px at 120% 10%, rgba(37,99,235,.12), transparent)}
+    .hero{position:relative;min-height:68vh;padding:0;border-bottom:1px solid rgba(255,255,255,.06);background:#071a33;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:url('images/hero/cover.jpg') center/cover no-repeat;opacity:.6;filter:saturate(1) contrast(1.05)}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(1200px 600px at 20% 10%, rgba(125,211,252,.18), transparent), linear-gradient(180deg, rgba(10,35,66,.15), rgba(10,35,66,.65))}
+.hero-content{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:68vh}
+.hero-inner{max-width:var(--maxw);padding:0 20px}
+.hero-title{font-size: clamp(36px, 7vw, 64px);line-height:1.05;margin:0 0 10px;font-weight:900;letter-spacing:.3px;opacity:0;transform:translateY(16px);animation:fadeUp .9s .1s forwards cubic-bezier(.22,1,.36,1)}
+.hero-sub{font-size: clamp(16px, 2.4vw, 24px);color:var(--muted);max-width:900px;margin:0 0 18px;opacity:0;transform:translateY(12px);animation:fadeUp .9s .25s forwards cubic-bezier(.22,1,.36,1)}
+.hero-cta{display:flex;gap:12px;opacity:0;transform:translateY(12px);animation:fadeUp .9s .4s forwards cubic-bezier(.22,1,.36,1)}
+.name-accent{background:linear-gradient(90deg,#7dd3fc,#c4b5fd,#7dd3fc);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;animation: shimmer 2.5s linear infinite}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+.grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:32px}
     .grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:32px}
     h2.section-title{font-size:28px;margin:0 0 8px}
     .kicker{color:var(--muted);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
@@ -120,48 +131,46 @@
   </header>
 
   <section class="hero">
-    <div class="wrap grid-2">
-      <div>
-        <div class="kicker">AI Engineer @ HauteCarat | Northwestern MSAI</div>
-        <h1 class="title">Building practical AI systems for products, research, and real users.</h1>
-        <p class="subtitle">Specializing in LLMs, RAG, Computer Vision, and data engineering. Passionate about healthcare innovation and human-centered AI.</p>
-        <div class="cta">
-          <a class="btn" href="#projects">View Projects</a>
-          <a class="btn secondary" href="#contact">Get in touch</a>
-        </div>
-        <div class="chips">
-          <span class="chip">Python</span><span class="chip">LLMs</span><span class="chip">RAG</span><span class="chip">Computer Vision</span><span class="chip">Azure</span><span class="chip">TensorFlow/PyTorch</span>
-        </div>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <h1 class="hero-title">Hi, I’m <span class="name-accent">Pavan Kartheek Konam</span></h1>
+      <p class="hero-sub">AI Engineer — LLMs, RAG, and Computer Vision for real‑world products.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#projects">View Projects</a>
+        <a class="btn secondary" href="#contact">Contact</a>
       </div>
-      <aside class="card project">
-        <div class="cover"><span>Hero Image — PLACE: headshot.jpg</span></div>
-        <div class="card-inner">
-          <strong>Replace with your photo</strong>
-          <span class="tagline">Upload <code>images/headshot.jpg</code> in the repo to show here.</span>
-        </div>
-      </aside>
     </div>
-  </section>
+  </div>
+</section>
 
   <section id="about">
-    <div class="wrap cols">
+  <div class="wrap" style="padding-top:32px">
+    <h2 class="section-title" style="margin-bottom:16px">About</h2>
+    <div class="cols" style="grid-template-columns: 1fr 1.2fr .9fr; align-items:start">
+      <!-- Left: Professional photo -->
+      <div class="card" style="overflow:hidden">
+        <div class="cover" style="height:360px;background:#0d2a4e;display:flex;align-items:center;justify-content:center"><span>PLACE: images/about/pro-photo.jpg</span></div>
+        <div class="card-inner"><strong>Professional Photo</strong><div class="tagline">Put your portrait at <code>images/about/pro-photo.jpg</code></div></div>
+      </div>
+      <!-- Middle: concise bullets -->
       <div class="card"><div class="card-inner">
-        <h2 class="section-title">About</h2>
-        <p>Master’s student in Artificial Intelligence at Northwestern University with hands-on experience in AI development, data analysis, and production-grade systems. I’ve contributed to healthcare AI, NLP innovations, and robotics automation, and I love turning research into usable products.</p>
-        <ul>
-          <li>Built an AI-driven model for streamlining patient data and medical alerts (+25% clinical efficiency).</li>
-          <li>Trained 600 students in Robotics & IoT; mentored 50+ hires (↑30% training productivity).</li>
-          <li>Engineered a speech-to-text stack with Azure services achieving ~92% accuracy.</li>
+        <ul style="margin:0;padding-left:18px">
+          <li>Design and deploy **production‑grade** RAG/LLM systems on Azure.</li>
+          <li>Hands‑on with **Computer Vision** for on‑model jewelry imagery and pose feedback.</li>
+          <li>Teaching experience: **Linear Algebra & MATLAB**, mentoring projects end‑to‑end.</li>
+          <li>Entrepreneurial mindset — turn prototypes into **usable products** fast.</li>
         </ul>
       </div></div>
+      <!-- Right: skills chips -->
       <div class="card"><div class="card-inner">
-        <h2 class="section-title">Skills</h2>
+        <h3 style="margin:0 0 10px">Skills</h3>
         <div class="chips">
-          <span class="chip">Generative AI</span><span class="chip">LangChain</span><span class="chip">FastAPI</span><span class="chip">Airflow</span><span class="chip">Docker</span><span class="chip">MLflow</span><span class="chip">Weaviate/Pinecone</span><span class="chip">OpenAI</span><span class="chip">Hugging Face</span>
+          <span class="chip">Python</span><span class="chip">LLMs</span><span class="chip">RAG</span><span class="chip">Computer Vision</span><span class="chip">Azure</span><span class="chip">TensorFlow</span><span class="chip">PyTorch</span><span class="chip">LangChain</span><span class="chip">Docker</span><span class="chip">MLflow</span>
         </div>
       </div></div>
     </div>
-  </section>
+  </div>
+</section>
 
   <section id="experience">
     <div class="wrap">
