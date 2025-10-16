@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pavan Konam | AI Engineer</title>
+  <meta name="description" content="AI Engineer portfolio of Pavan Konam — projects, experience, education, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#0a2342;       /* main background */
+      --navy-2:#0e2d57;     /* cards */
+      --accent:#7dd3fc;     /* cyan accent */
+      --text:#e6f1ff;       /* base text */
+      --muted:#b8c3d9;      /* muted text */
+      --chip:#11355f;       /* skill pill */
+      --shadow: 0 20px 40px rgba(0,0,0,.25);
+      --radius:18px;
+      --radius-sm:12px;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--navy);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.6}
+    img{max-width:100%;display:block}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{opacity:.9}
+    .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;background:rgba(10,35,66,.85);backdrop-filter:saturate(150%) blur(8px);z-index:50;border-bottom:1px solid rgba(255,255,255,.06)}
+    nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(180deg,#7dd3fc,#2563eb);box-shadow:var(--shadow)}
+    .brand h1{margin:0;font-size:18px;letter-spacing:.4px}
+    .links{display:flex;gap:18px}
+    .links a{font-weight:600;opacity:.9}
+
+    .hero{padding:72px 0 30px;border-bottom:1px solid rgba(255,255,255,.06);background:radial-gradient(1000px 500px at 20% -10%, rgba(125,211,252,.15), transparent), radial-gradient(1000px 500px at 120% 10%, rgba(37,99,235,.12), transparent)}
+    .grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:32px}
+    h2.section-title{font-size:28px;margin:0 0 8px}
+    .kicker{color:var(--muted);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+    .title{font-size:42px;line-height:1.15;margin:.2em 0 .35em;font-weight:800}
+    .subtitle{font-size:18px;color:var(--muted);max-width:700px}
+    .cta{display:flex;gap:12px;margin-top:20px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:#1b3f72;color:white;font-weight:700;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+    .btn.secondary{background:transparent;border-color:rgba(255,255,255,.14);color:var(--text)}
+
+    .card{background:var(--navy-2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .card-inner{padding:22px}
+
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .chip{background:var(--chip);color:var(--text);padding:8px 12px;border-radius:999px;font-size:12px;border:1px solid rgba(255,255,255,.07)}
+
+    section{padding:42px 0}
+    .cols{display:grid;gap:18px}
+    @media(min-width:900px){.cols{grid-template-columns:1fr 1fr}}
+
+    .entry{padding:18px;border-radius:var(--radius-sm);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+    .entry h3{margin:0 0 6px;font-size:18px}
+    .entry .meta{font-size:12px;color:var(--muted)}
+
+    .projects{display:grid;gap:22px}
+    @media(min-width:840px){.projects{grid-template-columns:1fr 1fr}}
+    .project{overflow:hidden}
+    .cover{height:220px;background:#0d2a4e;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center}
+    .cover span{color:#9ecbff;opacity:.8}
+
+    .project .card-inner{display:flex;flex-direction:column;gap:10px}
+    .tagline{color:var(--muted)}
+
+    footer{padding:36px 0;border-top:1px solid rgba(255,255,255,.06);color:var(--muted)}
+    .footer-grid{display:grid;gap:18px}
+    @media(min-width:720px){.footer-grid{grid-template-columns:2fr 1fr 1fr}}
+
+    /* smooth anchors */
+    html{scroll-behavior:smooth}
+  
+    /* TIMELINE */
+    .timeline{position:relative; padding:14px 0 6px}
+    .timeline::before{content:""; position:absolute; left:50%; top:0; bottom:0; width:3px; background:linear-gradient(180deg, rgba(125,211,252,.55), rgba(255,255,255,.08)); border-radius:6px; box-shadow:0 0 0 1px rgba(255,255,255,.04) inset}
+    .tl-wrap{display:grid; gap:24px}
+    .tl-item{position:relative; width:calc(50% - 28px); background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; box-shadow:var(--shadow); padding:16px 18px; opacity:.35; filter:saturate(.7); transform:translateX(var(--off,0)) translateZ(0); transition:transform .7s cubic-bezier(.22,1,.36,1), opacity .6s ease, filter .6s ease}
+    .tl-item.in{opacity:1; filter:saturate(1); --off:0}
+    .tl-item h3{margin:0 0 6px;font-size:18px}
+    .tl-item .meta{font-size:12px;color:var(--muted)}
+    .tl-item p{margin:10px 0 0}
+    .tl-item .connector{position:absolute; top:50%; width:28px; height:2px; background:rgba(125,211,252,.6); transform-origin:right center; transition:transform .5s ease, opacity .5s ease; opacity:.75}
+    .tl-item.left{margin-right:auto; --off:-48px}
+    .tl-item.left .connector{right:-28px; transform:scaleX(0)}
+    .tl-item.right{margin-left:auto; --off:48px}
+    .tl-item.right .connector{left:-28px; transform:scaleX(0); transform-origin:left center}
+    .tl-item .dot{position:absolute; top:50%; left:50%; width:12px; height:12px; background:#7dd3fc; border:2px solid #0a2342; border-radius:999px; translate:-50% -50%; box-shadow:0 0 0 4px rgba(125,211,252,.18)}
+    .tl-item.in .connector{transform:scaleX(1)}
+    .tl-item:hover{transform:translateX(0) scale(1.01)}
+    /* small screens: single column */
+    @media(max-width:820px){
+      .timeline::before{left:10px}
+      .tl-item{width:100%; padding-left:28px}
+      .tl-item.left,.tl-item.right{margin:0; --off:0}
+      .tl-item .connector{left:10px; width:18px}
+      .tl-item .dot{left:10px; translate:-50% -50%}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <div class="brand"><div class="logo"></div><h1>Pavan Konam</h1></div>
+        <div class="links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#certs">Certifications</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap grid-2">
+      <div>
+        <div class="kicker">AI Engineer @ HauteCarat | Northwestern MSAI</div>
+        <h1 class="title">Building practical AI systems for products, research, and real users.</h1>
+        <p class="subtitle">Specializing in LLMs, RAG, Computer Vision, and data engineering. Passionate about healthcare innovation and human-centered AI.</p>
+        <div class="cta">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn secondary" href="#contact">Get in touch</a>
+        </div>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">LLMs</span><span class="chip">RAG</span><span class="chip">Computer Vision</span><span class="chip">Azure</span><span class="chip">TensorFlow/PyTorch</span>
+        </div>
+      </div>
+      <aside class="card project">
+        <div class="cover"><span>Hero Image — PLACE: headshot.jpg</span></div>
+        <div class="card-inner">
+          <strong>Replace with your photo</strong>
+          <span class="tagline">Upload <code>images/headshot.jpg</code> in the repo to show here.</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap cols">
+      <div class="card"><div class="card-inner">
+        <h2 class="section-title">About</h2>
+        <p>Master’s student in Artificial Intelligence at Northwestern University with hands-on experience in AI development, data analysis, and production-grade systems. I’ve contributed to healthcare AI, NLP innovations, and robotics automation, and I love turning research into usable products.</p>
+        <ul>
+          <li>Built an AI-driven model for streamlining patient data and medical alerts (+25% clinical efficiency).</li>
+          <li>Trained 600 students in Robotics & IoT; mentored 50+ hires (↑30% training productivity).</li>
+          <li>Engineered a speech-to-text stack with Azure services achieving ~92% accuracy.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-inner">
+        <h2 class="section-title">Skills</h2>
+        <div class="chips">
+          <span class="chip">Generative AI</span><span class="chip">LangChain</span><span class="chip">FastAPI</span><span class="chip">Airflow</span><span class="chip">Docker</span><span class="chip">MLflow</span><span class="chip">Weaviate/Pinecone</span><span class="chip">OpenAI</span><span class="chip">Hugging Face</span>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <div class="tl-wrap">
+          <!-- 1. NEWEST → OLDEST -->
+          <article class="tl-item left">
+            <span class="connector"></span><span class="dot"></span>
+            <h3>Graduate Teaching Assistant — Northwestern University</h3>
+            <div class="meta">Oct 2025 – Present · Remote · Course: Machine Learning</div>
+            <p>Supported labs, grading, and project mentorship; guided end‑to‑end ML workflows (data prep → modeling → evaluation).</p>
+          </article>
+
+          <article class="tl-item right">
+            <span class="connector"></span><span class="dot"></span>
+            <h3>AI Software Engineer (Intern) — HauteCarat</h3>
+            <div class="meta">Jul 2025 – Sep 2025 · Chicago (On‑site)</div>
+            <p>Built an internal LLM/RAG assistant; unified data across APIs; prototyped CV pipelines; shipped dashboards and CI/CD.</p>
+          </article>
+
+          <article class="tl-item left">
+            <span class="connector"></span><span class="dot"></span>
+            <h3>Professor (Summer Session) — McCormick School of Engineering</h3>
+            <div class="meta">Jul 2025 – Aug 2025 · Evanston (On‑site)</div>
+            <p>Taught <em>Linear Algebra & Intro to MATLAB</em> to ~30 students; authored labs on eigen‑methods and practical ML.</p>
+          </article>
+
+          <article class="tl-item right">
+            <span class="connector"></span><span class="dot"></span>
+            <h3>Library Student Advisory Committee — Northwestern University</h3>
+            <div class="meta">Jan 2025 – Jun 2025 · Evanston</div>
+            <p>Advised on student services and space design; ran user feedback sessions; promoted resource awareness.</p>
+          </article>
+
+          <article class="tl-item left">
+            <span class="connector"></span><span class="dot"></span>
+            <h3>Programming Analyst — Cognizant</h3>
+            <div class="meta">Jul 2022 – Aug 2024 · Hyderabad</div>
+            <p>Delivered CV/NLP solutions for healthcare; improved ASR accuracy (~92%); deployed scalable ML pipelines.</p>
+          </article>
+
+          <article class="tl-item right">
+            <span class="connector"></span><span class="dot"></span>
+            <h3>Intern — Cognizant</h3>
+            <div class="meta">Dates per resume</div>
+            <p>Contributed to data cleaning, feature engineering, and model experiments; documented results and learnings.</p>
+          </article>
+
+          <article class="tl-item left">
+            <span class="connector"></span><span class="dot"></span>
+            <h3>Technical Trainer — Path Creators (India)</h3>
+            <div class="meta">Dates per resume</div>
+            <p>Trained cohorts in Robotics/IoT and Python fundamentals; created hands‑on modules and assessments.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects">
+        <!-- PROJECT 1 -->
+        <article class="card project">
+          <div class="cover"><span>Cover — PLACE: projects/intellicore-cover.jpg</span></div>
+          <div class="card-inner">
+            <h3>Intellicore — Multi‑Agent RAG System</h3>
+            <p class="tagline">Production RAG for company‑wide insights with Shopify, Klaviyo, GA4, LiveChat, FB/IG.</p>
+            <div class="chips"><span class="chip">Agents</span><span class="chip">RAG</span><span class="chip">Azure</span><span class="chip">APIs</span></div>
+            <p><a href="#" target="_blank" rel="noopener">Project Link (replace)</a> · <a href="#" target="_blank" rel="noopener">Case Study PDF (optional)</a></p>
+          </div>
+        </article>
+        <!-- PROJECT 2 -->
+        <article class="card project">
+          <div class="cover"><span>Cover — PLACE: projects/visionary-cover.jpg</span></div>
+          <div class="card-inner">
+            <h3>Visionary — On‑Model Jewelry Image Generation</h3>
+            <p class="tagline">AI system to synthesize brand‑consistent on‑model jewelry photos for HauteCarat.</p>
+            <div class="chips"><span class="chip">Generative AI</span><span class="chip">CV</span><span class="chip">Prompt Eng</span></div>
+            <p><a href="#" target="_blank" rel="noopener">Project Link (replace)</a></p>
+          </div>
+        </article>
+        <!-- PROJECT 3 -->
+        <article class="card project">
+          <div class="cover"><span>Cover — PLACE: projects/amazon-ai-detect-cover.jpg</span></div>
+          <div class="card-inner">
+            <h3>Amazon Review Human‑AI Detection</h3>
+            <p class="tagline">Transformer fine‑tuning to classify human vs AI‑generated reviews; strong F1/ROC‑AUC.</p>
+            <div class="chips"><span class="chip">NLP</span><span class="chip">BERT</span></div>
+            <p><a href="#" target="_blank" rel="noopener">GitHub (replace)</a></p>
+          </div>
+        </article>
+        <!-- PROJECT 4 -->
+        <article class="card project">
+          <div class="cover"><span>Cover — PLACE: projects/empathetic-echoes-cover.jpg</span></div>
+          <div class="card-inner">
+            <h3>Empathetic Echoes — Psychiatric Chatbot</h3>
+            <p class="tagline">Emotion‑aware conversational agent with safety guardrails and retrieval grounding.</p>
+            <div class="chips"><span class="chip">RAG</span><span class="chip">Emotion</span></div>
+            <p><a href="#" target="_blank" rel="noopener">Demo (replace)</a></p>
+          </div>
+        </article>
+        <!-- PROJECT 5 -->
+        <article class="card project">
+          <div class="cover"><span>Cover — PLACE: projects/virtual-gym-cover.jpg</span></div>
+          <div class="card-inner">
+            <h3>Virtual Gym Trainer</h3>
+            <p class="tagline">Pose‑based real‑time feedback and rep counting via webcam.</p>
+            <div class="chips"><span class="chip">Pose Estimation</span><span class="chip">Realtime</span></div>
+            <p><a href="#" target="_blank" rel="noopener">GitHub (replace)</a></p>
+          </div>
+        </article>
+        <!-- PROJECT 6 -->
+        <article class="card project">
+          <div class="cover"><span>Cover — PLACE: projects/dreams-cover.jpg</span></div>
+          <div class="card-inner">
+            <h3>Artistic Visualization of Dreams</h3>
+            <p class="tagline">EEG → CNN classifier (~85%) → VAE visuals for dream categories.</p>
+            <div class="chips"><span class="chip">EEG</span><span class="chip">CNN</span><span class="chip">VAE</span></div>
+            <p><a href="#" target="_blank" rel="noopener">Paper/Repo (replace)</a></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap cols">
+      <div class="card"><div class="card-inner">
+        <h2 class="section-title">Education</h2>
+        <div class="entry">
+          <h3>Northwestern University — MS, Artificial Intelligence (GPA 3.85)</h3>
+          <div class="meta">Sep 2024 – Dec 2025</div>
+          <p>Graduate work in AI/ML, research projects in LLMs, CV, and healthcare applications.</p>
+        </div>
+        <div class="entry">
+          <h3>Teegala Krishna Reddy Engineering College — BTech, ECE (GPA 3.84)</h3>
+          <div class="meta">2018 – 2022</div>
+        </div>
+      </div></div>
+      <div class="card"><div class="card-inner">
+        <h2 class="section-title">Volunteering</h2>
+        <div class="entry">
+          <h3>Library Student Advisory Committee — Northwestern</h3>
+          <div class="meta">Jan 2025 – Jun 2025</div>
+          <p>Advised on services, spaces, and programming; conducted user research and promoted resources.</p>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="wrap">
+      <h2 class="section-title">Certifications (selection)</h2>
+      <div class="cols">
+        <div class="entry"><h3>CITI: HIPAA Security & Privacy</h3><div class="meta">Apr 2025</div></div>
+        <div class="entry"><h3>CITI: Human Research Protections (IRB)</h3><div class="meta">Apr 2025 – Apr 2028</div></div>
+        <div class="entry"><h3>Coursera: Generative AI with LLMs</h3><div class="meta">Sep 2023</div></div>
+        <div class="entry"><h3>IBM: Data Science Foundations</h3><div class="meta">Oct 2020</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="wrap">
+      <h2 class="section-title">Photo Gallery</h2>
+      <p class="tagline">Drop your photos into <code>images/gallery/</code> and replace placeholders.</p>
+      <div class="projects">
+        <article class="card project">
+          <div class="cover"><span>PLACE: images/gallery/teaching.jpg</span></div>
+          <div class="card-inner"><strong>Teaching — Excel Program</strong></div>
+        </article>
+        <article class="card project">
+          <div class="cover"><span>PLACE: images/gallery/haute-lab.jpg</span></div>
+          <div class="card-inner"><strong>HauteCarat — Lab & CV</strong></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2 class="section-title">Contact</h2>
+      <div class="card"><div class="card-inner">
+        <p>Email: <a href="mailto:pavankonam2026@u.northwestern.edu">pavankonam2026@u.northwestern.edu</a> · <a href="mailto:pavankonam@gmail.com">pavankonam@gmail.com</a></p>
+        <p>LinkedIn: <a href="#" target="_blank" rel="noopener">Add link</a> · GitHub: <a href="#" target="_blank" rel="noopener">Add link</a></p>
+      </div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>© <span id="yr"></span> Pavan Konam — Built with vanilla HTML/CSS. Deployed on GitHub Pages.</div>
+      <div><a href="#">Back to top ↑</a></div>
+      <div>Theme: Navy Blue</div>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Intersection Observer to animate timeline items into place
+    const tlItems = document.querySelectorAll('.tl-item');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); }
+      });
+    },{threshold: .35});
+    tlItems.forEach(el=> io.observe(el));
+  </script>
+</body>
+</html>
