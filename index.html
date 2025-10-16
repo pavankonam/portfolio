@@ -30,7 +30,7 @@
     header{position:sticky;top:0;background:rgba(10,35,66,.85);backdrop-filter:saturate(150%) blur(8px);z-index:50;border-bottom:1px solid rgba(255,255,255,.06)}
     nav{display:flex;align-items:center;justify-content:space-between;height:64px}
     .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(180deg,#7dd3fc,#2563eb);box-shadow:var(--shadow)}
+    .logo{width:36px;height:36px;border-radius:10px;box-shadow:var(--shadow);object-fit:cover;display:block}
     .brand h1{margin:0;font-size:18px;letter-spacing:.4px}
     .links{display:flex;gap:18px}
     .links a{font-weight:600;opacity:.9}
@@ -117,7 +117,7 @@
   <header>
     <div class="wrap">
       <nav>
-        <div class="brand"><div class="logo"></div><h1>Pavan Konam</h1></div>
+        <div class="brand"><img class="logo" src="images/logo.png" alt="Pavan logo"><h1>Pavan Konam</h1></div>
         <div class="links">
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
