@@ -36,7 +36,7 @@
     .links a{font-weight:600;opacity:.9}
 
     .hero{position:relative;min-height:68vh;padding:0;border-bottom:1px solid rgba(255,255,255,.06);background:#071a33;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:url('images/hero/cover.jpg') center/cover no-repeat;opacity:.6;filter:saturate(1) contrast(1.05)}
+.hero::before{content:"";position:absolute;inset:0;background:url('gallery/newyork.jpg') center/cover no-repeat;opacity:.6;filter:saturate(1) contrast(1.05)}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(1200px 600px at 20% 10%, rgba(125,211,252,.18), transparent), linear-gradient(180deg, rgba(10,35,66,.15), rgba(10,35,66,.65))}
 .hero-content{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:68vh}
 .hero-inner{max-width:var(--maxw);padding:0 20px}
@@ -183,8 +183,8 @@
     <div class="cols" style="grid-template-columns: 1fr 1.2fr .9fr; align-items:start">
       <!-- Left: Professional photo -->
       <div class="card" style="overflow:hidden">
-        <div class="cover" style="height:360px;background:#0d2a4e;display:flex;align-items:center;justify-content:center"><span>PLACE: images/about/pro-photo.jpg</span></div>
-        <div class="card-inner"><strong>Professional Photo</strong><div class="tagline">Put your portrait at <code>images/about/pro-photo.jpg</code></div></div>
+        <img src="gallery/headshot.JPG" alt="Professional headshot of Pavan" style="width:100%;height:360px;object-fit:cover"/>
+        <div class="card-inner"><strong>Professional Photo</strong><div class="tagline">Using <code>gallery/headshot.JPG</code></div></div>
       </div>
       <!-- Middle: concise bullets -->
       <div class="card"><div class="card-inner">
@@ -370,32 +370,32 @@
       <h2 class="section-title">Gallery</h2>
       <p class="tagline">Photos go in <code>images/gallery/</code> · Videos in <code>videos/</code> (MP4/WebM). Use optional posters in <code>videos/posters/</code>.</p>
       <div class="media-h">
-        <!-- Photo Card 1 -->
-        <article class="media-card">
-          <div class="media-cover"><span>PLACE: images/gallery/teaching.jpg</span></div>
-          <div class="card-inner"><strong>Teaching — Excel Program</strong></div>
-        </article>
-        <!-- Video Card 1 -->
-        <article class="media-card">
-          <video controls preload="metadata" poster="videos/posters/demo1.jpg">
-            <source src="videos/demo1.mp4" type="video/mp4"/>
-            <source src="videos/demo1.webm" type="video/webm"/>
-          </video>
-          <div class="card-inner">Project Demo — RAG Orchestrator</div>
-        </article>
-        <!-- Photo Card 2 -->
-        <article class="media-card">
-          <div class="media-cover"><span>PLACE: images/gallery/haute-lab.jpg</span></div>
-          <div class="card-inner"><strong>HauteCarat — Lab & CV</strong></div>
-        </article>
-        <!-- Video Card 2 -->
-        <article class="media-card">
-          <video controls preload="metadata" poster="videos/posters/demo2.jpg">
-            <source src="videos/demo2.mp4" type="video/mp4"/>
-            <source src="videos/demo2.webm" type="video/webm"/>
-          </video>
-          <div class="card-inner">Computer Vision — On‑Model Pipeline</div>
-        </article>
+        <!-- Photos & videos mixed: 3 visible at a time -->
+        <article class="media-card"><img src="gallery/1871.jpg" alt="1871 event"/></article>
+        <article class="media-card"><img src="gallery/IMG_2936.jpg" alt="Event photo"/></article>
+        <article class="media-card"><img src="gallery/IMG_4171.jpg" alt="Event photo"/></article>
+        <article class="media-card"><img src="gallery/class_teaching.jpg" alt="Class teaching"/></article>
+        <article class="media-card"><img src="gallery/latest_teaching.jpg" alt="Latest teaching"/></article>
+        <article class="media-card"><img src="gallery/teaching.jpeg" alt="Teaching"/></article>
+        <article class="media-card"><img src="gallery/teaching2.jpeg" alt="Teaching 2"/></article>
+        <article class="media-card"><img src="gallery/teaching4.jpg" alt="Teaching 4"/></article>
+        <article class="media-card"><img src="gallery/teaching5.jpg" alt="Teaching 5"/></article>
+        <article class="media-card"><img src="gallery/teachings.jpg" alt="Teachings"/></article>
+        <article class="media-card"><img src="gallery/teachnign.jpg" alt="Teaching (typo file)"/></article>
+        <article class="media-card"><img src="gallery/event.jpg" alt="Event"/></article>
+        <article class="media-card"><img src="gallery/event_recent.jpg" alt="Recent event"/></article>
+        <article class="media-card"><img src="gallery/events.JPG" alt="Events collage"/></article>
+        <article class="media-card"><img src="gallery/graduated.jpg" alt="Graduation"/></article>
+        <article class="media-card"><img src="gallery/headshot.JPG" alt="Headshot"/></article>
+        <article class="media-card"><img src="gallery/headshot2.JPG" alt="Headshot 2"/></article>
+        <article class="media-card"><img src="gallery/microsoft.jpg" alt="Microsoft event"/></article>
+        <article class="media-card"><img src="gallery/microsoftteam.JPG" alt="Microsoft team"/></article>
+        <article class="media-card"><img src="gallery/office.jpeg" alt="Office"/></article>
+        <article class="media-card"><img src="gallery/prize.jpg" alt="Prize"/></article>
+        <article class="media-card"><img src="gallery/seminar-pro.jpg" alt="Seminar professional"/></article>
+        <article class="media-card"><img src="gallery/seminar.jpg" alt="Seminar"/></article>
+        <article class="media-card"><img src="gallery/skyline.jpg" alt="Skyline"/></article>
+        <article class="media-card"><img src="gallery/working2.jpg" alt="Working"/></article>
       </div>
     </div>
   </section>
