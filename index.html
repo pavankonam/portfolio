@@ -10,39 +10,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --navy:#0a2342;       /* main background */
-      --navy-2:#0e2d57;     /* cards */
-      --accent:#7dd3fc;     /* cyan accent */
-      --text:#e6f1ff;       /* base text */
-      --muted:#b8c3d9;      /* muted text */
-      --chip:#11355f;       /* skill pill */
-      --shadow: 0 20px 40px rgba(0,0,0,.25);
-      --radius:18px;
-      --radius-sm:12px;
-      --maxw:1100px;
+      --navy:#0a2342; --navy-2:#0e2d57; --accent:#7dd3fc; --text:#e6f1ff; --muted:#b8c3d9; --chip:#11355f;
+      --shadow: 0 20px 40px rgba(0,0,0,.25); --radius:18px; --radius-sm:12px; --maxw:1100px;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--navy);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.6}
-    img{max-width:100%;display:block}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{opacity:.9}
-    .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    *{box-sizing:bord-height:1.6}html,body{margin:0;padding:0;background:var(--navy)!important;color:var(--text)!important;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.6}}
     header{position:sticky;top:0;background:rgba(10,35,66,.85);backdrop-filter:saturate(150%) blur(8px);z-index:50;border-bottom:1px solid rgba(255,255,255,.06)}
-    nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:36px;height:36px;border-radius:10px;box-shadow:var(--shadow);object-fit:cover;display:block}
-    .brand h1{margin:0;font-size:18px;letter-spacing:.4px}
-    .links{display:flex;gap:18px}
-    .links a{font-weight:600;opacity:.9}
+    nav{dispborder-radiuheader{position:sticky;top:0;background:rgba(10,35,66,.85);backdrop-filter:saturate(150%) blur(8px);z-index:50;border-bottom:1px solid rgba(255,255,255,.06)}    .links a{font-weight:600;opacity:.9}
 
     .hero{position:relative;min-height:68vh;padding:0;border-bottom:1px solid rgba(255,255,255,.06);background:#071a33;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:url('gallery/newyork.jpg') center/cover no-repeat;opacity:.6;filter:saturate(1) contrast(1.05)}
-.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(1200px 600px at 20% 10%, rgba(125,211,252,.18), transparent), linear-gradient(180deg, rgba(10,35,66,.15), rgba(10,35,66,.65))}
-.hero-content{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:68vh}
+.hero::before{content:"";position:absolute;inset:0;background:url('gallery/skyline.jpg') center/cover no-repeat;opacity:.6;filter:saturate(1) contrast(1.05)}
+.hero::after{content:"";position:abso10,35,66,.15.hero{position:relative;min-height:68vh;padding:0;border-bottom:1px solid rgba(255,255,255,.06);background:radial-gradient(1000px 500px at 20% -10%, rgba(125,211,252,.15), transparent), radial-gradient(1000px 500px at 120% 10%, rgba(37,99,235,.12), transparent);overflow:hidden}:68vh}
 .hero-inner{max-width:var(--maxw);padding:0 20px}
-.hero-title{font-size: clamp(36px, 7vw, 64px);line-height:1.05;margin:0 0 10px;font-weight:900;letter-spacing:.3px;opacity:0;transform:translateY(16px);animation:fadeUp .9s .1s forwards cubic-bezier(.22,1,.36,1)}
-.hero-sub{font-size: clamp(16px, 2.4vw, 24px);color:var(--muted);max-width:900px;margin:0 0 18px;opacity:0;transform:translateY(12px);animation:fadeUp .9s .25s forwards cubic-bezier(.22,1,.36,1)}
-.hero-cta{display:flex;gap:12px;opacity:0;transform:translateY(12px);animation:fadeUp .9s .4s forwards cubic-bezier(.22,1,.36,1)}
+.hero-title{font-size: clamp(36px, 7vw, 64px);line-height:1.05;margin:0 0 10px;a;opacity:0;transform:translateY(12px);animation:fadeUp .9s .4s forwards cubic-bezier(.22,1,.36,1)}
 .name-accent{background:linear-gradient(90deg,#7dd3fc,#c4b5fd,#7dd3fc);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;animation: shimmer 2.5s linear infinite}
 @keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
 @keyframes fadeUp{to{opacity:1;transform:none}}
@@ -60,18 +39,11 @@
     .card-inner{padding:22px}
 
     .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-    .chip{background:var(--chip);color:var(--text);padding:8px 12px;border-radius:999px;font-size:12px;border:1px solid rgba(255,255,255,.07)}
-
-    section{padding:42px 0}
-    .cols{display:grid;gap:18px}
-    @media(min-width:900px){.cols{grid-template-columns:1fr 1fr}}
+    .chip{x;bordx){.cols{grid-template-columns:1fr 1fr}}
 
     .entry{padding:18px;border-radius:var(--radius-sm);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
     .entry h3{margin:0 0 6px;font-size:18px}
-    .entry .meta{font-size:12px;color:var(--muted)}
-
-    .projects{display:grid;gap:22px}
-    @media(min-width:840px){.projects{grid-template-columns:1fr 1fr}}
+    .entrns:1fr 1fr}}
     .project{overflow:hidden}
     .cover{height:220px;background:#0d2a4e;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center}
     .cover span{color:#9ecbff;opacity:.8}
@@ -79,16 +51,10 @@
     .project .card-inner{display:flex;flex-direction:column;gap:10px}
     .tagline{color:var(--muted)}
 
-    footer{padding:36px 0;border-top:1px solid rgba(255,255,255,.06);color:var(--muted)}
-    .footer-grid{display:grid;gap:18px}
-    @media(min-width:720px){.footer-grid{grid-template-columns:2fr 1fr 1fr}}
+    footer{padding:36px 0;border-to.card{background:var(--navy-2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);box-shadow:var(--shadow)}footer-grid{grid-template-columns:2fr 1fr 1fr}}
 
     /* smooth anchors */
-    html{scroll-behavior:smooth}
-  
-    /* TIMELINE */
-    .timeline{position:relative; padding:14px 0 6px}
-    .timeline::before{content:""; position:absolute; left:50%; top:0; bottom:0; width:3px; background:linear-gradient(180deg, rgba(125,211,252,.55), rgba(255,255,255,.08)); border-radius:6px; box-shadow:0 0 0 1px rgba(255,255,255,.04) inset}
+    html{scroll-behavior:sm.chip{background:var(--chip);color:var(--text);padding:8px 12px;border-radius:999px;font-size:12px;border:1px solid rgba(255,255,255,.07)}:50%; top:0; bottom:0; width:3px; background:linear-gradient(180deg, rgba(125,211,252,.55), rgba(255,255,255,.08)); border-radius:6px; box-shadow:0 0 0 1px rgba(255,255,255,.04) inset}
     .tl-wrap{display:grid; gap:24px}
     .tl-item{position:relative; width:calc(50% - 28px); background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; box-shadow:var(--shadow); padding:16px 18px; opacity:.35; filter:saturate(.7); transform:translateX(var(--off,0)) translateZ(0); transition:transform .7s cubic-bezier(.22,1,.36,1), opacity .6s ease, filter .6s ease}
     .tl-item.in{opacity:1; filter:saturate(1); --off:0}
@@ -162,7 +128,7 @@
   <header>
     <div class="wrap">
       <nav>
-        <div class="brand"><img class="logo" src="gallery/headshot2.jpg" alt="Pavan headshot"><h1>Pavan Konam</h1></div>
+        <div class="brand"><img class="logo" src="gallery/headshot2.JPG" alt="Pavan headshot"><h1>Pavan Konam</h1></div>
         <div class="links">
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
@@ -193,7 +159,7 @@
     <h2 class="section-title" style="margin-bottom:16px">About</h2>
     <div class="cols" style="grid-template-columns: 1fr 1.2fr .9fr; align-items:start">
       <!-- Left: Professional photo only -->
-      <div class="card" style="overflow:hidden">
+      <div cld" style="overflow:hidden">
         <img src="gallery/headshot.JPG" alt="Professional headshot of Pavan" style="width:100%;height:360px;object-fit:cover"/>
       </div>
       <!-- Middle: concise bullets -->
@@ -401,13 +367,14 @@
         <div class="media-card"><img src="gallery/event_recent.jpg" alt="Recent event"/></div>
         <div class="media-card"><img src="gallery/events.JPG" alt="Events"/></div>
         <div class="media-card"><img src="gallery/graduated.jpg" alt="Graduation"/></div>
+        <div class="media-card"><img src="gallery/headshot.JPG" alt="Headshot"/></div>
+        <div class="media-card"><img src="gallery/headshot2.JPG" alt="Headshot 2"/></div>
         <div class="media-card"><img src="gallery/microsoft.jpg" alt="Microsoft event"/></div>
         <div class="media-card"><img src="gallery/microsoftteam.JPG" alt="Microsoft team"/></div>
         <div class="media-card"><img src="gallery/office.jpeg" alt="Office"/></div>
         <div class="media-card"><img src="gallery/prize.jpg" alt="Prize"/></div>
         <div class="media-card"><img src="gallery/seminar-pro.jpg" alt="Seminar professional"/></div>
         <div class="media-card"><img src="gallery/seminar.jpg" alt="Seminar"/></div>
-        <div class="media-card"><img src="gallery/skyline.jpg" alt="Skyline"/></div>
         <div class="media-card"><img src="gallery/working2.jpg" alt="Working"/></div>
       </div>
     </div>
