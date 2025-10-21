@@ -22,7 +22,7 @@
     header{position:sticky;top:0;background:rgba(10,35,66,.85);backdrop-filter:saturate(150%) blur(8px);z-index:50;border-bottom:1px solid rgba(255,255,255,.06)}
     nav{display:flex;align-items:center;justify-content:space-between;height:64px}
     .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:36px;height:36px;border-radius:10px;box-shadow:var(--shadow);object-fit:cover;display:block}
+    .logo{width:40px;height:40px;border-radius:50%;box-shadow:var(--shadow);object-fit:cover;display:block;flex:0 0 40px}
     .brand h1{margin:0;font-size:18px;letter-spacing:.4px}
     .links{display:flex;gap:18px}
     .links a{font-weight:600;opacity:.9}
@@ -138,23 +138,24 @@
     .media-card .card-inner{padding:16px}
     .media-card video{width:100%;height:100%;display:block}
   
-    /* ---- FINAL OVERRIDES (force light theme + gallery fix) ---- */
-    body{background:#FCFCFC}
-    .hero{background:#FCFCFC}
-    .hero::after{background:linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.7))}
+    /* Strong final overrides for blue theme and gallery fit */
+    body{background:var(--navy)!important}
+    .hero{background:radial-gradient(1000px 500px at 20% -10%, rgba(125,211,252,.15), transparent), radial-gradient(1000px 500px at 120% 10%, rgba(37,99,235,.12), transparent)!important}
+    .hero::after{background:linear-gradient(180deg, rgba(10,35,66,.15), rgba(10,35,66,.65))!important}
     .media-h{display:flex;gap:22px;overflow-x:auto;padding:6px 0 10px;margin:0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-    .media-card{flex:0 0 calc((100% - 44px) / 3);min-width:calc((100% - 44px) / 3);scroll-snap-align:start}
+    .media-card{flex:0 0 calc((100% - 44px) / 3);min-width:calc((100% - 44px) / 3);scroll-snap-align:start;background:transparent!important;border:0!important;box-shadow:none!important}
     .media-card img, .media-card video{display:block;width:100%;aspect-ratio:16/9;height:auto;object-fit:cover}
     @media(max-width:980px){ .media-card{flex:0 0 calc((100% - 22px) / 2); min-width:calc((100% - 22px) / 2); } }
     @media(max-width:640px){ .media-card{flex:0 0 100%; min-width:100%; } }
     .btn.small{padding:8px 12px;border-radius:10px;font-weight:700}
+  
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
       <nav>
-        <div class="brand"><img class="logo" src="gallery/headshot2.jpg" alt="Pavan headshot"><h1>Pavan Konam</h1></div>
+        <div class="brand"><img class="logo" src="gallery/headshot2.jpg" alt="Pavan headshot" width="40" height="40"><h1>Pavan Konam</h1></div>
         <div class="links">
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
@@ -162,6 +163,7 @@
           <a href="#projects">Projects</a>
           <a href="#certs">Certifications</a>
           <a href="#contact">Contact</a>
+          <a class="btn small" href="https://raw.githubusercontent.com/pavankonam/portfolio/main/Pavan_Resume_Oct15.pdf" download>Download Résumé</a>
         </div>
       </nav>
     </div>
@@ -304,7 +306,7 @@
       </div>
       <div class="projects-h">
         <article class="card project">
-          <div class="cover"><span>Cover — PLACE: projects/intellicore-cover.jpg</span></div>
+          <div class="cover"><img src="projects/intellicore-cover.jpg" alt="Intellicore cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Intellicore — Multi‑Agent RAG System</h3>
             <p class="tagline">Production RAG for company‑wide insights with Shopify, Klaviyo, GA4, LiveChat, FB/IG.</p>
@@ -313,7 +315,7 @@
           </div>
         </article>
         <article class="card project">
-          <div class="cover"><span>Cover — PLACE: projects/visionary-cover.jpg</span></div>
+          <div class="cover"><img src="projects/visionary-cover.jpg" alt="Visionary cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Visionary — On‑Model Jewelry Image Generation</h3>
             <p class="tagline">AI system to synthesize brand‑consistent on‑model jewelry photos for HauteCarat.</p>
@@ -322,7 +324,7 @@
           </div>
         </article>
         <article class="card project">
-          <div class="cover"><span>Cover — PLACE: projects/amazon-ai-detect-cover.jpg</span></div>
+          <div class="cover"><img src="projects/amazon-ai-detect-cover.jpg" alt="Amazon AI Detect cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Amazon Review Human‑AI Detection</h3>
             <p class="tagline">Transformer fine‑tuning to classify human vs AI‑generated reviews; strong F1/ROC‑AUC.</p>
@@ -331,7 +333,7 @@
           </div>
         </article>
         <article class="card project">
-          <div class="cover"><span>Cover — PLACE: projects/empathetic-echoes-cover.jpg</span></div>
+          <div class="cover"><img src="projects/empathetic-echoes-cover.jpg" alt="Empathetic Echoes cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Empathetic Echoes — Psychiatric Chatbot</h3>
             <p class="tagline">Emotion‑aware conversational agent with safety guardrails and retrieval grounding.</p>
@@ -340,7 +342,7 @@
           </div>
         </article>
         <article class="card project">
-          <div class="cover"><span>Cover — PLACE: projects/virtual-gym-cover.jpg</span></div>
+          <div class="cover"><img src="projects/virtual-gym-cover.jpg" alt="Virtual Gym cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Virtual Gym Trainer</h3>
             <p class="tagline">Pose‑based real‑time feedback and rep counting via webcam.</p>
@@ -349,7 +351,7 @@
           </div>
         </article>
         <article class="card project">
-          <div class="cover"><span>Cover — PLACE: projects/dreams-cover.jpg</span></div>
+          <div class="cover"><img src="projects/dreams-cover.jpg" alt="Dreams project cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Artistic Visualization of Dreams</h3>
             <p class="tagline">EEG → CNN classifier (~85%) → VAE visuals for dream categories.</p>
@@ -450,6 +452,19 @@
       prevBtn.addEventListener('click', ()=> scrollByOne(-1));
       nextBtn.addEventListener('click', ()=> scrollByOne(1));
     }
+      // Ensure header avatar never stretches page if wrong image is set
+    (function(){
+      const img = document.querySelector('header .logo');
+      if(!img) return;
+      img.style.maxWidth = '40px';
+      img.style.maxHeight = '40px';
+      img.addEventListener('error', ()=>{
+        const order = ['gallery/headshot2.jpg','gallery/headshot2.JPG','gallery/headshot3.jpg','gallery/headshot3.JPG'];
+        const current = img.getAttribute('src');
+        const next = order[(order.indexOf(current)+1) % order.length];
+        if(current !== next) img.setAttribute('src', next);
+      });
+    })();
   </script>
 </body>
 </html>
