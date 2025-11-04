@@ -82,7 +82,7 @@
     .timeline{position:relative; padding:14px 0 6px}
     .timeline::before{content:""; position:absolute; left:50%; top:0; bottom:0; width:3px; background:linear-gradient(180deg, rgba(125,211,252,.55), rgba(255,255,255,.08)); border-radius:6px; box-shadow:0 0 0 1px rgba(255,255,255,.04) inset}
     .tl-wrap{display:grid; gap:24px}
-    .tl-item{position:relative; width:calc(50% - 28px); background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; box-shadow:var(--shadow); padding:16px 18px; opacity:.35; filter:saturate(.7); transform:translateX(var(--off,0)) translateZ(0); transition:transform .7s cubic-bezier(.22,1,.36,1), opacity .6s ease, filter .6s ease}
+    .tl-item{position:relative; width:calc(50% - 28px); background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; box-shadow:var(--shadow); padding:16px 18px; transform:translateX(var(--off,0)) translateZ(0); transition:transform .7s cubic-bezier(.22,1,.36,1)}
     .tl-item.in{opacity:1; filter:saturate(1); --off:0}
     .tl-item h3{margin:0 0 6px;font-size:18px}
     .tl-item .meta{font-size:12px;color:var(--muted)}
@@ -149,6 +149,20 @@
     @media(max-width:640px){ .media-card{flex:0 0 100%; min-width:100%; } }
     .btn.small{padding:8px 12px;border-radius:10px;font-weight:700}
   
+      /* Detail modal */
+    .detail-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:200}
+    .detail-backdrop.show{display:flex}
+    .detail-modal{position:relative;width:min(960px,94vw);max-height:88vh;display:flex;flex-direction:column;background:var(--navy-2);border:1px solid rgba(255,255,255,.12);border-radius:18px;box-shadow:0 40px 80px rgba(0,0,0,.5);overflow:hidden}
+    .detail-cover img,.detail-cover video{display:block;width:100%;height:260px;object-fit:cover}
+    .detail-body{padding:18px 20px 14px}
+    .detail-title{margin:0 0 4px;font-size:22px}
+    .detail-meta{font-size:12px;color:var(--muted);margin-bottom:10px}
+    .detail-content{color:var(--text)}
+    .detail-actions{display:flex;gap:10px;margin-top:10px}
+    .detail-actions a{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#1b3f72;color:#fff;border:1px solid rgba(255,255,255,.12);text-decoration:none;font-weight:600}
+    .detail-actions a:hover{background:#24518f}
+    .detail-close{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:6px 10px;font-size:13px;cursor:pointer}
+    @media(max-width:640px){.detail-cover img,.detail-cover video{height:210px}}
   </style>
 </head>
 <body>
@@ -407,17 +421,23 @@
       <h2 class="section-title">Education</h2>
       <div class="timeline">
         <div class="tl-wrap">
-          <article class="tl-item left">
+          <article class="tl-item left expandable">
             <span class="connector"></span><span class="dot"></span>
             <h3>Northwestern University — MS, Artificial Intelligence</h3>
             <div class="meta">Sep 2024 – Dec 2025 · Evanston</div>
             <p>Focus on LLMs, RAG, and Computer Vision; projects in healthcare AI and production ML systems.</p>
+            <template class="detail">
+              <p><strong>Focus & coursework</strong> — LLMs, RAG, Computer Vision, and applied healthcare AI. Built production‑style ML systems and end‑to‑end projects.</p>
+            </template>
           </article>
-          <article class="tl-item right">
+          <article class="tl-item right expandable">
             <span class="connector"></span><span class="dot"></span>
             <h3>Teegala Krishna Reddy Engineering College — BTech, ECE</h3>
             <div class="meta">2018 – 2022 · Hyderabad</div>
             <p>Electronics & Communication with strong foundations in programming, signals, and applied ML.</p>
+            <template class="detail">
+              <p><strong>Highlights</strong> — Core ECE fundamentals, programming, and early ML projects; robotics and applied electronics.</p>
+            </template>
           </article>
         </div>
       </div>
@@ -676,28 +696,136 @@
     </div>
   </footer>
 
+  <!-- Detail Modal -->
+  <div class="detail-backdrop" id="detail-backdrop">
+    <div class="detail-modal" id="detail-modal" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      <button class="detail-close" id="detail-close" aria-label="Close">✕</button>
+      <div class="detail-cover" id="detail-cover"></div>
+      <div class="detail-body">
+        <h3 class="detail-title" id="detail-title"></h3>
+        <div class="detail-meta" id="detail-meta"></div>
+        <div class="detail-content card-inner" id="detail-content"></div>
+        <div class="detail-actions" id="detail-actions"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Footer year
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    // Intersection Observer to animate timeline items into place
+    // Animate timeline entries
     const tlItems = document.querySelectorAll('.tl-item');
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
-    },{threshold: .35});
+    },{threshold:.35});
     tlItems.forEach(el=> io.observe(el));
 
-    // Project carousel controls
+    // Project carousel controls (one project at a time)
     const projRow = document.querySelector('.projects-h');
     const prevBtn = document.getElementById('proj-prev');
     const nextBtn = document.getElementById('proj-next');
     function scrollByOne(dir){
-      const width = projRow.clientWidth; // one full card width
-      projRow.scrollBy({left: dir * width, behavior: 'smooth'});
+      if(!projRow) return;
+      const width = projRow.clientWidth;
+      projRow.scrollBy({left: dir * width, behavior:'smooth'});
     }
     if(prevBtn && nextBtn){
-      prevBtn.addEventListener('click', ()=> scrollByOne(-1));
-      nextBtn.addEventListener('click', ()=> scrollByOne(1));
+      prevBtn.addEventListener('click', ()=>scrollByOne(-1));
+      nextBtn.addEventListener('click', ()=>scrollByOne(1));
     }
-      // Ensure header avatar never stretches page if wrong image is set
-    (func
+
+    // Detail modal logic (projects + experience + education)
+    const backdrop = document.getElementById('detail-backdrop');
+    const modal    = document.getElementById('detail-modal');
+    const dTitle   = document.getElementById('detail-title');
+    const dMeta    = document.getElementById('detail-meta');
+    const dCover   = document.getElementById('detail-cover');
+    const dContent = document.getElementById('detail-content');
+    const dActs    = document.getElementById('detail-actions');
+    const dClose   = document.getElementById('detail-close');
+
+    function openDetail(el){
+      const h3 = el.querySelector('h3');
+      const meta = el.querySelector('.meta');
+      dTitle.textContent = h3 ? h3.textContent : 'Details';
+      dMeta.textContent  = meta ? meta.textContent : '';
+
+      // Cover: prefer data-video, then data-cover, then existing .cover img
+      dCover.innerHTML = '';
+      const videoSrc = el.dataset.video;
+      const coverAttr = el.dataset.cover;
+      if(videoSrc){
+        const v = document.createElement('video');
+        v.controls = true; v.playsInline = true; v.muted = false;
+        const s = document.createElement('source');
+        s.src = videoSrc; s.type = 'video/mp4';
+        v.appendChild(s);
+        dCover.appendChild(v);
+      } else if(coverAttr){
+        const img = document.createElement('img');
+        img.src = coverAttr; img.alt = dTitle.textContent + ' cover';
+        dCover.appendChild(img);
+      } else {
+        const fromCard = el.querySelector('.cover img');
+        if(fromCard){
+          const clone = fromCard.cloneNode(true);
+          clone.style.width = '100%';
+          clone.style.height = '260px';
+          clone.style.objectFit = 'cover';
+          dCover.appendChild(clone);
+        }
+      }
+
+      // Content: prefer <template class="detail">
+      const tpl = el.querySelector('template.detail');
+      if(tpl){
+        dContent.innerHTML = tpl.innerHTML;
+      } else {
+        const body = el.querySelector('.card-inner') || el;
+        dContent.innerHTML = body.innerHTML;
+      }
+
+      // Actions: optional link button
+      dActs.innerHTML = '';
+      if(el.dataset.linkUrl){
+        const a = document.createElement('a');
+        a.href = el.dataset.linkUrl;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = el.dataset.linkText || 'Open link';
+        dActs.appendChild(a);
+      }
+
+      backdrop.classList.add('show');
+    }
+
+    function closeDetail(){
+      backdrop.classList.remove('show');
+      dTitle.textContent = '';
+      dMeta.textContent = '';
+      dCover.innerHTML = '';
+      dContent.innerHTML = '';
+      dActs.innerHTML = '';
+    }
+
+    if(dClose){ dClose.addEventListener('click', closeDetail); }
+    if(backdrop){
+      backdrop.addEventListener('click', (e)=>{
+        if(e.target === backdrop) closeDetail();
+      });
+    }
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && backdrop.classList.contains('show')) closeDetail();
+    });
+
+    document.querySelectorAll('.project.expandable, .tl-item.expandable').forEach(el=>{
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', (ev)=>{
+        if(ev.target.closest('a')) return; // let links behave normally
+        openDetail(el);
+      });
+    });
+  </script>
+</body>
+</html>
