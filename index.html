@@ -163,6 +163,26 @@
     .detail-actions a:hover{background:#24518f}
     .detail-close{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:6px 10px;font-size:13px;cursor:pointer}
     @media(max-width:640px){.detail-cover img,.detail-cover video{height:210px}}
+
+    /* >>> CHANGE #1: make project cover images fit (not zoom) <<< */
+    .projects-h .cover img{
+      object-fit:contain !important;
+      background:#0d2a4e;
+    }
+
+    /* >>> CHANGE #2: certifications horizontal scroll with ~350px cards <<< */
+    .certs-h{
+      display:flex;
+      gap:18px;
+      overflow-x:auto;
+      padding:6px 0 14px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+    }
+    .certs-h .entry{
+      flex:0 0 350px; /* B choice */
+      scroll-snap-align:center;
+    }
   </style>
 </head>
 <body>
@@ -207,10 +227,10 @@
       <!-- Middle: concise bullets -->
       <div class="card"><div class="card-inner">
         <ul style="margin:0;padding-left:18px">
-          <li>Founder of <strong>APExpose</strong>; building AI‑driven media & analytics products.</li>
+          <li>Founder of <strong>APExpose</strong>; building AI-driven media & analytics products.</li>
           <li>Design & deploy **production RAG/LLM** systems on Azure for real users.</li>
-          <li>Hands‑on **Computer Vision** for on‑model imagery and realtime feedback.</li>
-          <li>Teaching: **Linear Algebra & MATLAB**; mentor end‑to‑end ML projects.</li>
+          <li>Hands-on **Computer Vision** for on-model imagery and realtime feedback.</li>
+          <li>Teaching: **Linear Algebra & MATLAB**; mentor end-to-end ML projects.</li>
         </ul>
       </div></div>
       <!-- Right: skills chips -->
@@ -252,14 +272,14 @@
             <span class="dot"></span>
             <h3>Graduate Teaching Assistant — Northwestern University</h3>
             <div class="meta">Oct 2025 – Present · Remote · Course: Machine Learning</div>
-            <p>Guiding students on end‑to‑end ML projects and labs.</p>
+            <p>Guiding students on end-to-end ML projects and labs.</p>
             <template class="detail">
               <ul>
-                <li>Supported ML pipelines using scikit‑learn/TensorFlow; assisted with debugging and evaluation.
+                <li>Supported ML pipelines using scikit-learn/TensorFlow; assisted with debugging and evaluation.
                 </li>
                 <li>Led office hours, labs, and grading with clear rubrics and feedback loops.
                 </li>
-                <li>Mentored teams on data preprocessing, model selection, cross‑validation, and MLOps basics.
+                <li>Mentored teams on data preprocessing, model selection, cross-validation, and MLOps basics.
                 </li>
               </ul>
             </template>
@@ -271,14 +291,14 @@
             <span class="dot"></span>
             <h3>AI Software Engineer (Intern) — HauteCarat</h3>
             <div class="meta">Jul 2025 – Sep 2025 · Chicago (On-site)</div>
-            <p>Built an internal LLM/RAG platform and a CV pipeline for on‑model imagery.</p>
+            <p>Built an internal LLM/RAG platform and a CV pipeline for on-model imagery.</p>
             <template class="detail">
               <ul>
-                <li>Shipped an internal multi‑agent assistant, unified data with a vector DB, and exposed tools over APIs.
+                <li>Shipped an internal multi-agent assistant, unified data with a vector DB, and exposed tools over APIs.
                 </li>
                 <li>Created Streamlit dashboards for analytics and operations.
                 </li>
-                <li>Implemented text‑to‑image workflows (brand‑consistent on‑model jewelry) and evaluation harnesses.
+                <li>Implemented text-to-image workflows (brand-consistent on-model jewelry) and evaluation harnesses.
                 </li>
                 <li>Set up CI/CD with Docker and GitHub Actions; tracked runs with MLflow.
                 </li>
@@ -295,8 +315,8 @@
             <p>Taught <em>Linear Algebra & Intro to MATLAB</em> to ~30 students.</p>
             <template class="detail">
               <ul>
-                <li>Curriculum on vector spaces, linear transforms, eigen‑analysis, and MATLAB implementations.</li>
-                <li>Hands‑on labs linking math concepts to ML and engineering use‑cases.</li>
+                <li>Curriculum on vector spaces, linear transforms, eigen-analysis, and MATLAB implementations.</li>
+                <li>Hands-on labs linking math concepts to ML and engineering use-cases.</li>
                 <li>Mentored students to bridge theory and computation with applied projects.</li>
               </ul>
             </template>
@@ -327,7 +347,7 @@
             <template class="detail">
               <ul>
                 <li>Built deep learning models for medical imaging and text using TensorFlow/PyTorch.</li>
-                <li>Developed NLP chatbot and ASR; achieved ~92% accuracy in speech‑to‑text.
+                <li>Developed NLP chatbot and ASR; achieved ~92% accuracy in speech-to-text.
                 </li>
                 <li>Created scalable ML pipelines for cloud deployment; wrote technical docs and stakeholder updates.
                 </li>
@@ -346,8 +366,8 @@
             <p>Computer Vision intern focusing on detection & OCR.</p>
             <template class="detail">
               <ul>
-                <li>Built object‑detection and text‑recognition models on AWS; reached ~94% accuracy.</li>
-                <li>Supported image analysis for medical diagnostics; hands‑on with SQL, Azure, GCP, AWS.</li>
+                <li>Built object-detection and text-recognition models on AWS; reached ~94% accuracy.</li>
+                <li>Supported image analysis for medical diagnostics; hands-on with SQL, Azure, GCP, AWS.</li>
               </ul>
             </template>
           </article>
@@ -358,11 +378,11 @@
             <span class="dot"></span>
             <h3>Project Intern — The Sparks Foundation</h3>
             <div class="meta">Jul 2021 – Sep 2022 · Hyderabad</div>
-            <p>Contributed to data/AI mini‑projects and mentoring.
+            <p>Contributed to data/AI mini-projects and mentoring.
             </p>
             <template class="detail">
               <ul>
-                <li>Hands‑on project work in data/ML; documented results and learnings.</li>
+                <li>Hands-on project work in data/ML; documented results and learnings.</li>
               </ul>
             </template>
           </article>
@@ -405,9 +425,9 @@
             <p>Trained 600+ students in robotics & IoT; 50+ hires mentored.</p>
             <template class="detail">
               <ul>
-                <li>Ran hands‑on workshops; built 50+ mini and 4 major projects with students.
+                <li>Ran hands-on workshops; built 50+ mini and 4 major projects with students.
                 </li>
-                <li>Skills: C++, Robotics, IoT, new‑hire training.</li>
+                <li>Skills: C++, Robotics, IoT, new-hire training.</li>
               </ul>
             </template>
           </article>
@@ -427,7 +447,7 @@
             <div class="meta">Sep 2024 – Dec 2025 · Evanston</div>
             <p>Focus on LLMs, RAG, and Computer Vision; projects in healthcare AI and production ML systems.</p>
             <template class="detail">
-              <p><strong>Focus & coursework</strong> — LLMs, RAG, Computer Vision, and applied healthcare AI. Built production‑style ML systems and end‑to‑end projects.</p>
+              <p><strong>Focus & coursework</strong> — LLMs, RAG, Computer Vision, and applied healthcare AI. Built production-style ML systems and end-to-end projects.</p>
             </template>
           </article>
           <article class="tl-item right expandable">
@@ -460,10 +480,10 @@
             <p class="tagline">Company-wide insights across Shopify, Klaviyo, GA4, LiveChat, FB/IG.</p>
             <div class="chips"><span class="chip">Agents</span><span class="chip">RAG</span><span class="chip">Azure</span><span class="chip">APIs</span></div>
             <template class="detail">
-              <p><strong>Overview</strong> — Production RAG and agents to unify e‑commerce, marketing, and support data, answer complex queries, and trigger workflows.</p>
+              <p><strong>Overview</strong> — Production RAG and agents to unify e-commerce, marketing, and support data, answer complex queries, and trigger workflows.</p>
               <ul>
                 <li>Data connectors for Shopify, Klaviyo, GA4, LiveChat, Meta; semantic search over unified index.</li>
-                <li>Task‑routing multi‑agent architecture; tool use for analytics, cohorting, and alerts.</li>
+                <li>Task-routing multi-agent architecture; tool use for analytics, cohorting, and alerts.</li>
                 <li>Observability and eval loops for latency, answer quality, and guardrails.</li>
               </ul>
             </template>
@@ -475,16 +495,16 @@
           <div class="cover"><img src="projects/visionary.png" alt="Visionary cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Visionary — On-Model Jewelry Image Generation</h3>
-            <p class="tagline">AI system to synthesize brand‑consistent on‑model jewelry photos for HauteCarat.</p>
+            <p class="tagline">AI system to synthesize brand-consistent on-model jewelry photos for HauteCarat.</p>
             <div class="chips"><span class="chip">Generative AI</span><span class="chip">CV</span><span class="chip">Prompt Eng</span></div>
             <template class="detail">
               <p><strong>Approach</strong></p>
               <ul>
-                <li>Analyzed reference model photos with GPT‑4V; synthesized images via GPT‑Image‑1 to match luxury visual identity.</li>
-                <li>Flexible input pipeline adapts to rings, necklaces, earrings, bracelets; high‑resolution outputs for campaigns.</li>
-                <li>Closed‑access internal tool with guardrails and deployment protocols.</li>
+                <li>Analyzed reference model photos with GPT-4V; synthesized images via GPT-Image-1 to match luxury visual identity.</li>
+                <li>Flexible input pipeline adapts to rings, necklaces, earrings, bracelets; high-resolution outputs for campaigns.</li>
+                <li>Closed-access internal tool with guardrails and deployment protocols.</li>
               </ul>
-              <p><strong>Outcome</strong>: Automated, scalable creation of brand‑consistent imagery; reduced photoshoot dependency.</p>
+              <p><strong>Outcome</strong>: Automated, scalable creation of brand-consistent imagery; reduced photoshoot dependency.</p>
             </template>
           </div>
         </article>
@@ -493,17 +513,17 @@
         <article class="card project expandable" data-link-text="GitHub" data-link-url="#">
           <div class="cover"><img src="projects/amazon-ai-detect-cover.jpg" alt="Amazon AI Detect cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
-            <h3>Amazon Review Human‑AI Detection</h3>
-            <p class="tagline">Transformer fine‑tuning to classify human vs AI‑generated reviews; strong F1/ROC‑AUC.</p>
+            <h3>Amazon Review Human-AI Detection</h3>
+            <p class="tagline">Transformer fine-tuning to classify human vs AI-generated reviews; strong F1/ROC-AUC.</p>
             <div class="chips"><span class="chip">NLP</span><span class="chip">BERT</span></div>
             <template class="detail">
               <p><strong>Approach</strong></p>
               <ul>
                 <li>Curated human + AI review dataset; preprocessing, tokenization, class balancing.</li>
-                <li>Baselines (logreg/SVM) with stylometric features; fine‑tuned BERT for final model.</li>
-                <li>Evaluated with Accuracy/Precision/Recall/F1/ROC‑AUC; attention/feature‑importance for interpretability.</li>
+                <li>Baselines (logreg/SVM) with stylometric features; fine-tuned BERT for final model.</li>
+                <li>Evaluated with Accuracy/Precision/Recall/F1/ROC-AUC; attention/feature-importance for interpretability.</li>
               </ul>
-              <p><strong>Outcome</strong>: High accuracy and reliability for synthetic‑text detection.</p>
+              <p><strong>Outcome</strong>: High accuracy and reliability for synthetic-text detection.</p>
             </template>
           </div>
         </article>
@@ -513,14 +533,14 @@
           <div class="cover"><img src="projects/empathetic-echoes-cover.jpg" alt="Empathetic Echoes cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Empathetic Echoes — Psychiatric Chatbot</h3>
-            <p class="tagline">Emotion‑aware conversational agent with safety guardrails and retrieval grounding.</p>
+            <p class="tagline">Emotion-aware conversational agent with safety guardrails and retrieval grounding.</p>
             <div class="chips"><span class="chip">RAG</span><span class="chip">Emotion</span></div>
             <template class="detail">
               <p><strong>Approach</strong></p>
               <ul>
-                <li>Emotion detection via fine‑tuned transformers; context/intent mapping to therapy‑relevant categories.</li>
-                <li>Prompted generation with empathetic tone + RAG grounding; crisis‑aware safety fallbacks.</li>
-                <li>Human‑in‑the‑loop evaluation on empathy, coherence, helpfulness.</li>
+                <li>Emotion detection via fine-tuned transformers; context/intent mapping to therapy-relevant categories.</li>
+                <li>Prompted generation with empathetic tone + RAG grounding; crisis-aware safety fallbacks.</li>
+                <li>Human-in-the-loop evaluation on empathy, coherence, helpfulness.</li>
               </ul>
               <p><strong>Outcome</strong>: Strong simulated performance with ethical guardrails.</p>
             </template>
@@ -532,13 +552,12 @@
           <div class="cover"><img src="projects/virtual-gym-cover.jpg" alt="Virtual Gym cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Virtual Gym Trainer</h3>
-            <p class="tagline">Pose‑based real‑time feedback and rep counting via webcam.</p>
+            <p class="tagline">Pose-based real-time feedback and rep counting via webcam.</p>
             <div class="chips"><span class="chip">Pose Estimation</span><span class="chip">Realtime</span></div>
             <template class="detail">
               <ul>
-                <li>Pose keypoints from webcam frames; noise‑robust normalization.</li>
+                <li>Pose keypoints from webcam frames; noise-robust normalization.</li>
                 <li>Exercise classifier + repetition logic with angle thresholds; visual overlays for joints/angles.</li>
-                <li>Human evaluation + test sets to refine accuracy and feedback clarity.</li>
               </ul>
             </template>
           </div>
@@ -553,9 +572,8 @@
             <div class="chips"><span class="chip">EEG</span><span class="chip">CNN</span><span class="chip">VAE</span></div>
             <template class="detail">
               <ul>
-                <li>Merged 700+ EDF files; preprocessed bands (Delta‑Gamma) and spectrograms.</li>
+                <li>Merged 700+ EDF files; preprocessed bands (Delta-Gamma) and spectrograms.</li>
                 <li>Trained CNN to classify 5 dream categories; integrated VAE for generative visuals.</li>
-                <li>Validated on unseen EEG; analyzed visual coherence vs narratives.</li>
               </ul>
             </template>
           </div>
@@ -566,12 +584,11 @@
           <div class="cover"><img src="projects/icu-insights-cover.jpg" alt="ICU Insights cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>ICU Insights — Clinical Intelligence Dashboard</h3>
-            <p class="tagline">Real‑time ICU patient analytics with drift alerts and EDA widgets.</p>
+            <p class="tagline">Real-time ICU patient analytics with drift alerts and EDA widgets.</p>
             <div class="chips"><span class="chip">Healthcare</span><span class="chip">Dashboards</span></div>
             <template class="detail">
               <ul>
                 <li>Live EHR feeds; monitored data drift; built EDA widgets for clinicians.</li>
-                <li>Alerting for outliers and time‑series anomalies; role‑based access.</li>
               </ul>
             </template>
           </div>
@@ -587,8 +604,6 @@
             <template class="detail">
               <ul>
                 <li>Vitals dashboards (temp, SpO₂, HR) in tables/graphs; doctors review and message patients.</li>
-                <li>Generative AI creates health summaries and identifies instability windows.</li>
-                <li>Personalized diet and lifestyle recommendations sent via integrated email.</li>
               </ul>
             </template>
           </div>
@@ -604,7 +619,6 @@
             <template class="detail">
               <ul>
                 <li>Pose/landmark extraction; temporal normalization; deep classifier for gesture categories.</li>
-                <li>Evaluated accuracy/precision/recall on annotated datasets with domain‑expert mapping.</li>
               </ul>
             </template>
           </div>
@@ -615,12 +629,11 @@
           <div class="cover"><img src="projects/mars-cover.jpg" alt="MARS cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>MARS — Mentorship & Academic Resource System</h3>
-            <p class="tagline">Student mentorship platform with UX‑driven guidance and tracking.</p>
+            <p class="tagline">Student mentorship platform with UX-driven guidance and tracking.</p>
             <div class="chips"><span class="chip">HCI</span><span class="chip">UX</span></div>
             <template class="detail">
               <ul>
                 <li>User research → prototypes → usability testing; responsive web app with mentor matching.</li>
-                <li>Progress tracking and adaptive recommendations; accessibility‑first design.</li>
               </ul>
             </template>
           </div>
@@ -633,7 +646,8 @@
   <section id="certs">
     <div class="wrap">
       <h2 class="section-title">Certifications (selection)</h2>
-      <div class="cols">
+      <!-- >>> CHANGE #2 HTML: switched from .cols to .certs-h <<< -->
+      <div class="certs-h">
         <div class="entry"><h3>CITI: HIPAA Security & Privacy</h3><div class="meta">Apr 2025</div></div>
         <div class="entry"><h3>CITI: Human Research Protections (IRB)</h3><div class="meta">Apr 2025 – Apr 2028</div></div>
         <div class="entry"><h3>Coursera: Generative AI with LLMs</h3><div class="meta">Sep 2023</div></div>
@@ -682,7 +696,7 @@
       <div class="card"><div class="card-inner">
         <p>Email: <a href="mailto:pavankonam2026@u.northwestern.edu">pavankonam2026@u.northwestern.edu</a> · <a href="mailto:pavankonam@gmail.com">pavankonam@gmail.com</a></p>
         <p>LinkedIn: <a href="https://www.linkedin.com/in/pavankonam/" target="_blank" rel="noopener">linkedin.com/in/pavankonam</a> · GitHub: <a href="https://github.com/pavankonam" target="_blank" rel="noopener">github.com/pavankonam</a></p>
-        <p>Phone: <a href="tel:+15179402499">+1 (517) 940‑2499</a></p>
+        <p>Phone: <a href="tel:+15179402499">+1 (517) 940-2499</a></p>
         <p><a class="btn" href="https://raw.githubusercontent.com/pavankonam/portfolio/main/Pavan_Resume_Oct15.pdf" download>Download Résumé</a></p>
       </div></div>
     </div>
