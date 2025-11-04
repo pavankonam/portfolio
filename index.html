@@ -427,10 +427,14 @@
   <section id="projects">
     <div class="wrap">
       <h2 class="section-title">Projects</h2>
-      <div class="projects">
+      <div class="carousel-controls">
+        <button class="scroll-btn" id="proj-prev" aria-label="Previous">&#x2039;</button>
+        <button class="scroll-btn" id="proj-next" aria-label="Next">&#x203A;</button>
+      </div>
+      <div class="projects-h">
         <!-- Intellicore -->
         <article class="card project expandable" data-link-text="(add link)" data-link-url="#">
-          <div class="cover"></div>
+          <div class="cover"><img src="projects/intellicore-cover.jpg" alt="Intellicore cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Intellicore — Multi-Agent RAG System</h3>
             <p class="tagline">Company-wide insights across Shopify, Klaviyo, GA4, LiveChat, FB/IG.</p>
@@ -448,7 +452,7 @@
 
         <!-- Visionary -->
         <article class="card project expandable" data-link-text="(internal)" data-link-url="#">
-          <div class="cover"></div>
+          <div class="cover"><img src="projects/visionary-cover.jpg" alt="Visionary cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Visionary — On-Model Jewelry Image Generation</h3>
             <p class="tagline">AI system to synthesize brand‑consistent on‑model jewelry photos for HauteCarat.</p>
@@ -467,7 +471,7 @@
 
         <!-- Amazon Review Detection -->
         <article class="card project expandable" data-link-text="GitHub" data-link-url="#">
-          <div class="cover"></div>
+          <div class="cover"><img src="projects/amazon-ai-detect-cover.jpg" alt="Amazon AI Detect cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Amazon Review Human‑AI Detection</h3>
             <p class="tagline">Transformer fine‑tuning to classify human vs AI‑generated reviews; strong F1/ROC‑AUC.</p>
@@ -486,7 +490,7 @@
 
         <!-- Empathetic Echoes -->
         <article class="card project expandable" data-link-text="Demo" data-link-url="#">
-          <div class="cover"></div>
+          <div class="cover"><img src="projects/empathetic-echoes-cover.jpg" alt="Empathetic Echoes cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Empathetic Echoes — Psychiatric Chatbot</h3>
             <p class="tagline">Emotion‑aware conversational agent with safety guardrails and retrieval grounding.</p>
@@ -505,7 +509,7 @@
 
         <!-- Virtual Gym Trainer -->
         <article class="card project expandable" data-link-text="GitHub" data-link-url="#">
-          <div class="cover"></div>
+          <div class="cover"><img src="projects/virtual-gym-cover.jpg" alt="Virtual Gym cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Virtual Gym Trainer</h3>
             <p class="tagline">Pose‑based real‑time feedback and rep counting via webcam.</p>
@@ -522,7 +526,7 @@
 
         <!-- Artistic Visualization of Dreams -->
         <article class="card project expandable" data-link-text="Paper/Repo" data-link-url="#">
-          <div class="cover"></div>
+          <div class="cover"><img src="projects/dreams-cover.jpg" alt="Dreams project cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Artistic Visualization of Dreams</h3>
             <p class="tagline">EEG → CNN classifier (~85%) → VAE visuals for dream categories.</p>
@@ -539,7 +543,7 @@
 
         <!-- ICU Insights -->
         <article class="card project expandable" data-link-text="(case study)" data-link-url="#">
-          <div class="cover"></div>
+          <div class="cover"><img src="projects/icu-insights-cover.jpg" alt="ICU Insights cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>ICU Insights — Clinical Intelligence Dashboard</h3>
             <p class="tagline">Real‑time ICU patient analytics with drift alerts and EDA widgets.</p>
@@ -555,7 +559,7 @@
 
         <!-- Med Alert -->
         <article class="card project expandable" data-link-text="(prototype)" data-link-url="#">
-          <div class="cover"></div>
+          <div class="cover"><img src="projects/med-alert-cover.jpg" alt="Med Alert cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Med Alert — Doctor Portal with Wearable Streams</h3>
             <p class="tagline">Secure patient records + smartwatch vitals; AI health summaries and recommendations.</p>
@@ -572,7 +576,7 @@
 
         <!-- Gesture Net -->
         <article class="card project expandable">
-          <div class="cover"></div>
+          <div class="cover"><img src="projects/gesture-net-cover.jpg" alt="Gesture Net cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>Gesture Net — Nonverbal Risk Signals</h3>
             <p class="tagline">Detects behavioral cues from video for early risk assessment.</p>
@@ -588,7 +592,7 @@
 
         <!-- MARS -->
         <article class="card project expandable">
-          <div class="cover"></div>
+          <div class="cover"><img src="projects/mars-cover.jpg" alt="MARS cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
             <h3>MARS — Mentorship & Academic Resource System</h3>
             <p class="tagline">Student mentorship platform with UX‑driven guidance and tracking.</p>
@@ -696,109 +700,4 @@
       nextBtn.addEventListener('click', ()=> scrollByOne(1));
     }
       // Ensure header avatar never stretches page if wrong image is set
-    (function(){
-      const img = document.querySelector('header .logo');
-      if(!img) return;
-      img.style.maxWidth = '40px';
-      img.style.maxHeight = '40px';
-      img.addEventListener('error', ()=>{
-        const order = ['gallery/headshot2.jpg','gallery/headshot2.JPG','gallery/headshot3.jpg','gallery/headshot3.JPG'];
-        const current = img.getAttribute('src');
-        const next = order[(order.indexOf(current)+1) % order.length];
-        if(current !== next) img.setAttribute('src', next);
-      });
-    })();
-  </script>
-  <!-- Detail Modal / Overlay -->
-  <div id="overlay" style="position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:80"></div>
-  <div id="detail" style="position:fixed;inset:10% 6% auto;max-height:78vh;overflow:auto;background:var(--navy-2);border:1px solid rgba(255,255,255,.08);border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.45);transform:translateY(12px);opacity:0;pointer-events:none;transition:transform .25s ease,opacity .25s ease;z-index:90">
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.06)">
-      <h3 id="detail-title" style="margin:0;font-size:20px"></h3>
-      <div id="detail-actions" style="display:flex;gap:10px"></div>
-    </div>
-    <div id="detail-media"></div>
-    <div id="detail-body" class="card-inner"></div>
-  </div>
-
-  <script>
-    // Move Education after Experience (requested ordering)
-    (function(){
-      const exp = document.getElementById('experience');
-      const edu = document.getElementById('education');
-      if(exp && edu && edu.previousElementSibling !== exp){ exp.insertAdjacentElement('afterend', edu); }
-    })();
-
-    // Timeline intersection animation (kept)
-    document.getElementById('yr').textContent = new Date().getFullYear();
-    const tlItems = document.querySelectorAll('.tl-item');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
-    },{threshold:.35});
-    tlItems.forEach(el=> io.observe(el));
-
-    // Detail modal
-    const overlay = document.getElementById('overlay');
-    const modal   = document.getElementById('detail');
-    const mTitle  = document.getElementById('detail-title');
-    const mBody   = document.getElementById('detail-body');
-    const mMedia  = document.getElementById('detail-media');
-    const mActs   = document.getElementById('detail-actions');
-
-    function openDetailFrom(el){
-      // Title
-      const h3 = el.querySelector('h3');
-      mTitle.textContent = h3 ? h3.textContent : 'Details';
-
-      // Link button
-      mActs.innerHTML = '';
-      const url = el.dataset.linkUrl; const txt = el.dataset.linkText || 'Open link';
-      if(url){
-        const a = document.createElement('a'); a.href=url; a.target='_blank'; a.rel='noopener';
-        a.className='btn'; a.textContent = txt; mActs.appendChild(a);
-      }
-
-      // Media (cover image or video)
-      mMedia.innerHTML = '';
-      const video = el.dataset.video; const cover = el.querySelector('.cover img');
-      if(video){
-        const v = document.createElement('video'); v.controls=true; v.playsInline=true; v.style.width='100%';
-        const src = document.createElement('source'); src.src=video; src.type='video/mp4'; v.appendChild(src);
-        mMedia.appendChild(v);
-      } else if(cover){
-        const img = cover.cloneNode(true); img.style.width='100%'; mMedia.appendChild(img);
-      }
-
-      // Body: prefer <template.detail>
-      let html = '';
-      const t = el.querySelector('template.detail');
-      if(t){ html = t.innerHTML; }
-      else {
-        const inner = el.querySelector('.card-inner') || el; html = inner.innerHTML;
-      }
-      mBody.innerHTML = html;
-
-      // Show
-      overlay.style.opacity = 1; overlay.style.pointerEvents = 'auto';
-      modal.style.opacity = 1; modal.style.pointerEvents = 'auto'; modal.style.transform='translateY(0)';
-    }
-
-    function closeDetail(){
-      overlay.style.opacity = 0; overlay.style.pointerEvents = 'none';
-      modal.style.opacity = 0; modal.style.pointerEvents = 'none'; modal.style.transform='translateY(12px)';
-      mTitle.textContent = ''; mBody.innerHTML=''; mMedia.innerHTML=''; mActs.innerHTML='';
-    }
-
-    overlay.addEventListener('click', closeDetail);
-    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeDetail(); });
-
-    // Bind click handlers
-    document.querySelectorAll('.project.expandable, .tl-item.expandable').forEach(el=>{
-      el.addEventListener('click', (ev)=>{
-        // avoid opening when clicking a link inside cards
-        if(ev.target.closest('a')) return;
-        openDetailFrom(el);
-      });
-    });
-  </script>
-</body>
-</html>
+    (func
