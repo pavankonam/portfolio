@@ -116,7 +116,18 @@
     .projects-h{position:relative;display:flex;gap:22px;overflow-x:auto;padding:6px 0 14px;margin:0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
     .projects-h::-webkit-scrollbar{height:10px}
     .projects-h::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:999px}
-    .projects-h .project{flex:0 0 100%;min-width:100%;scroll-snap-align:center}
+    /* >>> CHANGE: show two projects per view on desktop, one on mobile <<< */
+    .projects-h .project{
+      flex:0 0 calc(50% - 11px);
+      min-width:calc(50% - 11px);
+      scroll-snap-align:start;
+    }
+    @media(max-width:900px){
+      .projects-h .project{
+        flex:0 0 100%;
+        min-width:100%;
+      }
+    }
 
     .carousel-controls{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
     .scroll-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:var(--text);padding:8px 12px;border-radius:12px;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
@@ -164,13 +175,13 @@
     .detail-close{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:6px 10px;font-size:13px;cursor:pointer}
     @media(max-width:640px){.detail-cover img,.detail-cover video{height:210px}}
 
-    /* >>> CHANGE #1: make project cover images fit (not zoom) <<< */
+    /* project cover images fit (not zoom) */
     .projects-h .cover img{
       object-fit:contain !important;
       background:#0d2a4e;
     }
 
-    /* >>> CHANGE #2: certifications horizontal scroll with ~350px cards <<< */
+    /* certifications horizontal scroll with ~350px cards */
     .certs-h{
       display:flex;
       gap:18px;
@@ -646,7 +657,6 @@
   <section id="certs">
     <div class="wrap">
       <h2 class="section-title">Certifications (selection)</h2>
-      <!-- >>> CHANGE #2 HTML: switched from .cols to .certs-h <<< -->
       <div class="certs-h">
         <div class="entry"><h3>CITI: HIPAA Security & Privacy</h3><div class="meta">Apr 2025</div></div>
         <div class="entry"><h3>CITI: Human Research Protections (IRB)</h3><div class="meta">Apr 2025 – Apr 2028</div></div>
@@ -735,7 +745,7 @@
     },{threshold:.35});
     tlItems.forEach(el=> io.observe(el));
 
-    // Project carousel controls (one project at a time)
+    // Project carousel controls (scroll by viewport width)
     const projRow = document.querySelector('.projects-h');
     const prevBtn = document.getElementById('proj-prev');
     const nextBtn = document.getElementById('proj-next');
