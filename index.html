@@ -207,7 +207,7 @@
       max-height:calc(88vh - 340px); /* cover + header/meta + padding */
       overscroll-behavior:contain;
     }
-
+  
     /* ==========================================================
        Skills bars (no numbers)
        ========================================================== */
@@ -219,6 +219,7 @@
     .fill.high{width:90%}
     .fill.strong{width:80%}
     .fill.mid{width:70%}
+
   </style>
 </head>
 <body>
@@ -568,7 +569,7 @@
                 Intellicore is a production-grade multi-agent Retrieval-Augmented Generation (RAG) platform built to deliver real-time, company-wide intelligence through a conversational AI interface. The system unifies fragmented data across e-commerce, marketing, analytics, and customer engagement platforms, enabling non-technical stakeholders to ask complex business questions and receive accurate, grounded answers.
               </p>
 
-              <p><strong>Technical Architecture &amp; Analytics</strong></p>
+              <p><strong>Technical Architecture & Analytics</strong></p>
               <ul>
                 <li>Designed a multi-agent architecture with specialized agents for ingestion, normalization, retrieval, reasoning, and response synthesis, enabling modular scalability and fault isolation.</li>
                 <li>Integrated Shopify, Klaviyo, Google Analytics 4, LiveChat, Facebook Ads, and Instagram Graph APIs, supporting historical backfills and incremental data syncs.</li>
@@ -638,41 +639,89 @@
         <article class="card project expandable" data-link-text="GitHub" data-link-url="#">
           <div class="cover"><img src="projects/amazon-ai-detect-cover.jpg" alt="Amazon AI Detect cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
-            <h3>Amazon Review Human-AI Detection</h3>
-            <p class="tagline">Transformer fine-tuning to classify human vs AI-generated reviews; strong F1/ROC-AUC.</p>
-            <div class="chips"><span class="chip">NLP</span><span class="chip">BERT</span></div>
+            <h3>Amazon Review Human–AI Detection — NLP-powered Authenticity Classifier</h3>
+            <p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p>
+            <p class="tagline">NLP-based system to distinguish human-written vs AI-generated Amazon reviews with robust, interpretable detection.</p>
+            <div class="chips">
+              <span class="chip">NLP</span>
+              <span class="chip">BERT</span>
+              <span class="chip">Transformer Fine-Tuning</span>
+              <span class="chip">Text Classification</span>
+              <span class="chip">Feature Engineering</span>
+            </div>
             <template class="detail">
-              <p><strong>Approach</strong></p>
+              <p><strong>Overview</strong></p>
+              <p>
+                This project developed an NLP-based classification system to distinguish between human-written and AI-generated Amazon reviews, addressing the growing risk of synthetic content manipulation in online marketplaces. The system combines classical linguistic analysis with transformer-based deep learning to deliver robust and interpretable detection.
+              </p>
+
+              <p><strong>Technical Architecture &amp; Modeling</strong></p>
               <ul>
-                <li>Curated human + AI review dataset; preprocessing, tokenization, class balancing.</li>
-                <li>Baselines (logreg/SVM) with stylometric features; fine-tuned BERT for final model.</li>
-                <li>Evaluated with Accuracy/Precision/Recall/F1/ROC-AUC; attention/feature-importance for interpretability.</li>
+                <li>Conducted a structured review of AI text generation artifacts, stylometric signals, and adversarial writing behaviors.</li>
+                <li>Curated and preprocessed a labeled Amazon review dataset containing both human-authored and AI-generated text, applying cleaning, tokenization, class balancing, and feature normalization.</li>
+                <li>Built baseline classifiers (Logistic Regression, SVM) using lexical and stylometric features such as n-grams, readability scores, punctuation patterns, and sentence-level statistics.</li>
+                <li>Fine-tuned BERT-based transformer models to capture subtle semantic and structural cues indicative of machine-generated text.</li>
+                <li>Designed rigorous evaluation pipelines using Accuracy, Precision, Recall, F1-score, and ROC-AUC with cross-validation for generalization testing.</li>
+                <li>Applied model interpretability techniques, including attention analysis and feature importance, to understand decision signals and improve trust.</li>
+                <li>Compared baseline and transformer performance, iteratively tuning hyperparameters and architectures.</li>
               </ul>
-              <p><strong>Outcome</strong>: High accuracy and reliability for synthetic-text detection.</p>
+
+              <p><strong>Impact &amp; Insights</strong></p>
+              <ul>
+                <li>Achieved strong classification performance (high F1 and ROC-AUC) in separating human and AI-generated reviews.</li>
+                <li>Identified consistent linguistic and structural patterns leveraged by detection models.</li>
+                <li>Demonstrated how NLP-based authenticity systems can help platforms preserve trust, mitigate fraud, and protect consumers.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Python, NLP, BERT, Transformer Fine-Tuning, Text Classification, Feature Engineering, Scikit-learn, PyTorch</p>
             </template>
           </div>
         </article>
-
-        <!-- Empathetic Echoes -->
+<!-- Empathetic Echoes -->
         <article class="card project expandable" data-link-text="Demo" data-link-url="#">
           <div class="cover"><img src="projects/empathetic-echoes-cover.jpg" alt="Empathetic Echoes cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
-            <h3>Empathetic Echoes — Psychiatric Chatbot</h3>
-            <p class="tagline">Emotion-aware conversational agent with safety guardrails and retrieval grounding.</p>
-            <div class="chips"><span class="chip">RAG</span><span class="chip">Emotion</span></div>
+            <h3>Empathetic Echoes — Emotion-Aware Psychiatric Chatbot</h3>
+            <p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p>
+            <p class="tagline">Emotion-aware conversational AI with ethical guardrails, safety escalation, and retrieval grounding for supportive mental health guidance.</p>
+            <div class="chips">
+              <span class="chip">Emotion Recognition</span>
+              <span class="chip">Conversational AI</span>
+              <span class="chip">RAG</span>
+              <span class="chip">Prompt Engineering</span>
+              <span class="chip">Safety Guardrails</span>
+            </div>
             <template class="detail">
-              <p><strong>Approach</strong></p>
+              <p><strong>Overview</strong></p>
+              <p>
+                Empathetic Echoes is an emotion-aware conversational AI designed to provide empathetic, context-sensitive mental health support while respecting ethical and safety boundaries. The system detects emotional states and adapts responses to support users with appropriate tone, intent, and grounding.
+              </p>
+
+              <p><strong>System Design &amp; Emotional Intelligence</strong></p>
               <ul>
-                <li>Emotion detection via fine-tuned transformers; context/intent mapping to therapy-relevant categories.</li>
-                <li>Prompted generation with empathetic tone + RAG grounding; crisis-aware safety fallbacks.</li>
-                <li>Human-in-the-loop evaluation on empathy, coherence, helpfulness.</li>
+                <li>Built an emotion detection module using fine-tuned transformer models to infer emotional states such as anxiety, sadness, frustration, and stress from user text.</li>
+                <li>Designed an intent and context understanding layer mapping user inputs to therapy-relevant categories (reflection, coping strategies, grounding exercises, resource guidance).</li>
+                <li>Engineered empathetic response-generation prompts, emphasizing emotional validation, supportive language, and conversational coherence.</li>
+                <li>Integrated retrieval-augmented grounding, ensuring responses reference validated mental health concepts rather than free-form generation.</li>
+                <li>Implemented safety and escalation logic to detect high-risk language (e.g., self-harm indicators) and trigger crisis-aware fallback messaging or human-support guidance.</li>
+                <li>Evaluated system quality via human-in-the-loop testing, measuring perceived empathy, appropriateness, coherence, and helpfulness.</li>
+                <li>Iteratively refined emotional calibration and prompts based on user feedback.</li>
               </ul>
-              <p><strong>Outcome</strong>: Strong simulated performance with ethical guardrails.</p>
+
+              <p><strong>Impact &amp; Ethical Value</strong></p>
+              <ul>
+                <li>Demonstrated strong performance in simulated conversations, with high perceived empathy and contextual relevance.</li>
+                <li>Showcased how emotion-aware AI systems can augment access to mental health support without replacing professional care.</li>
+                <li>Emphasized ethical guardrails, safety, and responsible deployment in sensitive AI applications.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>NLP, Transformer Models, Emotion Recognition, Conversational AI, Prompt Engineering, Retrieval-Augmented Generation (RAG), Python</p>
             </template>
           </div>
         </article>
-
-        <!-- Virtual Gym Trainer -->
+<!-- Virtual Gym Trainer -->
         <article class="card project expandable" data-link-text="GitHub" data-link-url="#">
           <div class="cover"><img src="projects/virtual-gym-cover.jpg" alt="Virtual Gym cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
