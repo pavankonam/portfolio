@@ -484,22 +484,63 @@
       </div>
       <div class="projects-h">
         <!-- Intellicore -->
-        <article class="card project expandable" data-link-text="(add link)" data-link-url="#">
-          <div class="cover"><img src="projects/intellicore.png" alt="Intellicore cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Intellicore — Multi-Agent RAG System</h3>
-            <p class="tagline">Company-wide insights across Shopify, Klaviyo, GA4, LiveChat, FB/IG.</p>
-            <div class="chips"><span class="chip">Agents</span><span class="chip">RAG</span><span class="chip">Azure</span><span class="chip">APIs</span></div>
-            <template class="detail">
-              <p><strong>Overview</strong> — Production RAG and agents to unify e-commerce, marketing, and support data, answer complex queries, and trigger workflows.</p>
+      <article class="card project expandable" data-link-text="Associated with HauteCarat" data-link-url="#">
+        <div class="cover">
+        <img src="projects/intellicore.png" alt="Intellicore cover" style="width:100%;height:220px;object-fit:cover">
+        </div>
+        <div class="card-inner">
+          <h3>Intellicore — Multi-Agent RAG System</h3>
+          <p class="meta">Associated with HauteCarat | Jul 2025 – Sep 2025</p>
+
+          <p class="tagline">
+            Production-grade multi-agent RAG platform delivering real-time, company-wide intelligence through a conversational AI interface.
+          </p>
+
+          <div class="chips">
+            <span class="chip">Multi-Agent</span>
+            <span class="chip">RAG</span>
+            <span class="chip">Azure</span>
+            <span class="chip">Vector Search</span>
+            <span class="chip">APIs</span>
+          </div>
+
+              <template class="detail">
+              <p><strong>Overview</strong></p>
+              <p>
+                Intellicore is a production-grade multi-agent Retrieval-Augmented Generation (RAG) platform built to deliver real-time,
+                company-wide intelligence through a conversational AI interface. The system unifies fragmented data across e-commerce,
+                marketing, analytics, and customer engagement platforms, enabling non-technical stakeholders to ask complex business
+                questions and receive accurate, grounded answers.
+              </p>
+
+              <p><strong>Technical Architecture & Analytics</strong></p>
               <ul>
-                <li>Data connectors for Shopify, Klaviyo, GA4, LiveChat, Meta; semantic search over unified index.</li>
-                <li>Task-routing multi-agent architecture; tool use for analytics, cohorting, and alerts.</li>
-                <li>Observability and eval loops for latency, answer quality, and guardrails.</li>
+                <li>Designed a multi-agent architecture with specialized agents for ingestion, normalization, retrieval, reasoning, and response synthesis.</li>
+                <li>Integrated Shopify, Klaviyo, Google Analytics 4, LiveChat, Facebook Ads, and Instagram Graph APIs with historical backfills and incremental syncs.</li>
+                <li>Built a canonical data model (Customer, Transaction, Campaign, Event, Content) to normalize schemas and resolve cross-platform duplication.</li>
+                <li>Implemented entity resolution and deduplication to unify customer journeys across ads, sessions, purchases, and conversations.</li>
+                <li>Developed embedding-based RAG pipelines with filtered retrieval to strictly ground LLM outputs in live business data.</li>
+                <li>Enabled natural-language analytics including KPI queries, funnel analysis, attribution, segmentation, and trend detection.</li>
+                <li>Automated end-to-end data refresh workflows to ensure data freshness and reliability.</li>
               </ul>
+
+              <p><strong>Business Impact</strong></p>
+              <ul>
+                <li>Replaced manual dashboard hopping with a single conversational insight layer, reducing time-to-insight.</li>
+                <li>Improved decision accuracy by grounding AI responses in normalized, real-time operational data.</li>
+                <li>Enabled proactive strategy through cross-channel analytics from marketing to revenue.</li>
+                <li>Established a scalable foundation for future agent expansion, forecasting, and automated recommendations.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>
+                Python, Azure Data Lake Gen2, Azure Cognitive Search, Azure Functions, Azure OpenAI,
+                Vector Embeddings, REST APIs, Multi-Agent Orchestration, RAG
+              </p>
             </template>
           </div>
         </article>
+
 
         <!-- Visionary -->
         <article class="card project expandable" data-link-text="(internal)" data-link-url="#">
