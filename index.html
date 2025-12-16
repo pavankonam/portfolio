@@ -990,7 +990,92 @@
           </div>
         </article>
 
-      </div>
+      
+        <!-- Medicurious -->
+        <article class="card project expandable">
+          <div class="cover"><img src="projects/medicurious-cover.jpg" alt="Medicurious cover" style="width:100%;height:220px;object-fit:cover"></div>
+          <div class="card-inner">
+            <h3>Medicurious — Domain-Specialized Medical LLM for Clinical Insight</h3>
+            <p class="meta">Associated with Northwestern University | Jan 2025 – Mar 2025</p>
+            <p class="tagline">Domain-specialized LLM system for accurate, structured, clinically grounded medical information under human oversight.</p>
+            <div class="chips">
+              <span class="chip">LLMs</span>
+              <span class="chip">RAG</span>
+              <span class="chip">Knowledge Representation</span>
+              <span class="chip">Prompt Engineering</span>
+            </div>
+            <template class="detail">
+              <p><strong>Overview</strong></p>
+              <p>
+                Medicurious is a domain-specialized Large Language Model system designed to deliver accurate, structured, and context-aware medical information for healthcare professionals. The project directly addresses the limitations of general-purpose LLMs in clinical settings—such as hallucinations, shallow reasoning, and unstructured outputs—by combining verified medical data, knowledge representations, and tailored evaluation protocols.
+              </p>
+
+              <p><strong>LLM Architecture &amp; Knowledge Grounding</strong></p>
+              <ul>
+                <li>Conducted an in-depth analysis of failure modes of general LLMs in healthcare, focusing on hallucination risk, lack of domain reasoning, and clinical unreliability.</li>
+                <li>Curated and standardized verified medical data sources, including drug safety records, symptom–diagnosis mappings, and clinical treatment guidelines.</li>
+                <li>Built a data preprocessing pipeline converting unstructured medical text into structured JSONL formats optimized for ingestion and retrieval.</li>
+                <li>Designed hierarchical knowledge schemas to enforce consistent structure, terminology, and contextual grounding in responses.</li>
+                <li>Applied prompt engineering and retrieval-augmented querying (RAG) to improve factual accuracy and reduce unsupported generation.</li>
+                <li>Developed custom evaluation metrics tailored to clinical scenarios, measuring contextual accuracy, relevance, and reliability rather than generic NLP scores.</li>
+                <li>Ran iterative validation cycles to assess readiness for clinical decision-support augmentation under human oversight.</li>
+              </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Demonstrated how domain-specialized LLMs can significantly improve reliability and structure in medical information delivery.</li>
+                <li>Highlighted best practices for safe AI deployment in healthcare, emphasizing verification, grounding, and evaluation rigor.</li>
+                <li>Provided a scalable foundation for future clinical decision-support systems with human-in-the-loop control.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Large Language Models, NLP, Prompt Engineering, Knowledge Representation, Retrieval-Augmented Generation (RAG), Python</p>
+            </template>
+          </div>
+        </article>
+
+        <!-- Stock Ticker Prediction -->
+        <article class="card project expandable">
+          <div class="cover"><img src="projects/stock-ticker-cover.jpg" alt="Stock Ticker Prediction cover" style="width:100%;height:220px;object-fit:cover"></div>
+          <div class="card-inner">
+            <h3>Stock Ticker Prediction — Time Series Forecasting with Sentiment Intelligence</h3>
+            <p class="meta">Associated with Northwestern University | Sep 2024 – Dec 2024</p>
+            <p class="tagline">Forecasting system combining time-series models with market sentiment signals for improved stock prediction accuracy.</p>
+            <div class="chips">
+              <span class="chip">Time Series</span>
+              <span class="chip">LSTM</span>
+              <span class="chip">SARIMAX</span>
+              <span class="chip">Sentiment Analysis</span>
+            </div>
+            <template class="detail">
+              <p><strong>Overview</strong></p>
+              <p>
+                This project developed an advanced stock price forecasting system that combines state-of-the-art time series models with market sentiment analysis to improve predictive accuracy. The system was designed to support analysts and investors by capturing both historical price dynamics and real-time market psychology.
+              </p>
+
+              <p><strong>Forecasting Models &amp; Analytics Pipeline</strong></p>
+              <ul>
+                <li>Built a large-scale historical dataset using stock price data from 2009 to present, enabling long-horizon learning and robustness testing.</li>
+                <li>Implemented and benchmarked multiple advanced forecasting models: LSTM, SARIMAX, TIDE (Temporal Integration for Data and Ensemble), and TSMixer.</li>
+                <li>Integrated sentiment analysis signals derived from market-related text to capture investor mood and behavioral effects.</li>
+                <li>Engineered pipelines to inject sentiment features into time series models as exogenous inputs.</li>
+                <li>Conducted rigorous model comparison and error analysis across market conditions and ticker types.</li>
+                <li>Developed a user-facing interface to visualize forecasts, trends, and comparative model performance.</li>
+              </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Achieved notable improvements in forecasting accuracy compared to price-only baseline models.</li>
+                <li>Demonstrated the value of combining quantitative price history with qualitative sentiment signals.</li>
+                <li>Provided an extensible framework for risk management, strategy testing, and financial decision support.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Time Series Forecasting, LSTM, SARIMAX, TIDE, TSMixer, Sentiment Analysis, Data Science, Python</p>
+            </template>
+          </div>
+        </article>
+</div>
     </div>
   </section>
 
