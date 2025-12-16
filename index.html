@@ -941,17 +941,51 @@
           </div>
         </article>
 
-        <!-- MARS -->
+        <!-- Pixel Pastries -->
         <article class="card project expandable">
-          <div class="cover"><img src="projects/mars-cover.jpg" alt="MARS cover" style="width:100%;height:220px;object-fit:cover"></div>
+          <div class="cover"><img src="projects/mars-cover.jpg" alt="Pixel Pastries cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
-            <h3>MARS — Mentorship & Academic Resource System</h3>
-            <p class="tagline">Student mentorship platform with UX-driven guidance and tracking.</p>
-            <div class="chips"><span class="chip">HCI</span><span class="chip">UX</span></div>
+            <h3>Pixel Pastries — GAN-Based Dessert Image Generation System</h3>
+            <p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p>
+
+            <p class="tagline">
+              Pixel Pastries is a generative deep learning system that synthesizes photorealistic dessert images using a custom-built Generative Adversarial Network (GAN).
+            </p>
+
+            <div class="chips"><span class="chip">GANs</span><span class="chip">TensorFlow</span><span class="chip">Computer Vision</span><span class="chip">MLOps</span></div>
+
             <template class="detail">
+              <p><strong>Overview</strong></p>
+              <p>
+                Pixel Pastries is a generative deep learning system that synthesizes photorealistic dessert images using a custom-built Generative Adversarial Network (GAN). The project explores how adversarial training, quantitative evaluation, and MLOps practices can be combined to build high-quality, domain-specific image generators.
+              </p>
+
+              <p><strong>Model Architecture &amp; Training Pipeline</strong></p>
               <ul>
-                <li>User research → prototypes → usability testing; responsive web app with mentor matching.</li>
+                <li>Curated a domain-focused training dataset by filtering dessert-related categories from the Food-101 dataset to improve visual consistency and learning stability.</li>
+                <li>Implemented a GAN from scratch in TensorFlow/Keras, designing:
+                  <ul>
+                    <li>A generator to synthesize realistic dessert imagery from latent noise</li>
+                    <li>A discriminator to distinguish real images from generated samples</li>
+                  </ul>
+                </li>
+                <li>Engineered stable training loops with custom loss handling, gradient updates, and model checkpointing.</li>
+                <li>Integrated epoch-wise visualization, generating GIFs to track visual quality progression over training.</li>
+                <li>Evaluated generative quality using Fréchet Inception Distance (FID) at regular intervals.</li>
+                <li>Performed systematic hyperparameter tuning (learning rate, batch size, optimizer selection, network depth) using grid search.</li>
+                <li>Incorporated MLOps tooling (TensorBoard, Weights &amp; Biases) for experiment tracking, metric logging, and model comparison.</li>
+                <li>Explored latent space interpolation to analyze smooth transitions between dessert styles and validate learned representations.</li>
               </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Successfully generated high-quality, visually coherent dessert images from noise.</li>
+                <li>Demonstrated how GANs can be trained and evaluated rigorously using both quantitative metrics and qualitative analysis.</li>
+                <li>Showcased end-to-end generative system design, from data curation to deployment-ready experimentation workflows.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>GANs, TensorFlow, Deep Learning, Computer Vision, Hyperparameter Tuning, MLOps, Image Generation</p>
             </template>
           </div>
         </article>
