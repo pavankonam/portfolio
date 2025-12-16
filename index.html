@@ -725,14 +725,36 @@
         <article class="card project expandable" data-link-text="GitHub" data-link-url="#">
           <div class="cover"><img src="projects/virtual-gym-cover.jpg" alt="Virtual Gym cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
-            <h3>Virtual Gym Trainer</h3>
-            <p class="tagline">Pose-based real-time feedback and rep counting via webcam.</p>
-            <div class="chips"><span class="chip">Pose Estimation</span><span class="chip">Realtime</span></div>
+            <h3>Virtual Gym Trainer — Real-Time AI Fitness Coaching System</h3>
+            <p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p>
+            <p class="tagline">Computer-vision–powered fitness assistant delivering real-time posture correction, repetition counting, and exercise feedback through a webcam.</p>
+            <div class="chips"><span class="chip">Computer Vision</span><span class="chip">Pose Estimation</span><span class="chip">Real-Time ML</span><span class="chip">UI Visualization</span><span class="chip">HCI</span></div>
             <template class="detail">
+              
+              <p><strong>Overview</strong></p>
+              <p>Virtual Gym Trainer is a computer-vision–powered fitness assistant that monitors user workouts through a webcam, providing real-time posture correction, repetition counting, and exercise feedback. The system is designed to make solo training safer, more effective, and more accessible without requiring a human trainer.</p>
+
+              <p><strong>System Architecture &amp; Real-Time Analytics</strong></p>
               <ul>
-                <li>Pose keypoints from webcam frames; noise-robust normalization.</li>
-                <li>Exercise classifier + repetition logic with angle thresholds; visual overlays for joints/angles.</li>
+                <li>Implemented a real-time video processing pipeline to capture webcam input and extract human pose keypoints on a per-frame basis using pose estimation models.</li>
+                <li>Applied pose normalization and noise filtering to handle lighting variation, camera angle differences, and diverse body proportions.</li>
+                <li>Built an exercise classification module to identify movements such as squats, push-ups, and lunges based on pose dynamics.</li>
+                <li>Designed state-transition logic to track start/end positions and automatically count repetitions using joint-angle thresholds.</li>
+                <li>Developed a posture evaluation engine that detects form deviations and triggers corrective feedback when thresholds are exceeded.</li>
+                <li>Integrated a visual feedback overlay, highlighting joints, angles, and incorrect posture in real time for intuitive correction.</li>
+                <li>Validated accuracy and usability using recorded test videos and human evaluation.</li>
               </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Delivered accurate real-time exercise recognition and rep counting.</li>
+                <li>Improved workout safety and form awareness through immediate corrective feedback.</li>
+                <li>Demonstrated how vision-based systems can function as scalable virtual personal trainers.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Computer Vision, Pose Estimation, Real-Time ML, Python, Human–Computer Interaction, UI Visualization</p>
+
             </template>
           </div>
         </article>
@@ -741,14 +763,44 @@
         <article class="card project expandable" data-link-text="Paper/Repo" data-link-url="#">
           <div class="cover"><img src="projects/dreams-cover.jpg" alt="Dreams project cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
-            <h3>Artistic Visualization of Dreams</h3>
-            <p class="tagline">EEG → CNN classifier (~85%) → VAE visuals for dream categories.</p>
-            <div class="chips"><span class="chip">EEG</span><span class="chip">CNN</span><span class="chip">VAE</span></div>
+            <h3>Artistic Visualization of Dreams — EEG-to-Image Deep Learning Pipeline</h3>
+            <p class="meta">Associated with Northwestern University | Jan 2025 – Mar 2025</p>
+            <p class="tagline">End-to-end EEG decoding pipeline that classifies dream categories from spectrograms and generates artistic visuals via a VAE.</p>
+            <div class="chips"><span class="chip">EEG Processing</span><span class="chip">CNN</span><span class="chip">VAE</span><span class="chip">Signal Processing</span><span class="chip">Deep Learning</span></div>
             <template class="detail">
+              
+              <p><strong>Overview</strong></p>
+              <p>This project explores the intersection of neuroscience and generative AI by decoding EEG signals recorded during sleep and transforming them into artistic visual representations of dream content. The system classifies dream states and generates images that reflect subconscious patterns.</p>
+
+              <p><strong>Neural Signal Processing &amp; Generative Modeling</strong></p>
               <ul>
-                <li>Merged 700+ EDF files; preprocessed bands (Delta-Gamma) and spectrograms.</li>
-                <li>Trained CNN to classify 5 dream categories; integrated VAE for generative visuals.</li>
+                <li>Compiled and unified five EEG datasets, creating a consolidated corpus of 700+ EDF files representing diverse dream experiences.</li>
+                <li>Preprocessed raw EEG signals through noise filtering, frequency band extraction (Delta, Theta, Alpha, Beta, Gamma), and spectrogram generation.</li>
+                <li>Designed and trained a CNN-based classifier to categorize dreams into five semantic classes:
+                  <ul>
+                    <li>Adventure &amp; Movement</li>
+                    <li>Fear &amp; Uncertainty</li>
+                    <li>People &amp; Social Interaction</li>
+                    <li>Abstract &amp; Thought-based</li>
+                    <li>Miscellaneous</li>
+                  </ul>
+                </li>
+                <li>Achieved approximately 85% classification accuracy on held-out EEG samples.</li>
+                <li>Integrated classification outputs with a Variational Autoencoder (VAE) to generate artistic images corresponding to predicted dream categories.</li>
+                <li>Built an end-to-end pipeline: EEG decoding → dream classification → visual generation.</li>
+                <li>Evaluated coherence between generated imagery and known dream narratives.</li>
               </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Demonstrated a novel approach to visualizing subconscious brain activity using deep learning.</li>
+                <li>Showcased the feasibility of EEG-driven generative systems for neuroscience and BCI research.</li>
+                <li>Bridged neural signal analysis with creative AI expression.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>EEG Processing, CNNs, VAEs, Deep Learning, Signal Processing, Python</p>
+
             </template>
           </div>
         </article>
@@ -757,13 +809,54 @@
         <article class="card project expandable" data-link-text="(case study)" data-link-url="#">
           <div class="cover"><img src="projects/icu-insights-cover.jpg" alt="ICU Insights cover" style="width:100%;height:220px;object-fit:cover"></div>
           <div class="card-inner">
-            <h3>ICU Insights — Clinical Intelligence Dashboard</h3>
-            <p class="tagline">Real-time ICU patient analytics with drift alerts and EDA widgets.</p>
-            <div class="chips"><span class="chip">Healthcare</span><span class="chip">Dashboards</span></div>
+            <h3>ICU Insights — Predictive Modeling for ICU Admission Risk</h3>
+            <p class="meta">Associated with Northwestern University | Sep 2024 – Dec 2024</p>
+            <p class="tagline">Clinical risk prediction system using MIMIC-IV data to forecast ICU admission risk and support proactive triage.</p>
+            <div class="chips"><span class="chip">Healthcare Analytics</span><span class="chip">Random Forest</span><span class="chip">Neural Networks</span><span class="chip">BigQuery</span><span class="chip">SQL</span></div>
             <template class="detail">
+              
+              <p><strong>Overview</strong></p>
+              <p>ICU Insights is a clinical risk prediction system built to forecast whether hospitalized patients are likely to require ICU admission. By identifying high-risk cases early, the model supports proactive care prioritization and resource allocation.</p>
+
+              <p><strong>Data Engineering &amp; Predictive Modeling</strong></p>
               <ul>
-                <li>Live EHR feeds; monitored data drift; built EDA widgets for clinicians.</li>
+                <li>Utilized the MIMIC-IV clinical database, containing de-identified records from 70,000+ ICU patients, including labs, vitals, medications, and administrative data.</li>
+                <li>Engineered clinical features such as:
+                  <ul>
+                    <li>Ratio of abnormal to normal lab results</li>
+                    <li>Frequency of lab tests</li>
+                    <li>Demographics, vitals, and OMR data (BMI, blood pressure, height, weight)</li>
+                  </ul>
+                </li>
+                <li>Developed and compared Random Forest and Feedforward Neural Network models.</li>
+                <li>Built two model versions:
+                  <ul>
+                    <li>V1: 24 features (demographics, labs, vitals)</li>
+                    <li>V2: 31 features with expanded OMR data</li>
+                  </ul>
+                </li>
+                <li>Addressed large-scale data challenges using SQL optimization in BigQuery, chunk-based processing, and lazy loading.</li>
+                <li>Handled missing values via targeted imputation strategies.</li>
               </ul>
+
+              <p><strong>Model Performance</strong></p>
+              <ul>
+                <li><strong>Best Model:</strong> Random Forest</li>
+                <li><strong>Test AUC-ROC:</strong> 0.973</li>
+                <li><strong>Test F1 Score:</strong> 0.767</li>
+                <li><strong>Recall:</strong> 0.806 | <strong>Precision:</strong> 0.731</li>
+              </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Demonstrated strong predictive power for early ICU risk identification.</li>
+                <li>Highlighted how ML-driven triage tools can improve clinical decision-making.</li>
+                <li>Balanced performance, interpretability, and scalability in healthcare ML systems.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Machine Learning, Random Forests, Neural Networks, SQL, BigQuery, Python, Healthcare Analytics</p>
+
             </template>
           </div>
         </article>
