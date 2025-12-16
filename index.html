@@ -226,6 +226,62 @@
     .fill.strong{width:80%}
     .fill.mid{width:70%}
 
+
+    /* ==========================================================
+       Responsive / Dynamic layout improvements (mobile + tablet)
+       (keeps desktop as-is, fixes About photo crop on phones)
+       ========================================================== */
+
+    :root{
+      --hero-photo-y: 20%;
+    }
+
+    /* Make About grid auto-fit instead of forcing 3 columns */
+    #about .cols{
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+      align-items: stretch !important;
+    }
+
+    /* Ensure the About photo always has a sensible height */
+    #about .card:first-child{
+      min-height: 320px;
+    }
+    #about .card:first-child img{
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center var(--hero-photo-y) !important;
+      display: block !important;
+    }
+
+    /* Small screens: tweak crop + nav layout so it doesn't look cramped */
+    @media (max-width: 720px){
+      :root{ --hero-photo-y: 15%; }
+
+      nav{
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px 0;
+        gap: 10px;
+      }
+      .links{
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: flex-start;
+      }
+      .links a{
+        font-size: 13px;
+      }
+      .wrap{padding: 0 16px;}
+      section{padding: 34px 0;}
+    }
+
+    /* Ultra-small phones: keep photo visible and avoid excessive cropping */
+    @media (max-width: 420px){
+      #about .card:first-child{ min-height: 280px; }
+      :root{ --hero-photo-y: 18%; }
+    }
+
   </style>
 </head>
 <body>
