@@ -28,7 +28,7 @@
     .links a{font-weight:600;opacity:.9}
 
     .hero{position:relative;min-height:68vh;padding:0;border-bottom:1px solid rgba(255,255,255,.06);background:#071a33;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:url('gallery/newyork.jpg') center/cover no-repeat;opacity:.6;filter:saturate(1) contrast(1.05)}
+.hero::before{content:"";position:absolute;inset:0;background:url('gallery/skyline.jpg') center/cover no-repeat;opacity:.6;filter:saturate(1) contrast(1.05)}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(1200px 600px at 20% 10%, rgba(125,211,252,.18), transparent), linear-gradient(180deg, rgba(10,35,66,.15), rgba(10,35,66,.65))}
 .hero-content{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:68vh}
 .hero-inner{max-width:var(--maxw);padding:0 20px}
@@ -88,13 +88,13 @@
     .tl-item .meta{font-size:12px;color:var(--muted)}
     .tl-item p{margin:10px 0 0}
     .tl-item .connector{position:absolute; top:50%; width:28px; height:2px; background:rgba(125,211,252,.6); transform-origin:right center; transition:transform .5s ease, opacity .5s ease; opacity:.75}
-    .tl-item.left{margin-right:auto; --off:-48px}
-    .tl-item.left .connector{right:-28px; transform:scaleX(0)}
-    .tl-item.right{margin-left:auto; --off:48px}
-    .tl-item.right .connector{left:-28px; transform:scaleX(0); transform-origin:left center}
-    .tl-item .dot{position:absolute; top:50%; left:50%; width:12px; height:12px; background:#7dd3fc; border:2px solid #0a2342; border-radius:999px; translate:-50% -50%; box-shadow:0 0 0 4px rgba(125,211,252,.18)}
+    .tl-item.left{margin-right:auto; --off:0}
+    .tl-item.left .connector{right:-28px; transform:scaleX(1)}
+    .tl-item.right{margin-left:auto; --off:0}
+    .tl-item.right .connector{left:-28px; transform:scaleX(1); transform-origin:left center}
+    .tl-item .dot{position:absolute; top:50%; left:50%; width:12px; height:12px; background:#7dd3fc; border:2px solid #0a2342; border-radius:999px; translate:-50% -50%; box-shadow:0 0 0 4px rgba(125,211,252,.18); display:none}
     .tl-item.in .connector{transform:scaleX(1)}
-    .tl-item:hover{transform:translateX(0) scale(1.01)}
+    .tl-item:hover{transform:translateX(var(--off,0)) scale(1.01)}
     /* small screens: single column */
     @media(max-width:820px){
       .timeline::before{left:10px}
@@ -384,7 +384,7 @@
       <div class="timeline">
         <div class="tl-wrap">
           <!-- APExpose Founder -->
-          <article class="tl-item left expandable" data-link-url="#" data-link-text="Company site">
+          <article class="tl-item left expandable">
             <span class="connector"></span>
             <span class="dot"></span>
             <h3>Founder — APExpose</h3>
@@ -1434,15 +1434,15 @@
     <div class="wrap">
       <h2 class="section-title">Gallery</h2>
       <div class="media-h">
+        <div class="media-card"><img src="gallery/grad.jpeg" alt="Graduation"/></div>
+        <div class="media-card"><img src="gallery/frnd.jpeg" alt="Graduation"/></div>
+        <div class="media-card"><img src="gallery/msai.jpeg" alt="MSAI"/></div>
         <div class="media-card"><img src="gallery/teaching.jpeg" alt="Teaching"/></div>
         <div class="media-card"><img src="gallery/teaching2.jpeg" alt="Teaching 2"/></div>
         <div class="media-card"><img src="gallery/teaching4.jpg" alt="Teaching 4"/></div>
         <div class="media-card"><img src="gallery/teaching5.jpg" alt="Teaching 5"/></div>
         <div class="media-card"><img src="gallery/teachings.jpg" alt="Teachings"/></div>
         <div class="media-card"><img src="gallery/teachnign.jpg" alt="Teaching"/></div>
-        <div class="media-card"><img src="gallery/grad.jpeg" alt="Graduation"/></div>
-        <div class="media-card"><img src="gallery/frnd.jpeg" alt="Graduation"/></div>
-        <div class="media-card"><img src="gallery/msai.jpeg" alt="MSAI"/></div>
         <div class="media-card"><img src="gallery/newyork.jpg" alt="New York cover"/></div>
         <div class="media-card"><img src="gallery/1871.jpg" alt="1871 event"/></div>
         <div class="media-card"><img src="gallery/IMG_2936.jpg" alt="Event photo"/></div>
@@ -1459,7 +1459,6 @@
         <div class="media-card"><img src="gallery/prize.jpg" alt="Prize"/></div>
         <div class="media-card"><img src="gallery/seminar-pro.jpg" alt="Seminar professional"/></div>
         <div class="media-card"><img src="gallery/seminar.jpg" alt="Seminar"/></div>
-        <div class="media-card"><img src="gallery/skyline.jpg" alt="Skyline"/></div>
         <div class="media-card"><img src="gallery/working2.jpg" alt="Working"/></div>
       </div>
     </div>
