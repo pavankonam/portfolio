@@ -9,7 +9,8 @@ Run `python3 -m http.server 8765`, then visit http://localhost:8765.
 ## Editing
 
 - `index.html`: profile, industry case studies, project library, experience, education and contact details.
-- `styles.css`: responsive design and motion. Motion respects the operating system's reduced-motion preference.
+- `styles.css`: responsive cosmic theme, section entrances and hover motion.
+- `universe.js`: original canvas particle nebula, pointer response and motion controls. Honors reduced motion, pauses offscreen/in background tabs, caps drawing at 30fps and lowers particle count on phones. No animation dependencies or external assets.
 - `script.js`: accessible mobile navigation and current footer year.
 - `AI_ML_Engineer.pdf`: downloadable résumé. Keep this filename or update both links.
 - `gallery/` and `projects/`: existing photographs and project imagery.
@@ -23,6 +24,8 @@ The Portfolio quality workflow runs on pull requests and updates to `main`, chec
 ```
 python3 scripts/check_site.py
 node --check script.js
+node --check universe.js
+node scripts/test_motion.cjs
 ```
 
 GitHub Pages continues to deploy updates to `main` through its existing branch-based publishing configuration. No deployment tokens, API keys or additional hosting accounts are required. Quality checks do not configure branch protection; review their result before merging.

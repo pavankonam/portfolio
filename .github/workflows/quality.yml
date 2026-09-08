@@ -14,4 +14,8 @@ jobs:
       - name: Validate markup, anchors, assets and accessibility basics
         run: python3 scripts/check_site.py
       - name: Validate JavaScript syntax
-        run: node --check script.js
+        run: |
+          node --check script.js
+          node --check universe.js
+      - name: Test animation controls and lifecycle
+        run: node scripts/test_motion.cjs
