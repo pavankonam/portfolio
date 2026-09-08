@@ -1,397 +1,338 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pavan Konam | AI Engineer</title>
-  <meta name="description" content="AI Engineer portfolio of Pavan Konam — projects, experience, education, and contact." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --navy:#0a2342; --navy-2:#0e2d57; --accent:#7dd3fc; --text:#e6f1ff; --muted:#b8c3d9; --chip:#11355f;
-      --shadow: 0 20px 40px rgba(0,0,0,.25); --radius:18px; --radius-sm:12px; --maxw:1100px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--navy)!important;color:var(--text)!important;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.6}
-    img{max-width:100%;display:block}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{opacity:.9}
-    .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
-    header{position:sticky;top:0;background:rgba(10,35,66,.85);backdrop-filter:saturate(150%) blur(8px);z-index:50;border-bottom:1px solid rgba(255,255,255,.06)}
-    nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:40px;height:40px;border-radius:50%;box-shadow:var(--shadow);object-fit:cover;display:block;flex:0 0 40px}
-    .brand h1{margin:0;font-size:18px;letter-spacing:.4px}
-    .links{display:flex;gap:18px}
-    .links a{font-weight:600;opacity:.9}
-
-    .hero{position:relative;min-height:68vh;padding:0;border-bottom:1px solid rgba(255,255,255,.06);background:#071a33;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:url('gallery/skyline.jpg') center/cover no-repeat;opacity:.6;filter:saturate(1) contrast(1.05)}
-.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(1200px 600px at 20% 10%, rgba(125,211,252,.18), transparent), linear-gradient(180deg, rgba(10,35,66,.15), rgba(10,35,66,.65))}
-.hero-content{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:68vh}
-.hero-inner{max-width:var(--maxw);padding:0 20px}
-.hero-title{font-size: clamp(36px, 7vw, 64px);line-height:1.05;margin:0 0 10px;font-weight:900;letter-spacing:.3px;opacity:0;transform:translateY(16px);animation:fadeUp .9s .1s forwards cubic-bezier(.22,1,.36,1)}
-.hero-sub{font-size: clamp(16px, 2.4vw, 24px);color:var(--muted);max-width:900px;margin:0 0 18px;opacity:0;transform:translateY(12px);animation:fadeUp .9s .25s forwards cubic-bezier(.22,1,.36,1)}
-.hero-cta{display:flex;gap:12px;opacity:0;transform:translateY(12px);animation:fadeUp .9s .4s forwards cubic-bezier(.22,1,.36,1)}
-.name-accent{background:linear-gradient(90deg,#7dd3fc,#c4b5fd,#7dd3fc);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;animation: shimmer 2.5s linear infinite}
-@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
-@keyframes fadeUp{to{opacity:1;transform:none}}
-.grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:32px}
-    .grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:32px}
-    h2.section-title{font-size:28px;margin:0 0 8px}
-    .kicker{color:var(--muted);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
-    .title{font-size:42px;line-height:1.15;margin:.2em 0 .35em;font-weight:800}
-    .subtitle{font-size:18px;color:var(--muted);max-width:700px}
-    .cta{display:flex;gap:12px;margin-top:20px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:#1b3f72;color:white;font-weight:700;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
-    .btn.secondary{background:transparent;border-color:rgba(255,255,255,.14);color:var(--text)}
-
-    .card{background:var(--navy-2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .card-inner{padding:22px}
-
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-    .chip{background:var(--chip);color:var(--text);padding:8px 12px;border-radius:999px;font-size:12px;border:1px solid rgba(255,255,255,.07)}
-
-    section{padding:42px 0}
-    .cols{display:grid;gap:18px}
-    @media(min-width:900px){.cols{grid-template-columns:1fr 1fr}}
-
-    .entry{padding:18px;border-radius:var(--radius-sm);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
-    .entry h3{margin:0 0 6px;font-size:18px}
-    .entry .meta{font-size:12px;color:var(--muted)}
-
-    .projects{display:grid;gap:22px}
-    @media(min-width:840px){.projects{grid-template-columns:1fr 1fr}}
-    .project{overflow:hidden}
-    .cover{height:220px;background:#0d2a4e;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center}
-    .cover span{color:#9ecbff;opacity:.8}
-
-    .project .card-inner{display:flex;flex-direction:column;gap:10px}
-    .tagline{color:var(--muted)}
-
-    footer{padding:36px 0;border-top:1px solid rgba(255,255,255,.06);color:var(--muted)}
-    .footer-grid{display:grid;gap:18px}
-    @media(min-width:720px){.footer-grid{grid-template-columns:2fr 1fr 1fr}}
-
-    /* smooth anchors */
-    html{scroll-behavior:smooth}
-  
-    /* TIMELINE */
-    .timeline{position:relative; padding:14px 0 6px}
-    .timeline::before{content:""; position:absolute; left:50%; top:0; bottom:0; width:3px; background:linear-gradient(180deg, rgba(125,211,252,.55), rgba(255,255,255,.08)); border-radius:6px; box-shadow:0 0 0 1px rgba(255,255,255,.04) inset}
-    .tl-wrap{display:grid; gap:24px}
-    .tl-item{position:relative; width:calc(50% - 28px); background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; box-shadow:var(--shadow); padding:16px 18px; transform:translateX(var(--off,0)) translateZ(0); transition:transform .7s cubic-bezier(.22,1,.36,1)}
-    .tl-item.in{opacity:1; filter:saturate(1); --off:0}
-    .tl-item h3{margin:0 0 6px;font-size:18px}
-    .tl-item .meta{font-size:12px;color:var(--muted)}
-    .tl-item p{margin:10px 0 0}
-    .tl-item .connector{position:absolute; top:50%; width:28px; height:2px; background:rgba(125,211,252,.6); transform-origin:right center; transition:transform .5s ease, opacity .5s ease; opacity:.75}
-    .tl-item.left{margin-right:auto; --off:0}
-    .tl-item.left .connector{right:-28px; transform:scaleX(1)}
-    .tl-item.right{margin-left:auto; --off:0}
-    .tl-item.right .connector{left:-28px; transform:scaleX(1); transform-origin:left center}
-    .tl-item .dot{position:absolute; top:50%; left:50%; width:12px; height:12px; background:#7dd3fc; border:2px solid #0a2342; border-radius:999px; translate:-50% -50%; box-shadow:0 0 0 4px rgba(125,211,252,.18); display:none}
-    .tl-item.in .connector{transform:scaleX(1)}
-    .tl-item:hover{transform:translateX(var(--off,0)) scale(1.01)}
-    /* small screens: single column */
-    @media(max-width:820px){
-      .timeline::before{left:10px}
-      .tl-item{width:100%; padding-left:28px}
-      .tl-item.left,.tl-item.right{margin:0; --off:0}
-      .tl-item .connector{left:10px; width:18px}
-      .tl-item .dot{left:10px; translate:-50% -50%}
-    }
-  
-    /* Video gallery */
-    .video-grid{display:grid;gap:22px}
-    @media(min-width:840px){.video-grid{grid-template-columns:1fr 1fr}}
-    .vid-card{overflow:hidden;border-radius:var(--radius);background:var(--navy-2);border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow)}
-    .vid-wrap{position:relative;background:#0d2a4e}
-    .vid-wrap video{width:100%;height:100%;display:block}
-    .vid-meta{padding:16px;color:var(--muted)}
-  
-    /* H-scroll projects */
-    .projects-h{position:relative;display:flex;gap:22px;overflow-x:auto;padding:6px 0 14px;margin:0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
-    .projects-h::-webkit-scrollbar{height:10px}
-    .projects-h::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:999px}
-    /* >>> CHANGE: show two projects per view on desktop, one on mobile <<< */
-    .projects-h .project{
-      flex:0 0 calc(50% - 11px);
-      min-width:calc(50% - 11px);
-      scroll-snap-align:start;
-    }
-    @media(max-width:900px){
-      .projects-h .project{
-        flex:0 0 100%;
-        min-width:100%;
-      }
-    }
-
-    .carousel-controls{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
-    .scroll-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:var(--text);padding:8px 12px;border-radius:12px;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
-    .scroll-btn:hover{background:rgba(255,255,255,.12)}
-
-    /* Unified media gallery (photos + videos) — horizontal, 3 visible */
-    .media-h{display:flex;gap:22px;overflow-x:auto;padding:6px 0 10px;margin:0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-    .media-h::-webkit-scrollbar{height:10px}
-    .media-h::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:999px}
-    .media-card{flex:0 0 calc((100% - 44px) / 3);min-width:calc((100% - 44px) / 3);scroll-snap-align:start;overflow:hidden;border-radius:var(--radius);background:var(--navy-2);border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow)}
-    .media-cover{height:220px;background:#0d2a4e;display:flex;align-items:center;justify-content:center}
-    .media-card .card-inner{padding:16px}
-    .media-card video{width:100%;height:100%;display:block}
-  /* Unified media gallery*/ (photos + videos) */
-    .media-grid{display:grid;gap:22px}
-    @media(min-width:900px){.media-grid{grid-template-columns:1fr 1fr}}
-    .media-card{overflow:hidden;border-radius:var(--radius);background:var(--navy-2);border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow)}
-    .media-cover{height:220px;background:#0d2a4e;display:flex;align-items:center;justify-content:center}
-    .media-card .card-inner{padding:16px}
-    .media-card video{width:100%;height:100%;display:block}
-  
-    /* Strong final overrides for blue theme and gallery fit */
-    body{background:var(--navy)!important}
-    .hero{background:radial-gradient(1000px 500px at 20% -10%, rgba(125,211,252,.15), transparent), radial-gradient(1000px 500px at 120% 10%, rgba(37,99,235,.12), transparent)!important}
-    .hero::after{background:linear-gradient(180deg, rgba(10,35,66,.15), rgba(10,35,66,.65))!important}
-    .media-h{display:flex;gap:22px;overflow-x:auto;padding:6px 0 10px;margin:0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-    .media-card{flex:0 0 calc((100% - 44px) / 3);min-width:calc((100% - 44px) / 3);scroll-snap-align:start;background:transparent!important;border:0!important;box-shadow:none!important}
-    .media-card img, .media-card video{display:block;width:100%;aspect-ratio:16/9;height:auto;object-fit:cover}
-    @media(max-width:980px){ .media-card{flex:0 0 calc((100% - 22px) / 2); min-width:calc((100% - 22px) / 2); } }
-    @media(max-width:640px){ .media-card{flex:0 0 100%; min-width:100%; } }
-    .btn.small{padding:8px 12px;border-radius:10px;font-weight:700}
-  
-      /* Detail modal */
-    .detail-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:200}
-    .detail-backdrop.show{display:flex}
-    .detail-modal{position:relative;width:min(960px,94vw);max-height:88vh;display:flex;flex-direction:column;background:var(--navy-2);border:1px solid rgba(255,255,255,.12);border-radius:18px;box-shadow:0 40px 80px rgba(0,0,0,.5);overflow:hidden}
-    .detail-cover img,.detail-cover video{display:block;width:100%;height:260px;object-fit:cover}
-    .detail-body{padding:18px 20px 14px}
-
-    .detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-    .detail-badge{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:12px;
-      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);text-decoration:none;color:var(--text);
-      font-weight:800;font-size:12px;line-height:1;white-space:nowrap}
-    .detail-badge:hover{background:rgba(255,255,255,.12)}
-    .detail-title{margin:0 0 4px;font-size:22px}
-    .detail-meta{font-size:12px;color:var(--muted);margin-bottom:10px}
-    .detail-content{color:var(--text)}
-    .detail-actions{display:flex;gap:10px;margin-top:10px}
-    .detail-actions a{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#1b3f72;color:#fff;border:1px solid rgba(255,255,255,.12);text-decoration:none;font-weight:600}
-    .detail-actions a:hover{background:#24518f}
-    .detail-close{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:6px 10px;font-size:13px;cursor:pointer}
-    @media(max-width:640px){.detail-cover img,.detail-cover video{height:210px}}
-
-    /* project cover images fit (not zoom) */
-    .projects-h .cover img{
-      object-fit:contain !important;
-      background:#0d2a4e;
-    }
-
-    /* certifications horizontal scroll with ~350px cards */
-    .certs-h{
-      display:flex;
-      gap:18px;
-      overflow-x:auto;
-      padding:6px 0 14px;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-    }
-    .certs-h .entry{
-      flex:0 0 350px; /* B choice */
-      scroll-snap-align:center;
-    }
-
-    /* ==========================================================
-       FIX: Make long modal content scrollable (projects details)
-       ========================================================== */
-    .detail-body{
-      overflow-y:auto;
-      -webkit-overflow-scrolling:touch;
-    }
-    .detail-content{
-      overflow-y:auto;
-      max-height:calc(88vh - 340px); /* cover + header/meta + padding */
-      overscroll-behavior:contain;
-    }
-  
-    /* ==========================================================
-       Skills bars (no numbers)
-       ========================================================== */
-    .skill{margin-bottom:14px}
-    .skill span{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
-    .bar{width:100%;height:10px;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden}
-    .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#7dd3fc,#38bdf8)}
-    .fill.full{width:100%}
-    .fill.high{width:90%}
-    .fill.strong{width:80%}
-    .fill.mid{width:70%}
-
-
-    /* ==========================================================
-       Responsive / Dynamic layout improvements (mobile + tablet)
-       (keeps desktop as-is, fixes About photo crop on phones)
-       ========================================================== */
-
-    :root{
-      --hero-photo-y: 20%;
-    }
-
-    /* Make About grid auto-fit instead of forcing 3 columns */
-    #about .cols{
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
-      align-items: stretch !important;
-    }
-
-    /* Ensure the About photo always has a sensible height */
-    #about .card:first-child{
-      min-height: 320px;
-    }
-    #about .card:first-child img{
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      object-position: center var(--hero-photo-y) !important;
-      display: block !important;
-    }
-
-    /* Small screens: tweak crop + nav layout so it doesn't look cramped */
-    @media (max-width: 720px){
-      :root{ --hero-photo-y: 15%; }
-
-      nav{
-        flex-wrap: wrap;
-        height: auto;
-        padding: 10px 0;
-        gap: 10px;
-      }
-      .links{
-        flex-wrap: wrap;
-        gap: 12px;
-        justify-content: flex-start;
-      }
-      .links a{
-        font-size: 13px;
-      }
-      .wrap{padding: 0 16px;}
-      section{padding: 34px 0;}
-    }
-
-    /* Ultra-small phones: keep photo visible and avoid excessive cropping */
-    @media (max-width: 420px){
-      #about .card:first-child{ min-height: 280px; }
-      :root{ --hero-photo-y: 18%; }
-    }
-
-  </style>
-</head>
-<body>
-  <header>
-    <div class="wrap">
-      <nav>
-        <div class="brand"><img class="logo" src="gallery/headshot2.JPG" alt="Pavan headshot" width="40" height="40"><h1>Pavan Konam</h1></div>
-        <div class="links">
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
-          <a href="#education">Education</a>
-          <a href="#projects">Projects</a>
-          <a href="#certs">Certifications</a>
-          <a href="#contact">Contact</a>
-          <a class="btn small" href="https://raw.githubusercontent.com/pavankonam/portfolio/main/AI_ML_Engineer.pdf" download>Download Resume</a>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-  <div class="hero-content">
-    <div class="hero-inner">
-      <h1 class="hero-title">Hi, I’m <span class="name-accent">Pavan Kartheek Konam</span></h1>
-      <p class="hero-sub">Founding Engineer, <strong>RUVAAH</strong> — Human Trust Intelligence platform helping companies detect hiring fraud before the interview. AI Engineer focused on LLMs, RAG, and Computer Vision.</p>
-      <div class="hero-cta">
-        <a class="btn" href="#projects">View Projects</a>
-        <a class="btn secondary" href="#contact">Contact</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <section id="about">
-  <div class="wrap" style="padding-top:32px">
-    <h2 class="section-title" style="margin-bottom:16px">About</h2>
-    <div class="cols" style="grid-template-columns: 1fr 1.2fr .9fr; align-items:stretch">
-      <!-- Left: Professional photo only -->
-      <div class="card" style="overflow:hidden">
-        <img src="gallery/headshot.JPG" alt="Professional headshot of Pavan" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block"/>
-      </div>
-      <!-- Middle: concise bullets -->
-      <div class="card"><div class="card-inner">
-        <ul style="margin:0;padding-left:18px">
-          <li>Founding Engineer at <strong>RUVAAH</strong>, a Human Trust Intelligence platform that helps companies detect hiring fraud before the interview through AI-powered trust scoring and verification.</li>
-          <li>Design and deploy <strong>production-grade RAG and LLM systems</strong> on Azure, used by real users in live workflows.</li>
-          <li>Build <strong>computer vision systems</strong> for on-model imagery generation, gesture analysis, and real-time feedback.</li>
-          <li>Strong experience delivering <strong>end-to-end ML pipelines</strong> from data engineering to deployment and evaluation.</li>
-          <li>Teach <strong>Linear Algebra and MATLAB</strong>; mentor students through full-cycle machine learning projects.</li>
-          <li>Focused on <strong>scalable, interpretable, and impact-driven</strong> AI systems.</li>
-        </ul>
-
-      </div></div>
-      <!-- Right: skills bars -->
-      <div class="card"><div class="card-inner">
-        <h3 style="margin:0 0 14px">Skills</h3>
-
-        <div class="skill">
-          <span>Python</span>
-          <div class="bar"><div class="fill full"></div></div>
-        </div>
-
-        <div class="skill">
-          <span>LLMs / RAG</span>
-          <div class="bar"><div class="fill high"></div></div>
-        </div>
-
-        <div class="skill">
-          <span>Azure</span>
-          <div class="bar"><div class="fill high"></div></div>
-        </div>
-
-        <div class="skill">
-          <span>Computer Vision</span>
-          <div class="bar"><div class="fill strong"></div></div>
-        </div>
-
-        <div class="skill">
-          <span>TensorFlow / PyTorch</span>
-          <div class="bar"><div class="fill strong"></div></div>
-        </div>
-
-        <div class="skill">
-          <span>LangChain</span>
-          <div class="bar"><div class="fill mid"></div></div>
-        </div>
-
-        <div class="skill" style="margin-bottom:0">
-          <span>Docker / MLflow</span>
-          <div class="bar"><div class="fill mid"></div></div>
-        </div>
-      </div></div>
-    </div>
-  </div>
-</section>
-
-  <section id="experience">
-    <div class="wrap">
-      <h2 class="section-title">Experience</h2>
-      <div class="timeline">
-        <div class="tl-wrap">
-          <!-- RUVAAH Founding Engineer -->
-          <article class="tl-item left expandable">
-            <span class="connector"></span>
-            <span class="dot"></span>
-            <h3>Founding Engineer — RUVAAH</h3>
-            <div class="meta">Oct 2025 – Present · Chicago, Illinois</div>
-            <p>Building a Human Trust Intelligence platform that helps companies detect hiring fraud before the interview.</p>
-            <template class="detail">
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pavan Konam — AI Engineer & Founding Engineer</title>
+<meta name="description" content="Pavan Kartheek Konam builds AI systems across enterprise RAG, computer vision, and applied machine learning. Founding Engineer at RUVAAH. Northwestern M.S. in AI.">
+<meta name="theme-color" content="#111713"><link rel="canonical" href="https://pavankonam.github.io/portfolio/">
+<meta property="og:title" content="Pavan Konam — AI systems, from architecture to production"><meta property="og:description" content="Explore industry case studies, system architecture, and applied AI work by Pavan Kartheek Konam."><meta property="og:type" content="website"><meta property="og:url" content="https://pavankonam.github.io/portfolio/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css"><script src="script.js" defer></script>
+</head><body id="top">
+<a class="skip-link" href="#main">Skip to content</a>
+<header><nav class="wrap" aria-label="Main navigation"><a class="brand" href="#top" aria-label="Pavan Konam home"><span class="monogram">pk<span>·</span></span><span>Pavan Konam</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">Menu <span aria-hidden="true">＋</span></button><div id="nav-links" class="nav-links"><a href="#projects">Selected work</a><a href="#experience">Experience</a><a href="#about">About</a><a class="nav-contact" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a></div></nav></header>
+<main id="main">
+<section class="hero wrap" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span> AI ENGINEER · CHICAGO</p><h1 id="hero-title">Intelligence,<br>engineered for<br><em>the real world.</em></h1><p class="hero-intro">I’m Pavan Kartheek Konam. I turn complex data into useful AI systems—from enterprise RAG to computer vision, with ownership from architecture to deployment.</p><div class="hero-actions"><a class="button primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a><a class="text-link" href="AI_ML_Engineer.pdf" download>Download résumé <span aria-hidden="true">↓</span></a></div><div class="current-role"><span class="mono">CURRENTLY</span><p>Founding Engineer <strong>@ RUVAAH</strong><br><span>Building hiring trust intelligence.</span></p></div></div><div class="hero-visual"><div class="portrait-frame"><img src="gallery/headshot.JPG" alt="Pavan Kartheek Konam" width="600" height="750" fetchpriority="high"><div class="portrait-label"><span class="mono">ENGINEERING / APPLIED AI</span><span>01 — PK</span></div></div><div class="portrait-note"><span aria-hidden="true">↳</span><p>Systems thinking.<br>Human impact.</p></div></div></section>
+<div class="credentials"><div class="wrap"><span class="mono">BUILT & TAUGHT AT</span><span>RUVAAH</span><span>HauteCarat</span><span>Cognizant</span><span>Northwestern <small>University</small></span></div></div>
+<section id="projects" class="section wrap"><div class="section-heading"><div><p class="eyebrow">01 / SELECTED WORK</p><h2>From problem<br>to production.</h2></div><p>Systems built around real workflows.<br>Explore the problem, architecture,<br>and engineering behind the work.</p></div>
+<article class="case-study"><div class="case-copy"><div class="case-meta"><span class="pill">INDUSTRY</span><span>HauteCarat · 2025</span></div><h3>Intellicore</h3><p class="case-subtitle">One conversation.<br>A connected business.</p><p>A multi-agent RAG platform that brings fragmented commerce, marketing, and customer data into one conversational intelligence layer.</p><dl><dt>MY CONTRIBUTION</dt><dd>Multi-source ingestion, canonical data modeling, entity resolution, and grounded retrieval on Azure.</dd><dt>WHY IT MATTERS</dt><dd>Replaces manual dashboard hopping with natural-language access to cross-channel business insights.</dd></dl><div class="tags"><span>Azure OpenAI</span><span>RAG</span><span>Python</span><span>REST APIs</span></div></div><div class="architecture"><div class="diagram-head"><span class="mono">SYSTEM OVERVIEW</span><span class="signal" aria-hidden="true">● ● ●</span></div><div class="sources"><span>Commerce</span><span>Marketing</span><span>Customer data</span></div><div class="flow-line"></div><div class="diagram-node"><small>01 / INGEST & NORMALIZE</small><strong>A shared data model</strong><span>Customers · Transactions · Campaigns</span></div><div class="flow-line"></div><div class="diagram-node accent"><small>02 / RETRIEVE & REASON</small><strong>Specialized agents + RAG</strong><span>Embeddings · Filtered retrieval · Synthesis</span></div><div class="flow-line"></div><div class="diagram-output"><span aria-hidden="true">↳</span> Grounded business answers</div><p class="diagram-caption">Architecture summary · Proprietary industry system</p></div><details class="disclosure"><summary>Read the engineering case study<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
               <p>
+                Intellicore is a production-grade multi-agent Retrieval-Augmented Generation (RAG) platform built to deliver real-time, company-wide intelligence through a conversational AI interface. The system unifies fragmented data across e-commerce, marketing, analytics, and customer engagement platforms, enabling non-technical stakeholders to ask complex business questions and receive accurate, grounded answers.
+              </p>
+
+              <p><strong>Technical Architecture & Analytics</strong></p>
+              <ul>
+                <li>Designed a multi-agent architecture with specialized agents for ingestion, normalization, retrieval, reasoning, and response synthesis, enabling modular scalability and fault isolation.</li>
+                <li>Integrated Shopify, Klaviyo, Google Analytics 4, LiveChat, Facebook Ads, and Instagram Graph APIs, supporting historical backfills and incremental data syncs.</li>
+                <li>Built a canonical data model (Customer, Transaction, Campaign, Event, Content) to normalize heterogeneous schemas and resolve cross-platform entity duplication.</li>
+                <li>Implemented entity resolution and deduplication logic, enabling unified customer journeys across ads, sessions, purchases, and conversations.</li>
+                <li>Developed RAG pipelines using semantic embeddings and filtered retrieval to ground LLM outputs strictly in live business data, minimizing hallucinations.</li>
+                <li>Enabled natural-language analytics, supporting KPI queries, funnel analysis, campaign attribution, customer segmentation, and trend detection.</li>
+                <li>Automated end-to-end data refresh workflows, ensuring consistent freshness and reliability across all downstream queries.</li>
+              </ul>
+
+              <p><strong>Business Impact</strong></p>
+              <ul>
+                <li>Replaced manual dashboard hopping with a single conversational insight layer, reducing time-to-insight for stakeholders.</li>
+                <li>Improved decision accuracy and confidence by grounding AI responses in normalized, real-time operational data.</li>
+                <li>Enabled proactive strategy through cross-channel analytics (marketing → behavior → conversion → revenue).</li>
+                <li>Established a scalable foundation for future agent expansion, advanced forecasting, and automated recommendations.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Python, Azure Data Lake Gen2, Azure Cognitive Search, Azure Functions, Azure OpenAI, Vector Embeddings, REST APIs, Multi-Agent Orchestration, RAG</p></div></details></article>
+<article class="case-study visionary"><div class="case-copy"><div class="case-meta"><span class="pill">INDUSTRY</span><span>HauteCarat · 2025</span></div><h3>Visionary</h3><p class="case-subtitle">Product imagery.<br>At the speed of AI.</p><p>An internal computer vision and image generation pipeline for brand-consistent, on-model jewelry imagery.</p><dl><dt>MY CONTRIBUTION</dt><dd>Reference-image analysis, composition constraints, product-input processing, and secure internal deployment.</dd><dt>WHY IT MATTERS</dt><dd>Helps creative teams produce campaign imagery on demand while maintaining a consistent visual identity.</dd></dl><div class="tags"><span>Computer vision</span><span>Image generation</span><span>Prompt engineering</span></div></div><div class="vision-panel"><div class="diagram-head"><span class="mono">VISUAL INTELLIGENCE PIPELINE</span><span aria-hidden="true">↗</span></div><img src="projects/visionary.png" alt="Visionary project visual from the original portfolio" loading="lazy" width="700" height="440"><div class="vision-steps"><span><small>01</small>Analyze<br>references</span><span><small>02</small>Constrain<br>composition</span><span><small>03</small>Generate<br>on-model</span></div><p class="diagram-caption">Internal creative tool · HauteCarat</p></div><details class="disclosure"><summary>Read the engineering case study<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
+              <p>
+                Visionary is a closed-access AI-driven image generation platform designed to produce luxury, on-model jewelry photography at scale. The system analyzes HauteCarat’s existing editorial imagery and generates photorealistic, brand-consistent visuals for any jewelry product—eliminating the need for repeated photoshoots while preserving premium aesthetics.
+              </p>
+
+              <p><strong>Technical Architecture &amp; Visual Intelligence</strong></p>
+              <ul>
+                <li>Built a computer-vision–driven generation pipeline that analyzes reference model imagery to extract lighting conditions, skin tone, pose geometry, jewelry positioning, and editorial style.</li>
+                <li>Leveraged GPT-4 Vision to semantically understand visual composition and stylistic cues from HauteCarat’s existing campaign photography.</li>
+                <li>Used GPT-Image-1 to synthesize high-resolution, photorealistic on-model images aligned with the brand’s luxury identity.</li>
+                <li>Engineered a flexible product-input pipeline capable of adapting any catalog jewelry image (rings, necklaces, earrings, bracelets) to the learned on-model style.</li>
+                <li>Implemented prompt-engineering and visual constraints to maintain consistency across model appearance, framing, and jewelry focus.</li>
+                <li>Designed the system for editorial-grade outputs, suitable for e-commerce listings, paid ads, social media campaigns, and lookbooks.</li>
+                <li>Deployed as a secure, internal-only tool, with controlled access for creative and marketing stakeholders.</li>
+              </ul>
+
+              <p><strong>Business Impact</strong></p>
+              <ul>
+                <li>Reduced reliance on traditional photoshoots, lowering production cost and turnaround time.</li>
+                <li>Enabled rapid, scalable content generation for new product launches and campaigns.</li>
+                <li>Preserved brand consistency while expanding creative experimentation.</li>
+                <li>Accelerated marketing workflows by allowing teams to generate on-model visuals on demand.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Generative AI, Computer Vision, GPT-4 Vision, GPT-Image-1, Prompt Engineering, Image Synthesis, Secure Internal Deployment</p></div></details></article>
+<div class="building"><span class="mono">ON THE WORKBENCH</span><div><h3>RUVAAH <span> / Founding Engineer</span></h3><p>Developing a hiring trust intelligence platform, with multi-source verification, entity resolution, and audit-friendly summaries. Owning the early architecture and product foundation.</p></div><span class="pill">IN DEVELOPMENT</span></div>
+<details class="project-library"><summary><span>More applied AI work <small>10 projects · Research & industry</small></span><span aria-hidden="true">＋</span></summary><div class="research-grid"><article class="research-card"><span class="mono">03 / APPLIED AI</span><h3>Amazon Review Human–AI Detection — NLP-powered Authenticity Classifier</h3><p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p><p>NLP-based system to distinguish human-written vs AI-generated Amazon reviews with robust, interpretable detection.</p><details class="disclosure"><summary>Explore project<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
+              <p>
+                This project developed an NLP-based classification system to distinguish between human-written and AI-generated Amazon reviews, addressing the growing risk of synthetic content manipulation in online marketplaces. The system combines classical linguistic analysis with transformer-based deep learning to deliver robust and interpretable detection.
+              </p>
+
+              <p><strong>Technical Architecture &amp; Modeling</strong></p>
+              <ul>
+                <li>Conducted a structured review of AI text generation artifacts, stylometric signals, and adversarial writing behaviors.</li>
+                <li>Curated and preprocessed a labeled Amazon review dataset containing both human-authored and AI-generated text, applying cleaning, tokenization, class balancing, and feature normalization.</li>
+                <li>Built baseline classifiers (Logistic Regression, SVM) using lexical and stylometric features such as n-grams, readability scores, punctuation patterns, and sentence-level statistics.</li>
+                <li>Fine-tuned BERT-based transformer models to capture subtle semantic and structural cues indicative of machine-generated text.</li>
+                <li>Designed rigorous evaluation pipelines using Accuracy, Precision, Recall, F1-score, and ROC-AUC with cross-validation for generalization testing.</li>
+                <li>Applied model interpretability techniques, including attention analysis and feature importance, to understand decision signals and improve trust.</li>
+                <li>Compared baseline and transformer performance, iteratively tuning hyperparameters and architectures.</li>
+              </ul>
+
+              <p><strong>Impact &amp; Insights</strong></p>
+              <ul>
+                <li>Achieved strong classification performance (high F1 and ROC-AUC) in separating human and AI-generated reviews.</li>
+                <li>Identified consistent linguistic and structural patterns leveraged by detection models.</li>
+                <li>Demonstrated how NLP-based authenticity systems can help platforms preserve trust, mitigate fraud, and protect consumers.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Python, NLP, BERT, Transformer Fine-Tuning, Text Classification, Feature Engineering, Scikit-learn, PyTorch</p></div></details><a class="text-link" href="https://github.com/Ashlesha-Ahirwadi/Amazon-Review-Human-AI-Detection" target="_blank" rel="noopener noreferrer">View repository ↗</a></article><article class="research-card"><span class="mono">04 / APPLIED AI</span><h3>Empathetic Echoes — Emotion-Aware Psychiatric Chatbot</h3><p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p><p>Emotion-aware conversational AI with ethical guardrails, safety escalation, and retrieval grounding for supportive mental health guidance.</p><details class="disclosure"><summary>Explore project<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
+              <p>
+                Empathetic Echoes is an emotion-aware conversational AI designed to provide empathetic, context-sensitive mental health support while respecting ethical and safety boundaries. The system detects emotional states and adapts responses to support users with appropriate tone, intent, and grounding.
+              </p>
+
+              <p><strong>System Design &amp; Emotional Intelligence</strong></p>
+              <ul>
+                <li>Built an emotion detection module using fine-tuned transformer models to infer emotional states such as anxiety, sadness, frustration, and stress from user text.</li>
+                <li>Designed an intent and context understanding layer mapping user inputs to therapy-relevant categories (reflection, coping strategies, grounding exercises, resource guidance).</li>
+                <li>Engineered empathetic response-generation prompts, emphasizing emotional validation, supportive language, and conversational coherence.</li>
+                <li>Integrated retrieval-augmented grounding, ensuring responses reference validated mental health concepts rather than free-form generation.</li>
+                <li>Implemented safety and escalation logic to detect high-risk language (e.g., self-harm indicators) and trigger crisis-aware fallback messaging or human-support guidance.</li>
+                <li>Evaluated system quality via human-in-the-loop testing, measuring perceived empathy, appropriateness, coherence, and helpfulness.</li>
+                <li>Iteratively refined emotional calibration and prompts based on user feedback.</li>
+              </ul>
+
+              <p><strong>Impact &amp; Ethical Value</strong></p>
+              <ul>
+                <li>Demonstrated strong performance in simulated conversations, with high perceived empathy and contextual relevance.</li>
+                <li>Showcased how emotion-aware AI systems can augment access to mental health support without replacing professional care.</li>
+                <li>Emphasized ethical guardrails, safety, and responsible deployment in sensitive AI applications.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>NLP, Transformer Models, Emotion Recognition, Conversational AI, Prompt Engineering, Retrieval-Augmented Generation (RAG), Python</p></div></details><a class="text-link" href="https://github.com/pavankonam/Empathetic-Echoes-Emotion-Aware-Psychiatric-Chatbot" target="_blank" rel="noopener noreferrer">View repository ↗</a></article><article class="research-card"><span class="mono">05 / APPLIED AI</span><h3>Virtual Gym Trainer — Real-Time AI Fitness Coaching System</h3><p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p><p>Computer-vision–powered fitness assistant delivering real-time posture correction, repetition counting, and exercise feedback through a webcam.</p><details class="disclosure"><summary>Explore project<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
+              <p>Virtual Gym Trainer is a computer-vision–powered fitness assistant that monitors user workouts through a webcam, providing real-time posture correction, repetition counting, and exercise feedback. The system is designed to make solo training safer, more effective, and more accessible without requiring a human trainer.</p>
+
+              <p><strong>System Architecture &amp; Real-Time Analytics</strong></p>
+              <ul>
+                <li>Implemented a real-time video processing pipeline to capture webcam input and extract human pose keypoints on a per-frame basis using pose estimation models.</li>
+                <li>Applied pose normalization and noise filtering to handle lighting variation, camera angle differences, and diverse body proportions.</li>
+                <li>Built an exercise classification module to identify movements such as squats, push-ups, and lunges based on pose dynamics.</li>
+                <li>Designed state-transition logic to track start/end positions and automatically count repetitions using joint-angle thresholds.</li>
+                <li>Developed a posture evaluation engine that detects form deviations and triggers corrective feedback when thresholds are exceeded.</li>
+                <li>Integrated a visual feedback overlay, highlighting joints, angles, and incorrect posture in real time for intuitive correction.</li>
+                <li>Validated accuracy and usability using recorded test videos and human evaluation.</li>
+              </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Delivered accurate real-time exercise recognition and rep counting.</li>
+                <li>Improved workout safety and form awareness through immediate corrective feedback.</li>
+                <li>Demonstrated how vision-based systems can function as scalable virtual personal trainers.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Computer Vision, Pose Estimation, Real-Time ML, Python, Human–Computer Interaction, UI Visualization</p></div></details><a class="text-link" href="https://github.com/pavankonam/Virtual-Gym-Trainer" target="_blank" rel="noopener noreferrer">View repository ↗</a> <a class="text-link" href="https://youtu.be/HBZLyfzbDvQ?si=y_z8wCvKyeJWvc3w" target="_blank" rel="noopener noreferrer">Watch demo ↗</a></article><article class="research-card"><span class="mono">06 / APPLIED AI</span><h3>Artistic Visualization of Dreams — EEG-to-Image Deep Learning Pipeline</h3><p class="meta">Associated with Northwestern University | Jan 2025 – Mar 2025</p><p>End-to-end EEG decoding pipeline that classifies dream categories from spectrograms and generates artistic visuals via a VAE.</p><details class="disclosure"><summary>Explore project<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
+              <p>This project explores the intersection of neuroscience and generative AI by decoding EEG signals recorded during sleep and transforming them into artistic visual representations of dream content. The system classifies dream states and generates images that reflect subconscious patterns.</p>
+
+              <p><strong>Neural Signal Processing &amp; Generative Modeling</strong></p>
+              <ul>
+                <li>Compiled and unified five EEG datasets, creating a consolidated corpus of 700+ EDF files representing diverse dream experiences.</li>
+                <li>Preprocessed raw EEG signals through noise filtering, frequency band extraction (Delta, Theta, Alpha, Beta, Gamma), and spectrogram generation.</li>
+                <li>Designed and trained a CNN-based classifier to categorize dreams into five semantic classes:
+                  <ul>
+                    <li>Adventure &amp; Movement</li>
+                    <li>Fear &amp; Uncertainty</li>
+                    <li>People &amp; Social Interaction</li>
+                    <li>Abstract &amp; Thought-based</li>
+                    <li>Miscellaneous</li>
+                  </ul>
+                </li>
+                <li>Achieved approximately 85% classification accuracy on held-out EEG samples.</li>
+                <li>Integrated classification outputs with a Variational Autoencoder (VAE) to generate artistic images corresponding to predicted dream categories.</li>
+                <li>Built an end-to-end pipeline: EEG decoding → dream classification → visual generation.</li>
+                <li>Evaluated coherence between generated imagery and known dream narratives.</li>
+              </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Demonstrated a novel approach to visualizing subconscious brain activity using deep learning.</li>
+                <li>Showcased the feasibility of EEG-driven generative systems for neuroscience and BCI research.</li>
+                <li>Bridged neural signal analysis with creative AI expression.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>EEG Processing, CNNs, VAEs, Deep Learning, Signal Processing, Python</p></div></details><a class="text-link" href="https://github.com/pavankonam/Artistic-Visualization-of-Dreams" target="_blank" rel="noopener noreferrer">View repository ↗</a></article><article class="research-card"><span class="mono">07 / APPLIED AI</span><h3>ICU Insights — Predictive Modeling for ICU Admission Risk</h3><p class="meta">Associated with Northwestern University | Sep 2024 – Dec 2024</p><p>Clinical risk prediction system using MIMIC-IV data to forecast ICU admission risk and support proactive triage.</p><details class="disclosure"><summary>Explore project<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
+              <p>ICU Insights is a clinical risk prediction system built to forecast whether hospitalized patients are likely to require ICU admission. By identifying high-risk cases early, the model supports proactive care prioritization and resource allocation.</p>
+
+              <p><strong>Data Engineering &amp; Predictive Modeling</strong></p>
+              <ul>
+                <li>Utilized the MIMIC-IV clinical database, containing de-identified records from 70,000+ ICU patients, including labs, vitals, medications, and administrative data.</li>
+                <li>Engineered clinical features such as:
+                  <ul>
+                    <li>Ratio of abnormal to normal lab results</li>
+                    <li>Frequency of lab tests</li>
+                    <li>Demographics, vitals, and OMR data (BMI, blood pressure, height, weight)</li>
+                  </ul>
+                </li>
+                <li>Developed and compared Random Forest and Feedforward Neural Network models.</li>
+                <li>Built two model versions:
+                  <ul>
+                    <li>V1: 24 features (demographics, labs, vitals)</li>
+                    <li>V2: 31 features with expanded OMR data</li>
+                  </ul>
+                </li>
+                <li>Addressed large-scale data challenges using SQL optimization in BigQuery, chunk-based processing, and lazy loading.</li>
+                <li>Handled missing values via targeted imputation strategies.</li>
+              </ul>
+
+              <p><strong>Model Performance</strong></p>
+              <ul>
+                <li><strong>Best Model:</strong> Random Forest</li>
+                <li><strong>Test AUC-ROC:</strong> 0.973</li>
+                <li><strong>Test F1 Score:</strong> 0.767</li>
+                <li><strong>Recall:</strong> 0.806 | <strong>Precision:</strong> 0.731</li>
+              </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Demonstrated strong predictive power for early ICU risk identification.</li>
+                <li>Highlighted how ML-driven triage tools can improve clinical decision-making.</li>
+                <li>Balanced performance, interpretability, and scalability in healthcare ML systems.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Machine Learning, Random Forests, Neural Networks, SQL, BigQuery, Python, Healthcare Analytics</p></div></details></article><article class="research-card"><span class="mono">08 / APPLIED AI</span><h3>Med Alert — AI-Driven Patient Monitoring &amp; Health Intelligence Platform</h3><p class="meta">Associated with Cognizant | Jan 2024 – Jul 2024</p><p>Med Alert is a secure, AI-enabled healthcare web platform that combines medical records with continuous smartwatch data to generate actionable clinical insights.</p><details class="disclosure"><summary>Explore project<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
+              <p>
+                Med Alert is a secure, AI-enabled healthcare web platform designed to help doctors monitor patient health holistically by combining medical records with continuous smartwatch data. The system transforms raw health signals into actionable insights, improving clinical awareness and personalized care delivery.
+              </p>
+
+              <p><strong>System Design &amp; AI Integration</strong></p>
+              <ul>
+                <li>Built a secure, role-based web platform enabling doctors to log in and access comprehensive patient profiles.</li>
+                <li>Integrated wearable data streams (heart rate, oxygen saturation, body temperature) alongside structured medical records.</li>
+                <li>Designed interactive tabular and graphical dashboards to visualize trends, anomalies, and longitudinal health patterns.</li>
+                <li>Implemented a Generative AI–powered health summary module (hosted on AWS) to analyze time-series health data, detect periods of instability or abnormal readings, and generate concise, clinician-readable health summaries.</li>
+                <li>Developed a personalized recommendation engine producing diet suggestions and health guidance tailored to patient data.</li>
+                <li>Enabled doctor-in-the-loop validation, allowing clinicians to review, edit, and approve AI-generated recommendations.</li>
+                <li>Integrated an email delivery workflow to securely send approved recommendations directly to patients.</li>
+              </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Reduced manual analysis burden for clinicians by converting continuous sensor data into summarized insights.</li>
+                <li>Improved patient engagement through personalized, data-driven health guidance.</li>
+                <li>Demonstrated practical use of Generative AI in clinical decision support while preserving human oversight.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Generative AI, AWS, Machine Learning, Web Development, Healthcare Analytics, Secure Systems</p></div></details></article><article class="research-card"><span class="mono">09 / APPLIED AI</span><h3>Gesture Net — Computer Vision–Based Gesture Analysis for Behavioral Insights</h3><p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p><p>Gesture Net is a computer vision system that analyzes nonverbal behavior from video to support psychological and behavioral research with interpretable motion analytics.</p><details class="disclosure"><summary>Explore project<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
+              <p>
+                Gesture Net is a computer vision system designed to detect and analyze human gestures and nonverbal behavior from video data to support psychological and behavioral research. The platform focuses on extracting subtle movement patterns that may correlate with psychological risk indicators.
+              </p>
+
+              <p><strong>Vision Pipeline &amp; Behavioral Modeling</strong></p>
+              <ul>
+                <li>Designed a video processing pipeline to ingest raw footage, extract frames, and isolate relevant hand and body motion signals.</li>
+                <li>Applied pose estimation and landmark detection models to capture fine-grained skeletal and hand keypoints under varying lighting and backgrounds.</li>
+                <li>Preprocessed spatio-temporal motion data, normalizing gesture trajectories to account for individual differences.</li>
+                <li>Developed a deep learning–based gesture classification model to detect and categorize movement patterns associated with behavioral indicators.</li>
+                <li>Engineered gesture analytics capturing movement frequency, duration, transitions, and micro-motions.</li>
+                <li>Collaborated with domain experts to align gesture categories with established psychological patterns, ensuring interpretability and research validity.</li>
+                <li>Evaluated system performance using annotated datasets and metrics such as accuracy, precision, and recall.</li>
+              </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Demonstrated how computer vision can support early behavioral risk detection through nonverbal cues.</li>
+                <li>Provided a scalable foundation for future clinical, research, and human-centered AI applications.</li>
+                <li>Highlighted the role of interpretable gesture analytics in psychological assessment.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Computer Vision, Gesture Recognition, Deep Learning, Video Processing, Behavioral Analytics, Human-Centered AI</p></div></details><a class="text-link" href="https://github.com/pavankonam/GestureNet" target="_blank" rel="noopener noreferrer">View repository ↗</a></article><article class="research-card"><span class="mono">10 / APPLIED AI</span><h3>Pixel Pastries — GAN-Based Dessert Image Generation System</h3><p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p><p>Pixel Pastries is a generative deep learning system that synthesizes photorealistic dessert images using a custom-built Generative Adversarial Network (GAN).</p><details class="disclosure"><summary>Explore project<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
+              <p>
+                Pixel Pastries is a generative deep learning system that synthesizes photorealistic dessert images using a custom-built Generative Adversarial Network (GAN). The project explores how adversarial training, quantitative evaluation, and MLOps practices can be combined to build high-quality, domain-specific image generators.
+              </p>
+
+              <p><strong>Model Architecture &amp; Training Pipeline</strong></p>
+              <ul>
+                <li>Curated a domain-focused training dataset by filtering dessert-related categories from the Food-101 dataset to improve visual consistency and learning stability.</li>
+                <li>Implemented a GAN from scratch in TensorFlow/Keras, designing:
+                  <ul>
+                    <li>A generator to synthesize realistic dessert imagery from latent noise</li>
+                    <li>A discriminator to distinguish real images from generated samples</li>
+                  </ul>
+                </li>
+                <li>Engineered stable training loops with custom loss handling, gradient updates, and model checkpointing.</li>
+                <li>Integrated epoch-wise visualization, generating GIFs to track visual quality progression over training.</li>
+                <li>Evaluated generative quality using Fréchet Inception Distance (FID) at regular intervals.</li>
+                <li>Performed systematic hyperparameter tuning (learning rate, batch size, optimizer selection, network depth) using grid search.</li>
+                <li>Incorporated MLOps tooling (TensorBoard, Weights &amp; Biases) for experiment tracking, metric logging, and model comparison.</li>
+                <li>Explored latent space interpolation to analyze smooth transitions between dessert styles and validate learned representations.</li>
+              </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Successfully generated high-quality, visually coherent dessert images from noise.</li>
+                <li>Demonstrated how GANs can be trained and evaluated rigorously using both quantitative metrics and qualitative analysis.</li>
+                <li>Showcased end-to-end generative system design, from data curation to deployment-ready experimentation workflows.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>GANs, TensorFlow, Deep Learning, Computer Vision, Hyperparameter Tuning, MLOps, Image Generation</p></div></details><a class="text-link" href="https://github.com/pavankonam/Pixel-Pastries" target="_blank" rel="noopener noreferrer">View repository ↗</a></article><article class="research-card"><span class="mono">11 / APPLIED AI</span><h3>Medicurious — Domain-Specialized Medical LLM for Clinical Insight</h3><p class="meta">Associated with Northwestern University | Jan 2025 – Mar 2025</p><p>Domain-specialized LLM system for accurate, structured, clinically grounded medical information under human oversight.</p><details class="disclosure"><summary>Explore project<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
+              <p>
+                Medicurious is a domain-specialized Large Language Model system designed to deliver accurate, structured, and context-aware medical information for healthcare professionals. The project directly addresses the limitations of general-purpose LLMs in clinical settings—such as hallucinations, shallow reasoning, and unstructured outputs—by combining verified medical data, knowledge representations, and tailored evaluation protocols.
+              </p>
+
+              <p><strong>LLM Architecture &amp; Knowledge Grounding</strong></p>
+              <ul>
+                <li>Conducted an in-depth analysis of failure modes of general LLMs in healthcare, focusing on hallucination risk, lack of domain reasoning, and clinical unreliability.</li>
+                <li>Curated and standardized verified medical data sources, including drug safety records, symptom–diagnosis mappings, and clinical treatment guidelines.</li>
+                <li>Built a data preprocessing pipeline converting unstructured medical text into structured JSONL formats optimized for ingestion and retrieval.</li>
+                <li>Designed hierarchical knowledge schemas to enforce consistent structure, terminology, and contextual grounding in responses.</li>
+                <li>Applied prompt engineering and retrieval-augmented querying (RAG) to improve factual accuracy and reduce unsupported generation.</li>
+                <li>Developed custom evaluation metrics tailored to clinical scenarios, measuring contextual accuracy, relevance, and reliability rather than generic NLP scores.</li>
+                <li>Ran iterative validation cycles to assess readiness for clinical decision-support augmentation under human oversight.</li>
+              </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Demonstrated how domain-specialized LLMs can significantly improve reliability and structure in medical information delivery.</li>
+                <li>Highlighted best practices for safe AI deployment in healthcare, emphasizing verification, grounding, and evaluation rigor.</li>
+                <li>Provided a scalable foundation for future clinical decision-support systems with human-in-the-loop control.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Large Language Models, NLP, Prompt Engineering, Knowledge Representation, Retrieval-Augmented Generation (RAG), Python</p></div></details><a class="text-link" href="https://github.com/pavankonam/Medicurious" target="_blank" rel="noopener noreferrer">View repository ↗</a></article><article class="research-card"><span class="mono">12 / APPLIED AI</span><h3>Stock Ticker Prediction — Time Series Forecasting with Sentiment Intelligence</h3><p class="meta">Associated with Northwestern University | Sep 2024 – Dec 2024</p><p>Forecasting system combining time-series models with market sentiment signals for improved stock prediction accuracy.</p><details class="disclosure"><summary>Explore project<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p><strong>Overview</strong></p>
+              <p>
+                This project developed an advanced stock price forecasting system that combines state-of-the-art time series models with market sentiment analysis to improve predictive accuracy. The system was designed to support analysts and investors by capturing both historical price dynamics and real-time market psychology.
+              </p>
+
+              <p><strong>Forecasting Models &amp; Analytics Pipeline</strong></p>
+              <ul>
+                <li>Built a large-scale historical dataset using stock price data from 2009 to present, enabling long-horizon learning and robustness testing.</li>
+                <li>Implemented and benchmarked multiple advanced forecasting models: LSTM, SARIMAX, TIDE (Temporal Integration for Data and Ensemble), and TSMixer.</li>
+                <li>Integrated sentiment analysis signals derived from market-related text to capture investor mood and behavioral effects.</li>
+                <li>Engineered pipelines to inject sentiment features into time series models as exogenous inputs.</li>
+                <li>Conducted rigorous model comparison and error analysis across market conditions and ticker types.</li>
+                <li>Developed a user-facing interface to visualize forecasts, trends, and comparative model performance.</li>
+              </ul>
+
+              <p><strong>Impact</strong></p>
+              <ul>
+                <li>Achieved notable improvements in forecasting accuracy compared to price-only baseline models.</li>
+                <li>Demonstrated the value of combining quantitative price history with qualitative sentiment signals.</li>
+                <li>Provided an extensible framework for risk management, strategy testing, and financial decision support.</li>
+              </ul>
+
+              <p><strong>Tech Stack</strong></p>
+              <p>Time Series Forecasting, LSTM, SARIMAX, TIDE, TSMixer, Sentiment Analysis, Data Science, Python</p></div></details></article></div></details></section>
+<section id="experience" class="section experience-section"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">02 / EXPERIENCE</p><h2>Ownership at<br>every layer.</h2></div><p>Product building, production engineering,<br>and technical mentorship.</p></div><article class="role"><div class="meta">Oct 2025 – Present · Chicago, Illinois</div><div><h3>Founding Engineer — RUVAAH</h3><details class="disclosure"><summary>Role & contributions<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p>
                 RUVAAH is a B2B software platform designed to help companies verify candidate credibility and hiring integrity by cross-validating applicant information across multiple public and professional data sources. The system is being built as a company-to-company (C2C) hiring intelligence product, aimed at reducing resume fraud, misrepresentation, and manual verification overhead in recruitment workflows.
               </p>
 
@@ -444,19 +385,7 @@
                 <li>Establishes a foundation for more reliable, data-driven hiring decisions.</li>
               </ul>
 
-              <p><strong>Core Skills &amp; Focus</strong> — Founder Leadership, System Architecture, AI for Hiring, Multi-Source Data Integration, Entity Resolution, SaaS Product Design, Responsible AI</p>
-            </template>
-          </article>
-
-          <!-- GTA (Fall 2025) -->
-          <article class="tl-item right expandable">
-            <span class="connector"></span>
-            <span class="dot"></span>
-            <h3>Graduate Teaching Assistant — Northwestern University</h3>
-            <div class="meta">Oct 2025 – Dec 2025 · Remote · Course: MSAI 349 – Machine Learning</div>
-            <p>Guiding students on end-to-end ML projects and labs.</p>
-            <template class="detail">
-              <p>
+              <p><strong>Core Skills &amp; Focus</strong> — Founder Leadership, System Architecture, AI for Hiring, Multi-Source Data Integration, Entity Resolution, SaaS Product Design, Responsible AI</p></div></details></div></article><article class="role"><div class="meta">Oct 2025 – Dec 2025 · Remote · Course: MSAI 349 – Machine Learning</div><div><h3>Graduate Teaching Assistant — Northwestern University</h3><details class="disclosure"><summary>Role & contributions<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p>
                 Served as a Graduate Teaching Assistant for a graduate-level Machine Learning course, supporting instruction, applied labs, and student-led projects across the full machine learning lifecycle.
               </p>
 
@@ -479,20 +408,7 @@
                 <li>Contributed to a high-quality learning experience in a core MSAI course.</li>
               </ul>
 
-              <p><strong>Core Skills</strong> — Machine Learning, Python, scikit-learn, TensorFlow, Technical Mentorship</p>
-            </template>
-          </article>
-
-          <!-- HauteCarat -->
-          <article class="tl-item left expandable">
-            <span class="connector"></span>
-            <span class="dot"></span>
-            <h3>AI Software Engineer (Intern) — HauteCarat</h3>
-            <div class="meta">Jul 2025 – Sep 2025 · Chicago (On-site)</div>
-            <p>Built an internal LLM/RAG platform and a CV pipeline for on-model imagery.</p>
-  <template class="detail">
-
-    <p>
+              <p><strong>Core Skills</strong> — Machine Learning, Python, scikit-learn, TensorFlow, Technical Mentorship</p></div></details></div></article><article class="role"><div class="meta">Jul 2025 – Sep 2025 · Chicago (On-site)</div><div><h3>AI Software Engineer (Intern) — HauteCarat</h3><details class="disclosure"><summary>Role & contributions<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p>
       Worked on building production-grade Generative AI and Computer Vision systems to support HauteCarat’s
       internal intelligence, marketing automation, and decision-making workflows.
     </p>
@@ -546,20 +462,7 @@
       <strong>Tech Stack:</strong>
       Python, OpenAI APIs, LangChain, FastAPI, Hugging Face, RAG, Vector Databases,
       PyTorch, YOLOv8, Docker, MLflow, Airflow
-    </p>
-
-  </template>
-          </article>
-
-          <!-- Professor -->
-          <article class="tl-item right expandable">
-            <span class="connector"></span>
-            <span class="dot"></span>
-            <h3>Professor (Summer Session) — McCormick School of Engineering</h3>
-            <div class="meta">Jul 2025 – Aug 2025 · Evanston (On-site)</div>
-            <p>Taught <em>Linear Algebra & Intro to MATLAB</em> to ~30 students.</p>
-            <template class="detail">
-              <p>
+    </p></div></details></div></article><article class="role"><div class="meta">Jul 2025 – Aug 2025 · Evanston (On-site)</div><div><h3>Professor (Summer Session) — McCormick School of Engineering</h3><details class="disclosure"><summary>Role & contributions<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p>
                 Independently taught an intensive summer course as part of Northwestern University’s EXCEL Program, instructing a cohort of approximately 30 students.
               </p>
 
@@ -582,19 +485,7 @@
                 <li>Delivered a rigorous and engaging academic experience in a condensed format.</li>
               </ul>
 
-              <p><strong>Core Skills</strong> — Linear Algebra, MATLAB, Applied Mathematics, Teaching &amp; Leadership</p>
-            </template>
-          </article>
-
-          <!-- GTA (Jan–Jul 2025) -->
-          <article class="tl-item left expandable">
-            <span class="connector"></span>
-            <span class="dot"></span>
-            <h3>Graduate Teaching Assistant — Northwestern University</h3>
-            <div class="meta">Jan 2025 – Jul 2025 · Evanston (On-site)</div>
-            <p>Supported instruction and grading; Python & AI topics.</p>
-            <template class="detail">
-              <p>
+              <p><strong>Core Skills</strong> — Linear Algebra, MATLAB, Applied Mathematics, Teaching &amp; Leadership</p></div></details></div></article><article class="role"><div class="meta">Jan 2025 – Jul 2025 · Evanston (On-site)</div><div><h3>Graduate Teaching Assistant — Northwestern University</h3><details class="disclosure"><summary>Role & contributions<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p>
                 Supported undergraduate instruction for an Introduction to Artificial Intelligence course, focusing on foundational AI principles and applied problem-solving.
               </p>
 
@@ -617,19 +508,7 @@
                 <li>Helped lay a strong foundation for future coursework in ML and data science.</li>
               </ul>
 
-              <p><strong>Core Skills</strong> — Artificial Intelligence, Python, Algorithmic Thinking, Instructional Support</p>
-            </template>
-          </article>
-
-          <!-- Cognizant Programming Analyst -->
-          <article class="tl-item right expandable">
-            <span class="connector"></span>
-            <span class="dot"></span>
-            <h3>Programming Analyst — Cognizant</h3>
-            <div class="meta">Jul 2022 – Aug 2024 · Hyderabad</div>
-            <p>Delivered CV/NLP solutions for healthcare with production MLOps.</p>
-            <template class="detail">
-              <p>
+              <p><strong>Core Skills</strong> — Artificial Intelligence, Python, Algorithmic Thinking, Instructional Support</p></div></details></div></article><article class="role"><div class="meta">Jul 2022 – Aug 2024 · Hyderabad</div><div><h3>Programming Analyst — Cognizant</h3><details class="disclosure"><summary>Role & contributions<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p>
                 Worked as a full-time Programming Analyst focused on developing and deploying AI-driven solutions in healthcare, spanning deep learning, NLP, and scalable ML systems.
               </p>
 
@@ -652,19 +531,7 @@
                 <li>Strengthened alignment between technical teams and business stakeholders.</li>
               </ul>
 
-              <p><strong>Core Skills</strong> — Machine Learning, Deep Learning, NLP, Healthcare AI, Cloud Deployment</p>
-            </template>
-          </article>
-
-          <!-- Cognizant Intern -->
-          <article class="tl-item left expandable">
-            <span class="connector"></span>
-            <span class="dot"></span>
-            <h3>Intern — Cognizant</h3>
-            <div class="meta">Feb 2022 – Jun 2022 · Remote</div>
-            <p>Computer Vision intern focusing on detection & OCR.</p>
-            <template class="detail">
-              <p>
+              <p><strong>Core Skills</strong> — Machine Learning, Deep Learning, NLP, Healthcare AI, Cloud Deployment</p></div></details></div></article><details class="earlier"><summary>Earlier experience <span aria-hidden="true">＋</span></summary><article class="role"><div class="meta">Feb 2022 – Jun 2022 · Remote</div><div><h3>Intern — Cognizant</h3><details class="disclosure"><summary>Role & contributions<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p>
                 Early-career internship focused on applied machine learning and computer vision in healthcare-related domains.
               </p>
 
@@ -687,20 +554,7 @@
                 <li>Prepared for advanced roles in ML and AI engineering.</li>
               </ul>
 
-              <p><strong>Core Skills</strong> — Computer Vision, Machine Learning, Cloud Platforms, Python, SQL</p>
-            </template>
-          </article>
-
-          <!-- Sparks Foundation -->
-          <article class="tl-item right expandable">
-            <span class="connector"></span>
-            <span class="dot"></span>
-            <h3>Project Intern — The Sparks Foundation</h3>
-            <div class="meta">Jul 2021 – Sep 2022 · Hyderabad</div>
-            <p>Contributed to data/AI mini-projects and mentoring.
-            </p>
-            <template class="detail">
-              <p>
+              <p><strong>Core Skills</strong> — Computer Vision, Machine Learning, Cloud Platforms, Python, SQL</p></div></details></div></article><article class="role"><div class="meta">Jul 2021 – Sep 2022 · Hyderabad</div><div><h3>Project Intern — The Sparks Foundation</h3><details class="disclosure"><summary>Role & contributions<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p>
                 Worked as a Project Intern focusing on computer vision–based tasks and mini-projects, building practical skills through progressive assignments and applied experimentation.
               </p>
 
@@ -723,20 +577,7 @@
                 <li>Prepared for more advanced CV and deep learning projects in academic and industry settings.</li>
               </ul>
 
-              <p><strong>Core Skills</strong> — Computer Vision, Image Processing, Python, Machine Learning, Model Evaluation</p>
-            </template>
-          </article>
-
-          <!-- Saavishkaara -->
-          <article class="tl-item left expandable">
-            <span class="connector"></span>
-            <span class="dot"></span>
-            <h3>CDO & Project Designer — Saavishkaara</h3>
-            <div class="meta">May 2020 – May 2022 · Hyderabad</div>
-            <p>Led product design and student projects in robotics/AI.
-            </p>
-            <template class="detail">
-              <p>
+              <p><strong>Core Skills</strong> — Computer Vision, Image Processing, Python, Machine Learning, Model Evaluation</p></div></details></div></article><article class="role"><div class="meta">May 2020 – May 2022 · Hyderabad</div><div><h3>CDO &amp; Project Designer — Saavishkaara</h3><details class="disclosure"><summary>Role & contributions<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p>
                 Served as Chief Development Officer and Project Designer at Saavishkaara, an education-focused startup dedicated to teaching coding, robotics, and STEM skills to school and college students, with a strong emphasis on accessibility and outreach.
               </p>
 
@@ -759,19 +600,7 @@
                 <li>Demonstrated leadership in building and scaling an education-driven startup initiative.</li>
               </ul>
 
-              <p><strong>Core Skills</strong> — Leadership, STEM Education, Project Design, Robotics, Mentorship, Community Outreach</p>
-            </template>
-          </article>
-
-          <!-- 1Stop.ai -->
-          <article class="tl-item right expandable">
-            <span class="connector"></span>
-            <span class="dot"></span>
-            <h3>Artificial Intelligence Intern — 1Stop.ai</h3>
-            <div class="meta">Jan 2021 – Aug 2021 · Hyderabad</div>
-            <p>Worked across three AI projects with mentorship and reviews.</p>
-            <template class="detail">
-              <p>
+              <p><strong>Core Skills</strong> — Leadership, STEM Education, Project Design, Robotics, Mentorship, Community Outreach</p></div></details></div></article><article class="role"><div class="meta">Jan 2021 – Aug 2021 · Hyderabad</div><div><h3>Artificial Intelligence Intern — 1Stop.ai</h3><details class="disclosure"><summary>Role & contributions<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p>
                 Worked as an Artificial Intelligence Intern on multiple hands-on projects focused primarily on computer vision and applied deep learning, gaining early experience in building and training end-to-end AI systems.
               </p>
 
@@ -794,19 +623,7 @@
                 <li>Prepared for advanced coursework and industry roles in applied AI and machine learning.</li>
               </ul>
 
-              <p><strong>Core Skills</strong> — Computer Vision, CNNs, Deep Learning, NLP, Python, Model Training</p>
-            </template>
-          </article>
-
-          <!-- Path Creators -->
-          <article class="tl-item left expandable">
-            <span class="connector"></span>
-            <span class="dot"></span>
-            <h3>Technical Trainer — Path Creators (India)</h3>
-            <div class="meta">Feb 2019 – Feb 2020 · Hyderabad, Telangana, India · On-site</div>
-            <p>Trained 600+ students in robotics & IoT; 50+ hires mentored.</p>
-            <template class="detail">
-              <p>
+              <p><strong>Core Skills</strong> — Computer Vision, CNNs, Deep Learning, NLP, Python, Model Training</p></div></details></div></article><article class="role"><div class="meta">Feb 2019 – Feb 2020 · Hyderabad, Telangana, India · On-site</div><div><h3>Technical Trainer — Path Creators (India)</h3><details class="disclosure"><summary>Role & contributions<span aria-hidden="true">＋</span></summary><div class="detail-copy"><p>
                 Served as a Technical Trainer responsible for teaching robotics, IoT, and foundational programming concepts to students and early-career learners, while also mentoring new trainers and contributing to curriculum development.
               </p>
 
@@ -829,811 +646,9 @@
                 <li>Strengthened leadership, communication, and mentorship skills early in career.</li>
               </ul>
 
-              <p><strong>Core Skills</strong> — Robotics, IoT, C++, Technical Training, Mentorship, Curriculum Development</p>
-            </template>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="education">
-    <div class="wrap">
-      <h2 class="section-title">Education</h2>
-      <div class="timeline">
-        <div class="tl-wrap">
-          <article class="tl-item left">
-            <span class="connector"></span><span class="dot"></span>
-            <h3>Northwestern University — MS, Artificial Intelligence</h3>
-            <div class="meta">Sep 2024 – Dec 2025 ·<strong>Evanston, IL, USA</strong> ·<strong>GPA: 3.775/4</strong></div>
-            <p></p>
-          </article>
-          <article class="tl-item right">
-            <span class="connector"></span><span class="dot"></span>
-            <h3>Teegala Krishna Reddy Engineering College — BTech, ECE</h3>
-            <div class="meta">2018 – 2022 ·<strong>Hyderabad, TS, India</strong> ·<strong>GPA: 8.64/10</strong></div>
-            <p></p>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section><section id="projects">
-    <div class="wrap">
-      <h2 class="section-title">Projects</h2>
-      <div class="carousel-controls">
-        <button class="scroll-btn" id="proj-prev" aria-label="Previous">&#x2039;</button>
-        <button class="scroll-btn" id="proj-next" aria-label="Next">&#x203A;</button>
-      </div>
-      <div class="projects-h">
-        <!-- Intellicore -->
-        <article class="card project expandable" data-link-text="(add link)" data-link-url="#">
-          <div class="cover"><img src="projects/intellicore.png" alt="Intellicore cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Intellicore — Multi-Agent RAG System</h3>
-            <p class="meta">Associated with HauteCarat | Jul 2025 – Sep 2025</p>
-
-            <p class="tagline">
-              Intellicore is a production-grade multi-agent Retrieval-Augmented Generation (RAG) platform built to deliver real-time, company-wide intelligence through a conversational AI interface.
-            </p>
-
-            <div style="display:flex;gap:10px;margin-top:10px;"><a href="https://github.com/pavankonam/hautecarat-rag-system" target="_blank" rel="noopener" aria-label="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid rgba(252,252,252,.14);background:rgba(252,252,252,.06);text-decoration:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:18px;height:18px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.950-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
-
-            <div class="chips">
-              <span class="chip">Multi-Agent Orchestration</span>
-              <span class="chip">RAG</span>
-              <span class="chip">Azure</span>
-              <span class="chip">Vector Embeddings</span>
-              <span class="chip">REST APIs</span>
-            </div>
-
-            <template class="detail">
-              <p><strong>Overview</strong></p>
-              <p>
-                Intellicore is a production-grade multi-agent Retrieval-Augmented Generation (RAG) platform built to deliver real-time, company-wide intelligence through a conversational AI interface. The system unifies fragmented data across e-commerce, marketing, analytics, and customer engagement platforms, enabling non-technical stakeholders to ask complex business questions and receive accurate, grounded answers.
-              </p>
-
-              <p><strong>Technical Architecture & Analytics</strong></p>
-              <ul>
-                <li>Designed a multi-agent architecture with specialized agents for ingestion, normalization, retrieval, reasoning, and response synthesis, enabling modular scalability and fault isolation.</li>
-                <li>Integrated Shopify, Klaviyo, Google Analytics 4, LiveChat, Facebook Ads, and Instagram Graph APIs, supporting historical backfills and incremental data syncs.</li>
-                <li>Built a canonical data model (Customer, Transaction, Campaign, Event, Content) to normalize heterogeneous schemas and resolve cross-platform entity duplication.</li>
-                <li>Implemented entity resolution and deduplication logic, enabling unified customer journeys across ads, sessions, purchases, and conversations.</li>
-                <li>Developed RAG pipelines using semantic embeddings and filtered retrieval to ground LLM outputs strictly in live business data, minimizing hallucinations.</li>
-                <li>Enabled natural-language analytics, supporting KPI queries, funnel analysis, campaign attribution, customer segmentation, and trend detection.</li>
-                <li>Automated end-to-end data refresh workflows, ensuring consistent freshness and reliability across all downstream queries.</li>
-              </ul>
-
-              <p><strong>Business Impact</strong></p>
-              <ul>
-                <li>Replaced manual dashboard hopping with a single conversational insight layer, reducing time-to-insight for stakeholders.</li>
-                <li>Improved decision accuracy and confidence by grounding AI responses in normalized, real-time operational data.</li>
-                <li>Enabled proactive strategy through cross-channel analytics (marketing → behavior → conversion → revenue).</li>
-                <li>Established a scalable foundation for future agent expansion, advanced forecasting, and automated recommendations.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>Python, Azure Data Lake Gen2, Azure Cognitive Search, Azure Functions, Azure OpenAI, Vector Embeddings, REST APIs, Multi-Agent Orchestration, RAG</p>
-            </template>
-          </div>
-        </article>
-
-        <!-- Visionary -->
-        <article class="card project expandable" data-link-text="(internal)" data-link-url="#">
-          <div class="cover"><img src="projects/visionary.png" alt="Visionary cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Visionary — On-Model Jewelry Image Generation System</h3>
-            <p class="meta">Associated with HauteCarat | Jul 2025 – Sep 2025</p>
-            <p class="tagline">Closed-access AI platform to generate luxury, photorealistic on-model jewelry imagery at scale while preserving HauteCarat’s premium aesthetics.</p>
-
-            <div style="display:flex;gap:10px;margin-top:10px;"><a href="https://github.com/pavankonam/Visionary" target="_blank" rel="noopener" aria-label="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid rgba(252,252,252,.14);background:rgba(252,252,252,.06);text-decoration:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:18px;height:18px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.950-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
-            <div class="chips">
-              <span class="chip">Generative AI</span><span class="chip">Computer Vision</span><span class="chip">GPT-4 Vision</span><span class="chip">GPT-Image-1</span><span class="chip">Secure Deployment</span>
-            </div>
-            <template class="detail">
-              <p><strong>Overview</strong></p>
-              <p>
-                Visionary is a closed-access AI-driven image generation platform designed to produce luxury, on-model jewelry photography at scale. The system analyzes HauteCarat’s existing editorial imagery and generates photorealistic, brand-consistent visuals for any jewelry product—eliminating the need for repeated photoshoots while preserving premium aesthetics.
-              </p>
-
-              <p><strong>Technical Architecture &amp; Visual Intelligence</strong></p>
-              <ul>
-                <li>Built a computer-vision–driven generation pipeline that analyzes reference model imagery to extract lighting conditions, skin tone, pose geometry, jewelry positioning, and editorial style.</li>
-                <li>Leveraged GPT-4 Vision to semantically understand visual composition and stylistic cues from HauteCarat’s existing campaign photography.</li>
-                <li>Used GPT-Image-1 to synthesize high-resolution, photorealistic on-model images aligned with the brand’s luxury identity.</li>
-                <li>Engineered a flexible product-input pipeline capable of adapting any catalog jewelry image (rings, necklaces, earrings, bracelets) to the learned on-model style.</li>
-                <li>Implemented prompt-engineering and visual constraints to maintain consistency across model appearance, framing, and jewelry focus.</li>
-                <li>Designed the system for editorial-grade outputs, suitable for e-commerce listings, paid ads, social media campaigns, and lookbooks.</li>
-                <li>Deployed as a secure, internal-only tool, with controlled access for creative and marketing stakeholders.</li>
-              </ul>
-
-              <p><strong>Business Impact</strong></p>
-              <ul>
-                <li>Reduced reliance on traditional photoshoots, lowering production cost and turnaround time.</li>
-                <li>Enabled rapid, scalable content generation for new product launches and campaigns.</li>
-                <li>Preserved brand consistency while expanding creative experimentation.</li>
-                <li>Accelerated marketing workflows by allowing teams to generate on-model visuals on demand.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>Generative AI, Computer Vision, GPT-4 Vision, GPT-Image-1, Prompt Engineering, Image Synthesis, Secure Internal Deployment</p>
-            </template>
-          </div>
-        </article>
-
-        <!-- Amazon Review Detection -->
-        <article class="card project expandable" data-link-text="GitHub" data-link-url="#">
-          <div class="cover"><img src="projects/amazonreview.jpeg" alt="Amazon AI Detect cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Amazon Review Human–AI Detection — NLP-powered Authenticity Classifier</h3>
-            <p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p>
-            <p class="tagline">NLP-based system to distinguish human-written vs AI-generated Amazon reviews with robust, interpretable detection.</p>
-
-            <div style="display:flex;gap:10px;margin-top:10px;"><a href="https://github.com/Ashlesha-Ahirwadi/Amazon-Review-Human-AI-Detection" target="_blank" rel="noopener" aria-label="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid rgba(252,252,252,.14);background:rgba(252,252,252,.06);text-decoration:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:18px;height:18px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.950-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
-            <div class="chips">
-              <span class="chip">NLP</span>
-              <span class="chip">BERT</span>
-              <span class="chip">Transformer Fine-Tuning</span>
-              <span class="chip">Text Classification</span>
-              <span class="chip">Feature Engineering</span>
-            </div>
-            <template class="detail">
-              <p><strong>Overview</strong></p>
-              <p>
-                This project developed an NLP-based classification system to distinguish between human-written and AI-generated Amazon reviews, addressing the growing risk of synthetic content manipulation in online marketplaces. The system combines classical linguistic analysis with transformer-based deep learning to deliver robust and interpretable detection.
-              </p>
-
-              <p><strong>Technical Architecture &amp; Modeling</strong></p>
-              <ul>
-                <li>Conducted a structured review of AI text generation artifacts, stylometric signals, and adversarial writing behaviors.</li>
-                <li>Curated and preprocessed a labeled Amazon review dataset containing both human-authored and AI-generated text, applying cleaning, tokenization, class balancing, and feature normalization.</li>
-                <li>Built baseline classifiers (Logistic Regression, SVM) using lexical and stylometric features such as n-grams, readability scores, punctuation patterns, and sentence-level statistics.</li>
-                <li>Fine-tuned BERT-based transformer models to capture subtle semantic and structural cues indicative of machine-generated text.</li>
-                <li>Designed rigorous evaluation pipelines using Accuracy, Precision, Recall, F1-score, and ROC-AUC with cross-validation for generalization testing.</li>
-                <li>Applied model interpretability techniques, including attention analysis and feature importance, to understand decision signals and improve trust.</li>
-                <li>Compared baseline and transformer performance, iteratively tuning hyperparameters and architectures.</li>
-              </ul>
-
-              <p><strong>Impact &amp; Insights</strong></p>
-              <ul>
-                <li>Achieved strong classification performance (high F1 and ROC-AUC) in separating human and AI-generated reviews.</li>
-                <li>Identified consistent linguistic and structural patterns leveraged by detection models.</li>
-                <li>Demonstrated how NLP-based authenticity systems can help platforms preserve trust, mitigate fraud, and protect consumers.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>Python, NLP, BERT, Transformer Fine-Tuning, Text Classification, Feature Engineering, Scikit-learn, PyTorch</p>
-            </template>
-          </div>
-        </article>
-<!-- Empathetic Echoes -->
-        <article class="card project expandable" data-link-text="Demo" data-link-url="#">
-          <div class="cover"><img src="projects/empathetic.png" alt="Empathetic Echoes cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Empathetic Echoes — Emotion-Aware Psychiatric Chatbot</h3>
-            <p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p>
-            <p class="tagline">Emotion-aware conversational AI with ethical guardrails, safety escalation, and retrieval grounding for supportive mental health guidance.</p>
-
-            <div style="display:flex;gap:10px;margin-top:10px;"><a href="https://github.com/pavankonam/Empathetic-Echoes-Emotion-Aware-Psychiatric-Chatbot" target="_blank" rel="noopener" aria-label="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid rgba(252,252,252,.14);background:rgba(252,252,252,.06);text-decoration:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:18px;height:18px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.950-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
-            <div class="chips">
-              <span class="chip">Emotion Recognition</span>
-              <span class="chip">Conversational AI</span>
-              <span class="chip">RAG</span>
-              <span class="chip">Prompt Engineering</span>
-              <span class="chip">Safety Guardrails</span>
-            </div>
-            <template class="detail">
-              <p><strong>Overview</strong></p>
-              <p>
-                Empathetic Echoes is an emotion-aware conversational AI designed to provide empathetic, context-sensitive mental health support while respecting ethical and safety boundaries. The system detects emotional states and adapts responses to support users with appropriate tone, intent, and grounding.
-              </p>
-
-              <p><strong>System Design &amp; Emotional Intelligence</strong></p>
-              <ul>
-                <li>Built an emotion detection module using fine-tuned transformer models to infer emotional states such as anxiety, sadness, frustration, and stress from user text.</li>
-                <li>Designed an intent and context understanding layer mapping user inputs to therapy-relevant categories (reflection, coping strategies, grounding exercises, resource guidance).</li>
-                <li>Engineered empathetic response-generation prompts, emphasizing emotional validation, supportive language, and conversational coherence.</li>
-                <li>Integrated retrieval-augmented grounding, ensuring responses reference validated mental health concepts rather than free-form generation.</li>
-                <li>Implemented safety and escalation logic to detect high-risk language (e.g., self-harm indicators) and trigger crisis-aware fallback messaging or human-support guidance.</li>
-                <li>Evaluated system quality via human-in-the-loop testing, measuring perceived empathy, appropriateness, coherence, and helpfulness.</li>
-                <li>Iteratively refined emotional calibration and prompts based on user feedback.</li>
-              </ul>
-
-              <p><strong>Impact &amp; Ethical Value</strong></p>
-              <ul>
-                <li>Demonstrated strong performance in simulated conversations, with high perceived empathy and contextual relevance.</li>
-                <li>Showcased how emotion-aware AI systems can augment access to mental health support without replacing professional care.</li>
-                <li>Emphasized ethical guardrails, safety, and responsible deployment in sensitive AI applications.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>NLP, Transformer Models, Emotion Recognition, Conversational AI, Prompt Engineering, Retrieval-Augmented Generation (RAG), Python</p>
-            </template>
-          </div>
-        </article>
-<!-- Virtual Gym Trainer -->
-        <article class="card project expandable" data-link-text="GitHub" data-link-url="#">
-          <div class="cover"><img src="projects/virtualgym.jpeg" alt="Virtual Gym cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Virtual Gym Trainer — Real-Time AI Fitness Coaching System</h3>
-            <p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p>
-            <p class="tagline">Computer-vision–powered fitness assistant delivering real-time posture correction, repetition counting, and exercise feedback through a webcam.</p>
-
-            <div style="display:flex;gap:10px;margin-top:10px;"><a href="https://github.com/pavankonam/Virtual-Gym-Trainer" target="_blank" rel="noopener" aria-label="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid rgba(252,252,252,.14);background:rgba(252,252,252,.06);text-decoration:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:18px;height:18px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.950-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://youtu.be/HBZLyfzbDvQ?si=y_z8wCvKyeJWvc3w" target="_blank" rel="noopener" aria-label="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid rgba(252,252,252,.14);background:rgba(252,252,252,.06);text-decoration:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:18px;height:18px;fill:currentColor"><path d="M8.051 1.999h-.002c-2.347 0-4.696.002-5.855.039-1.158.037-1.98.2-2.529.75-.548.55-.711 1.37-.748 2.53C.881 6.477.879 7.825.879 8v.002c0 .175.002 1.523.039 2.682.037 1.16.2 1.98.748 2.53.548.55 1.37.711 2.529.748 1.159.037 3.508.0395.855.039h.002c2.347 0 4.696-.002 5.855-.039 1.158-.037 1.98-.199 2.529-.748.548-.55.711-1.37.748-2.53.037-1.159.039-2.507.039-2.682V8c0-.175-.002-1.523-.039-2.682-.037-1.16-.2-1.98-.748-2.53-.548-.55-1.37-.711-2.529-.748-1.159-.037-3.508-.039-5.855-.039zM6.186 11.562V5.438l5.023 3.062-5.023 3.062z"/></svg></a></div>
-            <div class="chips"><span class="chip">Computer Vision</span><span class="chip">Pose Estimation</span><span class="chip">Real-Time ML</span><span class="chip">UI Visualization</span><span class="chip">HCI</span></div>
-            <template class="detail">
-              
-              <p><strong>Overview</strong></p>
-              <p>Virtual Gym Trainer is a computer-vision–powered fitness assistant that monitors user workouts through a webcam, providing real-time posture correction, repetition counting, and exercise feedback. The system is designed to make solo training safer, more effective, and more accessible without requiring a human trainer.</p>
-
-              <p><strong>System Architecture &amp; Real-Time Analytics</strong></p>
-              <ul>
-                <li>Implemented a real-time video processing pipeline to capture webcam input and extract human pose keypoints on a per-frame basis using pose estimation models.</li>
-                <li>Applied pose normalization and noise filtering to handle lighting variation, camera angle differences, and diverse body proportions.</li>
-                <li>Built an exercise classification module to identify movements such as squats, push-ups, and lunges based on pose dynamics.</li>
-                <li>Designed state-transition logic to track start/end positions and automatically count repetitions using joint-angle thresholds.</li>
-                <li>Developed a posture evaluation engine that detects form deviations and triggers corrective feedback when thresholds are exceeded.</li>
-                <li>Integrated a visual feedback overlay, highlighting joints, angles, and incorrect posture in real time for intuitive correction.</li>
-                <li>Validated accuracy and usability using recorded test videos and human evaluation.</li>
-              </ul>
-
-              <p><strong>Impact</strong></p>
-              <ul>
-                <li>Delivered accurate real-time exercise recognition and rep counting.</li>
-                <li>Improved workout safety and form awareness through immediate corrective feedback.</li>
-                <li>Demonstrated how vision-based systems can function as scalable virtual personal trainers.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>Computer Vision, Pose Estimation, Real-Time ML, Python, Human–Computer Interaction, UI Visualization</p>
-
-            </template>
-          </div>
-        </article>
-
-        <!-- Artistic Visualization of Dreams -->
-        <article class="card project expandable" data-link-text="Paper/Repo" data-link-url="#">
-          <div class="cover"><img src="projects/artisticdreams.jpeg" alt="Dreams project cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Artistic Visualization of Dreams — EEG-to-Image Deep Learning Pipeline</h3>
-            <p class="meta">Associated with Northwestern University | Jan 2025 – Mar 2025</p>
-            <p class="tagline">End-to-end EEG decoding pipeline that classifies dream categories from spectrograms and generates artistic visuals via a VAE.</p>
-
-            <div style="display:flex;gap:10px;margin-top:10px;"><a href="https://github.com/pavankonam/Artistic-Visualization-of-Dreams" target="_blank" rel="noopener" aria-label="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid rgba(252,252,252,.14);background:rgba(252,252,252,.06);text-decoration:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:18px;height:18px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.950-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
-            <div class="chips"><span class="chip">EEG Processing</span><span class="chip">CNN</span><span class="chip">VAE</span><span class="chip">Signal Processing</span><span class="chip">Deep Learning</span></div>
-            <template class="detail">
-              
-              <p><strong>Overview</strong></p>
-              <p>This project explores the intersection of neuroscience and generative AI by decoding EEG signals recorded during sleep and transforming them into artistic visual representations of dream content. The system classifies dream states and generates images that reflect subconscious patterns.</p>
-
-              <p><strong>Neural Signal Processing &amp; Generative Modeling</strong></p>
-              <ul>
-                <li>Compiled and unified five EEG datasets, creating a consolidated corpus of 700+ EDF files representing diverse dream experiences.</li>
-                <li>Preprocessed raw EEG signals through noise filtering, frequency band extraction (Delta, Theta, Alpha, Beta, Gamma), and spectrogram generation.</li>
-                <li>Designed and trained a CNN-based classifier to categorize dreams into five semantic classes:
-                  <ul>
-                    <li>Adventure &amp; Movement</li>
-                    <li>Fear &amp; Uncertainty</li>
-                    <li>People &amp; Social Interaction</li>
-                    <li>Abstract &amp; Thought-based</li>
-                    <li>Miscellaneous</li>
-                  </ul>
-                </li>
-                <li>Achieved approximately 85% classification accuracy on held-out EEG samples.</li>
-                <li>Integrated classification outputs with a Variational Autoencoder (VAE) to generate artistic images corresponding to predicted dream categories.</li>
-                <li>Built an end-to-end pipeline: EEG decoding → dream classification → visual generation.</li>
-                <li>Evaluated coherence between generated imagery and known dream narratives.</li>
-              </ul>
-
-              <p><strong>Impact</strong></p>
-              <ul>
-                <li>Demonstrated a novel approach to visualizing subconscious brain activity using deep learning.</li>
-                <li>Showcased the feasibility of EEG-driven generative systems for neuroscience and BCI research.</li>
-                <li>Bridged neural signal analysis with creative AI expression.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>EEG Processing, CNNs, VAEs, Deep Learning, Signal Processing, Python</p>
-
-            </template>
-          </div>
-        </article>
-
-        <!-- ICU Insights -->
-        <article class="card project expandable" data-link-text="(case study)" data-link-url="#">
-          <div class="cover"><img src="projects/icuinsights.jpeg" alt="ICU Insights cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>ICU Insights — Predictive Modeling for ICU Admission Risk</h3>
-            <p class="meta">Associated with Northwestern University | Sep 2024 – Dec 2024</p>
-            <p class="tagline">Clinical risk prediction system using MIMIC-IV data to forecast ICU admission risk and support proactive triage.</p>
-            <div class="chips"><span class="chip">Healthcare Analytics</span><span class="chip">Random Forest</span><span class="chip">Neural Networks</span><span class="chip">BigQuery</span><span class="chip">SQL</span></div>
-            <template class="detail">
-              
-              <p><strong>Overview</strong></p>
-              <p>ICU Insights is a clinical risk prediction system built to forecast whether hospitalized patients are likely to require ICU admission. By identifying high-risk cases early, the model supports proactive care prioritization and resource allocation.</p>
-
-              <p><strong>Data Engineering &amp; Predictive Modeling</strong></p>
-              <ul>
-                <li>Utilized the MIMIC-IV clinical database, containing de-identified records from 70,000+ ICU patients, including labs, vitals, medications, and administrative data.</li>
-                <li>Engineered clinical features such as:
-                  <ul>
-                    <li>Ratio of abnormal to normal lab results</li>
-                    <li>Frequency of lab tests</li>
-                    <li>Demographics, vitals, and OMR data (BMI, blood pressure, height, weight)</li>
-                  </ul>
-                </li>
-                <li>Developed and compared Random Forest and Feedforward Neural Network models.</li>
-                <li>Built two model versions:
-                  <ul>
-                    <li>V1: 24 features (demographics, labs, vitals)</li>
-                    <li>V2: 31 features with expanded OMR data</li>
-                  </ul>
-                </li>
-                <li>Addressed large-scale data challenges using SQL optimization in BigQuery, chunk-based processing, and lazy loading.</li>
-                <li>Handled missing values via targeted imputation strategies.</li>
-              </ul>
-
-              <p><strong>Model Performance</strong></p>
-              <ul>
-                <li><strong>Best Model:</strong> Random Forest</li>
-                <li><strong>Test AUC-ROC:</strong> 0.973</li>
-                <li><strong>Test F1 Score:</strong> 0.767</li>
-                <li><strong>Recall:</strong> 0.806 | <strong>Precision:</strong> 0.731</li>
-              </ul>
-
-              <p><strong>Impact</strong></p>
-              <ul>
-                <li>Demonstrated strong predictive power for early ICU risk identification.</li>
-                <li>Highlighted how ML-driven triage tools can improve clinical decision-making.</li>
-                <li>Balanced performance, interpretability, and scalability in healthcare ML systems.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>Machine Learning, Random Forests, Neural Networks, SQL, BigQuery, Python, Healthcare Analytics</p>
-
-            </template>
-          </div>
-        </article>
-
-        <!-- Med Alert -->
-        <article class="card project expandable" data-link-text="(prototype)" data-link-url="#">
-          <div class="cover"><img src="projects/medalert.png" alt="Med Alert cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Med Alert — AI-Driven Patient Monitoring &amp; Health Intelligence Platform</h3>
-            <p class="meta">Associated with Cognizant | Jan 2024 – Jul 2024</p>
-            <p class="tagline">Med Alert is a secure, AI-enabled healthcare web platform that combines medical records with continuous smartwatch data to generate actionable clinical insights.</p>
-            <div class="chips">
-              <span class="chip">Generative AI</span><span class="chip">AWS</span><span class="chip">Healthcare Analytics</span><span class="chip">Secure Systems</span><span class="chip">Web Development</span>
-            </div>
-            <template class="detail">
-              <p><strong>Overview</strong></p>
-              <p>
-                Med Alert is a secure, AI-enabled healthcare web platform designed to help doctors monitor patient health holistically by combining medical records with continuous smartwatch data. The system transforms raw health signals into actionable insights, improving clinical awareness and personalized care delivery.
-              </p>
-
-              <p><strong>System Design &amp; AI Integration</strong></p>
-              <ul>
-                <li>Built a secure, role-based web platform enabling doctors to log in and access comprehensive patient profiles.</li>
-                <li>Integrated wearable data streams (heart rate, oxygen saturation, body temperature) alongside structured medical records.</li>
-                <li>Designed interactive tabular and graphical dashboards to visualize trends, anomalies, and longitudinal health patterns.</li>
-                <li>Implemented a Generative AI–powered health summary module (hosted on AWS) to analyze time-series health data, detect periods of instability or abnormal readings, and generate concise, clinician-readable health summaries.</li>
-                <li>Developed a personalized recommendation engine producing diet suggestions and health guidance tailored to patient data.</li>
-                <li>Enabled doctor-in-the-loop validation, allowing clinicians to review, edit, and approve AI-generated recommendations.</li>
-                <li>Integrated an email delivery workflow to securely send approved recommendations directly to patients.</li>
-              </ul>
-
-              <p><strong>Impact</strong></p>
-              <ul>
-                <li>Reduced manual analysis burden for clinicians by converting continuous sensor data into summarized insights.</li>
-                <li>Improved patient engagement through personalized, data-driven health guidance.</li>
-                <li>Demonstrated practical use of Generative AI in clinical decision support while preserving human oversight.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>Generative AI, AWS, Machine Learning, Web Development, Healthcare Analytics, Secure Systems</p>
-            </template>
-          </div>
-        </article>
-
-        <!-- Gesture Net -->
-        <article class="card project expandable">
-          <div class="cover"><img src="projects/gesturenet.png" alt="Gesture Net cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Gesture Net — Computer Vision–Based Gesture Analysis for Behavioral Insights</h3>
-            <p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p>
-            <p class="tagline">Gesture Net is a computer vision system that analyzes nonverbal behavior from video to support psychological and behavioral research with interpretable motion analytics.</p>
-
-            <div style="display:flex;gap:10px;margin-top:10px;"><a href="https://github.com/pavankonam/GestureNet" target="_blank" rel="noopener" aria-label="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid rgba(252,252,252,.14);background:rgba(252,252,252,.06);text-decoration:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:18px;height:18px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.950-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
-            <div class="chips">
-              <span class="chip">Computer Vision</span><span class="chip">Pose Estimation</span><span class="chip">Deep Learning</span><span class="chip">Video Processing</span><span class="chip">Behavioral Analytics</span>
-            </div>
-            <template class="detail">
-              <p><strong>Overview</strong></p>
-              <p>
-                Gesture Net is a computer vision system designed to detect and analyze human gestures and nonverbal behavior from video data to support psychological and behavioral research. The platform focuses on extracting subtle movement patterns that may correlate with psychological risk indicators.
-              </p>
-
-              <p><strong>Vision Pipeline &amp; Behavioral Modeling</strong></p>
-              <ul>
-                <li>Designed a video processing pipeline to ingest raw footage, extract frames, and isolate relevant hand and body motion signals.</li>
-                <li>Applied pose estimation and landmark detection models to capture fine-grained skeletal and hand keypoints under varying lighting and backgrounds.</li>
-                <li>Preprocessed spatio-temporal motion data, normalizing gesture trajectories to account for individual differences.</li>
-                <li>Developed a deep learning–based gesture classification model to detect and categorize movement patterns associated with behavioral indicators.</li>
-                <li>Engineered gesture analytics capturing movement frequency, duration, transitions, and micro-motions.</li>
-                <li>Collaborated with domain experts to align gesture categories with established psychological patterns, ensuring interpretability and research validity.</li>
-                <li>Evaluated system performance using annotated datasets and metrics such as accuracy, precision, and recall.</li>
-              </ul>
-
-              <p><strong>Impact</strong></p>
-              <ul>
-                <li>Demonstrated how computer vision can support early behavioral risk detection through nonverbal cues.</li>
-                <li>Provided a scalable foundation for future clinical, research, and human-centered AI applications.</li>
-                <li>Highlighted the role of interpretable gesture analytics in psychological assessment.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>Computer Vision, Gesture Recognition, Deep Learning, Video Processing, Behavioral Analytics, Human-Centered AI</p>
-            </template>
-          </div>
-        </article>
-
-        <!-- Pixel Pastries -->
-        <article class="card project expandable">
-          <div class="cover"><img src="projects/pixel.png" alt="Pixel Pastries cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Pixel Pastries — GAN-Based Dessert Image Generation System</h3>
-            <p class="meta">Associated with Northwestern University | Apr 2025 – Jun 2025</p>
-
-            <p class="tagline">
-              Pixel Pastries is a generative deep learning system that synthesizes photorealistic dessert images using a custom-built Generative Adversarial Network (GAN).
-            </p>
-
-            <div style="display:flex;gap:10px;margin-top:10px;"><a href="https://github.com/pavankonam/Pixel-Pastries" target="_blank" rel="noopener" aria-label="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid rgba(252,252,252,.14);background:rgba(252,252,252,.06);text-decoration:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:18px;height:18px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.950-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
-
-            <div class="chips"><span class="chip">GANs</span><span class="chip">TensorFlow</span><span class="chip">Computer Vision</span><span class="chip">MLOps</span></div>
-
-            <template class="detail">
-              <p><strong>Overview</strong></p>
-              <p>
-                Pixel Pastries is a generative deep learning system that synthesizes photorealistic dessert images using a custom-built Generative Adversarial Network (GAN). The project explores how adversarial training, quantitative evaluation, and MLOps practices can be combined to build high-quality, domain-specific image generators.
-              </p>
-
-              <p><strong>Model Architecture &amp; Training Pipeline</strong></p>
-              <ul>
-                <li>Curated a domain-focused training dataset by filtering dessert-related categories from the Food-101 dataset to improve visual consistency and learning stability.</li>
-                <li>Implemented a GAN from scratch in TensorFlow/Keras, designing:
-                  <ul>
-                    <li>A generator to synthesize realistic dessert imagery from latent noise</li>
-                    <li>A discriminator to distinguish real images from generated samples</li>
-                  </ul>
-                </li>
-                <li>Engineered stable training loops with custom loss handling, gradient updates, and model checkpointing.</li>
-                <li>Integrated epoch-wise visualization, generating GIFs to track visual quality progression over training.</li>
-                <li>Evaluated generative quality using Fréchet Inception Distance (FID) at regular intervals.</li>
-                <li>Performed systematic hyperparameter tuning (learning rate, batch size, optimizer selection, network depth) using grid search.</li>
-                <li>Incorporated MLOps tooling (TensorBoard, Weights &amp; Biases) for experiment tracking, metric logging, and model comparison.</li>
-                <li>Explored latent space interpolation to analyze smooth transitions between dessert styles and validate learned representations.</li>
-              </ul>
-
-              <p><strong>Impact</strong></p>
-              <ul>
-                <li>Successfully generated high-quality, visually coherent dessert images from noise.</li>
-                <li>Demonstrated how GANs can be trained and evaluated rigorously using both quantitative metrics and qualitative analysis.</li>
-                <li>Showcased end-to-end generative system design, from data curation to deployment-ready experimentation workflows.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>GANs, TensorFlow, Deep Learning, Computer Vision, Hyperparameter Tuning, MLOps, Image Generation</p>
-            </template>
-          </div>
-        </article>
-
-      
-        <!-- Medicurious -->
-        <article class="card project expandable">
-          <div class="cover"><img src="projects/medcurious.jpeg" alt="Medicurious cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Medicurious — Domain-Specialized Medical LLM for Clinical Insight</h3>
-            <p class="meta">Associated with Northwestern University | Jan 2025 – Mar 2025</p>
-            <p class="tagline">Domain-specialized LLM system for accurate, structured, clinically grounded medical information under human oversight.</p>
-
-            <div style="display:flex;gap:10px;margin-top:10px;"><a href="https://github.com/pavankonam/Medicurious" target="_blank" rel="noopener" aria-label="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid rgba(252,252,252,.14);background:rgba(252,252,252,.06);text-decoration:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:18px;height:18px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.950-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a></div>
-            <div class="chips">
-              <span class="chip">LLMs</span>
-              <span class="chip">RAG</span>
-              <span class="chip">Knowledge Representation</span>
-              <span class="chip">Prompt Engineering</span>
-            </div>
-            <template class="detail">
-              <p><strong>Overview</strong></p>
-              <p>
-                Medicurious is a domain-specialized Large Language Model system designed to deliver accurate, structured, and context-aware medical information for healthcare professionals. The project directly addresses the limitations of general-purpose LLMs in clinical settings—such as hallucinations, shallow reasoning, and unstructured outputs—by combining verified medical data, knowledge representations, and tailored evaluation protocols.
-              </p>
-
-              <p><strong>LLM Architecture &amp; Knowledge Grounding</strong></p>
-              <ul>
-                <li>Conducted an in-depth analysis of failure modes of general LLMs in healthcare, focusing on hallucination risk, lack of domain reasoning, and clinical unreliability.</li>
-                <li>Curated and standardized verified medical data sources, including drug safety records, symptom–diagnosis mappings, and clinical treatment guidelines.</li>
-                <li>Built a data preprocessing pipeline converting unstructured medical text into structured JSONL formats optimized for ingestion and retrieval.</li>
-                <li>Designed hierarchical knowledge schemas to enforce consistent structure, terminology, and contextual grounding in responses.</li>
-                <li>Applied prompt engineering and retrieval-augmented querying (RAG) to improve factual accuracy and reduce unsupported generation.</li>
-                <li>Developed custom evaluation metrics tailored to clinical scenarios, measuring contextual accuracy, relevance, and reliability rather than generic NLP scores.</li>
-                <li>Ran iterative validation cycles to assess readiness for clinical decision-support augmentation under human oversight.</li>
-              </ul>
-
-              <p><strong>Impact</strong></p>
-              <ul>
-                <li>Demonstrated how domain-specialized LLMs can significantly improve reliability and structure in medical information delivery.</li>
-                <li>Highlighted best practices for safe AI deployment in healthcare, emphasizing verification, grounding, and evaluation rigor.</li>
-                <li>Provided a scalable foundation for future clinical decision-support systems with human-in-the-loop control.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>Large Language Models, NLP, Prompt Engineering, Knowledge Representation, Retrieval-Augmented Generation (RAG), Python</p>
-            </template>
-          </div>
-        </article>
-
-        <!-- Stock Ticker Prediction -->
-        <article class="card project expandable">
-          <div class="cover"><img src="projects/stock.png" alt="Stock Ticker Prediction cover" style="width:100%;height:220px;object-fit:cover"></div>
-          <div class="card-inner">
-            <h3>Stock Ticker Prediction — Time Series Forecasting with Sentiment Intelligence</h3>
-            <p class="meta">Associated with Northwestern University | Sep 2024 – Dec 2024</p>
-            <p class="tagline">Forecasting system combining time-series models with market sentiment signals for improved stock prediction accuracy.</p>
-            <div class="chips">
-              <span class="chip">Time Series</span>
-              <span class="chip">LSTM</span>
-              <span class="chip">SARIMAX</span>
-              <span class="chip">Sentiment Analysis</span>
-            </div>
-            <template class="detail">
-              <p><strong>Overview</strong></p>
-              <p>
-                This project developed an advanced stock price forecasting system that combines state-of-the-art time series models with market sentiment analysis to improve predictive accuracy. The system was designed to support analysts and investors by capturing both historical price dynamics and real-time market psychology.
-              </p>
-
-              <p><strong>Forecasting Models &amp; Analytics Pipeline</strong></p>
-              <ul>
-                <li>Built a large-scale historical dataset using stock price data from 2009 to present, enabling long-horizon learning and robustness testing.</li>
-                <li>Implemented and benchmarked multiple advanced forecasting models: LSTM, SARIMAX, TIDE (Temporal Integration for Data and Ensemble), and TSMixer.</li>
-                <li>Integrated sentiment analysis signals derived from market-related text to capture investor mood and behavioral effects.</li>
-                <li>Engineered pipelines to inject sentiment features into time series models as exogenous inputs.</li>
-                <li>Conducted rigorous model comparison and error analysis across market conditions and ticker types.</li>
-                <li>Developed a user-facing interface to visualize forecasts, trends, and comparative model performance.</li>
-              </ul>
-
-              <p><strong>Impact</strong></p>
-              <ul>
-                <li>Achieved notable improvements in forecasting accuracy compared to price-only baseline models.</li>
-                <li>Demonstrated the value of combining quantitative price history with qualitative sentiment signals.</li>
-                <li>Provided an extensible framework for risk management, strategy testing, and financial decision support.</li>
-              </ul>
-
-              <p><strong>Tech Stack</strong></p>
-              <p>Time Series Forecasting, LSTM, SARIMAX, TIDE, TSMixer, Sentiment Analysis, Data Science, Python</p>
-            </template>
-          </div>
-        </article>
-</div>
-    </div>
-  </section>
-
-  <section id="certs">
-    <div class="wrap">
-      <h2 class="section-title">Certifications</h2>
-      <div class="certs-h">
-        <div class="entry"><h3>CITI: HIPAA Security & Privacy</h3><div class="meta">Apr 2025</div></div>
-        <div class="entry"><h3>CITI: Human Research Protections (IRB)</h3><div class="meta">Apr 2025 – Apr 2028</div></div>
-        <div class="entry"><h3>Coursera: Generative AI with LLMs</h3><div class="meta">Sep 2023</div></div>
-        <div class="entry"><h3>IBM: Data Science Foundations</h3><div class="meta">Oct 2020</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="gallery">
-    <div class="wrap">
-      <h2 class="section-title">Gallery</h2>
-      <div class="media-h">
-        <div class="media-card"><img src="gallery/grad.jpeg" alt="Graduation"/></div>
-        <div class="media-card"><img src="gallery/frnd.jpeg" alt="Graduation"/></div>
-        <div class="media-card"><img src="gallery/msai.jpeg" alt="MSAI"/></div>
-        <div class="media-card"><img src="gallery/teaching.jpeg" alt="Teaching"/></div>
-        <div class="media-card"><img src="gallery/teaching2.jpeg" alt="Teaching 2"/></div>
-        <div class="media-card"><img src="gallery/teaching4.jpg" alt="Teaching 4"/></div>
-        <div class="media-card"><img src="gallery/teaching5.jpg" alt="Teaching 5"/></div>
-        <div class="media-card"><img src="gallery/teachings.jpg" alt="Teachings"/></div>
-        <div class="media-card"><img src="gallery/teachnign.jpg" alt="Teaching"/></div>
-        <div class="media-card"><img src="gallery/newyork.jpg" alt="New York cover"/></div>
-        <div class="media-card"><img src="gallery/1871.jpg" alt="1871 event"/></div>
-        <div class="media-card"><img src="gallery/IMG_2936.jpg" alt="Event photo"/></div>
-        <div class="media-card"><img src="gallery/IMG_4171.jpg" alt="Event photo"/></div>
-        <div class="media-card"><img src="gallery/class_teaching.jpg" alt="Class teaching"/></div>
-        <div class="media-card"><img src="gallery/latest_teaching.jpg" alt="Latest teaching"/></div>
-        <div class="media-card"><img src="gallery/event.jpg" alt="Event"/></div>
-        <div class="media-card"><img src="gallery/event_recent.jpg" alt="Recent event"/></div>
-        <div class="media-card"><img src="gallery/events.JPG" alt="Events"/></div>
-        <div class="media-card"><img src="gallery/graduated.jpg" alt="Graduation"/></div>
-        <div class="media-card"><img src="gallery/microsoft.jpg" alt="Microsoft event"/></div>
-        <div class="media-card"><img src="gallery/microsoftteam.JPG" alt="Microsoft team"/></div>
-        <div class="media-card"><img src="gallery/office.jpeg" alt="Office"/></div>
-        <div class="media-card"><img src="gallery/prize.jpg" alt="Prize"/></div>
-        <div class="media-card"><img src="gallery/seminar-pro.jpg" alt="Seminar professional"/></div>
-        <div class="media-card"><img src="gallery/seminar.jpg" alt="Seminar"/></div>
-        <div class="media-card"><img src="gallery/working2.jpg" alt="Working"/></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap">
-      <h2 class="section-title">Contact</h2>
-      <div class="card"><div class="card-inner">
-        <p>Email: <a href="mailto:pavankonam2026@u.northwestern.edu">pavankonam2026@u.northwestern.edu</a> · <a href="mailto:pavankonam@gmail.com">pavankonam@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/pavankonam/" target="_blank" rel="noopener">linkedin.com/in/pavankonam</a> · GitHub: <a href="https://github.com/pavankonam" target="_blank" rel="noopener">github.com/pavankonam</a></p>
-        <p>Phone: <a href="tel:+15179402499">+1 (517) 940-2499</a></p>
-        <p><a class="btn" href="https://raw.githubusercontent.com/pavankonam/portfolio/main/AI_ML_Engineer.pdf" download>Download Resume</a></p>
-      </div></div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap footer-grid">
-      <div>© <span id="yr"></span> Pavan Konam — Built with vanilla HTML/CSS. Deployed on GitHub Pages.</div>
-      <div><a href="#">Back to top ↑</a></div>
-      <div>Theme: Navy Blue</div>
-    </div>
-  </footer>
-
-  <!-- Detail Modal -->
-  <div class="detail-backdrop" id="detail-backdrop">
-    <div class="detail-modal" id="detail-modal" role="dialog" aria-modal="true" aria-labelledby="detail-title">
-      <button class="detail-close" id="detail-close" aria-label="Close">✕</button>
-      <div class="detail-cover" id="detail-cover"></div>
-      <div class="detail-body">
-        <div class="detail-head"><h3 class="detail-title" id="detail-title"></h3><a class="detail-badge" id="detail-badge" href="#" target="_blank" rel="noopener" style="display:none"></a></div>
-        <div class="detail-meta" id="detail-meta"></div>
-        <div class="detail-content card-inner" id="detail-content"></div>
-        <div class="detail-actions" id="detail-actions"></div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Footer year
-    document.getElementById('yr').textContent = new Date().getFullYear();
-
-    // Animate timeline entries
-    const tlItems = document.querySelectorAll('.tl-item');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
-    },{threshold:.35});
-    tlItems.forEach(el=> io.observe(el));
-
-    // Project carousel controls (scroll by viewport width)
-    const projRow = document.querySelector('.projects-h');
-    const prevBtn = document.getElementById('proj-prev');
-    const nextBtn = document.getElementById('proj-next');
-    function scrollByOne(dir){
-      if(!projRow) return;
-      const width = projRow.clientWidth;
-      projRow.scrollBy({left: dir * width, behavior:'smooth'});
-    }
-    if(prevBtn && nextBtn){
-      prevBtn.addEventListener('click', ()=>scrollByOne(-1));
-      nextBtn.addEventListener('click', ()=>scrollByOne(1));
-    }
-
-    // Detail modal logic (projects + experience + education)
-    const backdrop = document.getElementById('detail-backdrop');
-    const modal    = document.getElementById('detail-modal');
-    const dTitle   = document.getElementById('detail-title');
-    const dBadge  = document.getElementById('detail-badge');
-    const dMeta    = document.getElementById('detail-meta');
-    const dCover   = document.getElementById('detail-cover');
-    const dContent = document.getElementById('detail-content');
-    const dActs    = document.getElementById('detail-actions');
-    const dClose   = document.getElementById('detail-close');
-
-    function openDetail(el){
-      const h3 = el.querySelector('h3');
-      const meta = el.querySelector('.meta');
-      dTitle.textContent = h3 ? h3.textContent : 'Details';
-      dMeta.textContent  = meta ? meta.textContent : '';
-
-      // Badge on the right of title: show GitHub or YouTube if present in card icons
-      if(dBadge){
-        dBadge.style.display = 'none';
-        dBadge.textContent = '';
-        dBadge.removeAttribute('href');
-        const links = Array.from(el.querySelectorAll('a[href]'))
-          .map(a => a.getAttribute('href'))
-          .filter(Boolean);
-        const gh = links.find(h => /github\.com/i.test(h));
-        const yt = links.find(h => /(youtube\.com|youtu\.be)/i.test(h));
-        const pick = gh || yt;
-        if(pick){
-          dBadge.href = pick;
-          dBadge.textContent = gh ? 'GitHub' : 'YouTube';
-          dBadge.style.display = 'inline-flex';
-        }
-      }
-
-      // Cover: prefer data-video, then data-cover, then existing .cover img
-      dCover.innerHTML = '';
-      const videoSrc = el.dataset.video;
-      const coverAttr = el.dataset.cover;
-      if(videoSrc){
-        const v = document.createElement('video');
-        v.controls = true; v.playsInline = true; v.muted = false;
-        const s = document.createElement('source');
-        s.src = videoSrc; s.type = 'video/mp4';
-        v.appendChild(s);
-        dCover.appendChild(v);
-      } else if(coverAttr){
-        const img = document.createElement('img');
-        img.src = coverAttr; img.alt = dTitle.textContent + ' cover';
-        dCover.appendChild(img);
-      } else {
-        const fromCard = el.querySelector('.cover img');
-        if(fromCard){
-          const clone = fromCard.cloneNode(true);
-          clone.style.width = '100%';
-          clone.style.height = '260px';
-          clone.style.objectFit = 'cover';
-          dCover.appendChild(clone);
-        }
-      }
-
-      // Content: prefer <template class="detail">
-      const tpl = el.querySelector('template.detail');
-      if(tpl){
-        dContent.innerHTML = tpl.innerHTML;
-      } else {
-        const body = el.querySelector('.card-inner') || el;
-        dContent.innerHTML = body.innerHTML;
-      }
-
-      // Actions: optional link button
-      dActs.innerHTML = '';
-      if(el.dataset.linkUrl){
-        const a = document.createElement('a');
-        a.href = el.dataset.linkUrl;
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.textContent = el.dataset.linkText || 'Open link';
-        dActs.appendChild(a);
-      }
-
-      backdrop.classList.add('show');
-    }
-
-    function closeDetail(){
-      backdrop.classList.remove('show');
-      dTitle.textContent = '';
-      dMeta.textContent = '';
-      if(typeof dBadge !== 'undefined' && dBadge){ dBadge.style.display='none'; dBadge.textContent=''; dBadge.removeAttribute('href'); }
-      dCover.innerHTML = '';
-      dContent.innerHTML = '';
-      dActs.innerHTML = '';
-    }
-
-    if(dClose){ dClose.addEventListener('click', closeDetail); }
-    if(backdrop){
-      backdrop.addEventListener('click', (e)=>{
-        if(e.target === backdrop) closeDetail();
-      });
-    }
-    window.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape' && backdrop.classList.contains('show')) closeDetail();
-    });
-
-    document.querySelectorAll('.project.expandable, .tl-item.expandable').forEach(el=>{
-      el.style.cursor = 'pointer';
-      el.addEventListener('click', (ev)=>{
-        if(ev.target.closest('a')) return; // let links behave normally
-        openDetail(el);
-      });
-    });
-  </script>
-</body>
-</html>
+              <p><strong>Core Skills</strong> — Robotics, IoT, C++, Technical Training, Mentorship, Curriculum Development</p></div></details></div></article></details></div></section>
+<section id="about" class="section wrap"><div class="about-grid"><div><p class="eyebrow">03 / ENGINEER & EDUCATOR</p><h2>Build the system.<br>Share the thinking.</h2><p class="about-intro">My work connects software engineering, machine learning, and the people who use them.</p><p>I’ve built enterprise AI tools at HauteCarat, worked on healthcare ML at Cognizant, and taught mathematics and machine learning at Northwestern. Today, I’m bringing that experience to a new product as a founding engineer.</p><p>I care about how a model fits into a complete system: the data it depends on, the way it is evaluated, and the workflow it serves.</p><img class="teaching-photo" src="gallery/class_teaching.jpg" alt="Teaching a class at Northwestern" loading="lazy" width="720" height="430"></div><div class="expertise"><h3>Engineering toolkit</h3><div><span class="mono">01 / LLM SYSTEMS</span><p>RAG · Multi-agent orchestration · Embeddings · LangChain · OpenAI APIs</p></div><div><span class="mono">02 / APPLIED ML & VISION</span><p>PyTorch · TensorFlow · OpenCV · YOLO · scikit-learn</p></div><div><span class="mono">03 / PLATFORM & DELIVERY</span><p>Python · FastAPI · Azure · AWS · Docker · MLflow · Airflow</p></div><div id="education"><span class="mono">EDUCATION</span><h4>Northwestern University — MS, Artificial Intelligence</h4><p class="meta">Sep 2024 – Dec 2025 ·<strong>Evanston, IL, USA</strong> ·<strong>GPA: 3.775/4</strong></p><details class="disclosure"><summary>Education details<span aria-hidden="true">＋</span></summary><div class="detail-copy"></div></details><h4>Teegala Krishna Reddy Engineering College — BTech, ECE</h4><p class="meta">2018 – 2022 ·<strong>Hyderabad, TS, India</strong> ·<strong>GPA: 8.64/10</strong></p><details class="disclosure"><summary>Education details<span aria-hidden="true">＋</span></summary><div class="detail-copy"></div></details></div><details id="certs" class="disclosure"><summary>Certifications <span aria-hidden="true">＋</span></summary><ul><li>CITI: HIPAA Security & Privacy · Apr 2025</li><li>CITI: Human Research Protections (IRB) · Apr 2025–Apr 2028</li><li>Coursera: Generative AI with LLMs · Sep 2023</li><li>IBM: Data Science Foundations · Oct 2020</li></ul></details></div></div>
+<details id="gallery" class="project-library"><summary><span>Beyond the code <small>Teaching, community & milestones</small></span><span aria-hidden="true">＋</span></summary><div class="gallery-grid"><img src="gallery/grad.jpeg" alt="Graduation" loading="lazy" width="600" height="400"><img src="gallery/frnd.jpeg" alt="Graduation" loading="lazy" width="600" height="400"><img src="gallery/msai.jpeg" alt="MSAI" loading="lazy" width="600" height="400"><img src="gallery/teaching.jpeg" alt="Teaching" loading="lazy" width="600" height="400"><img src="gallery/teaching2.jpeg" alt="Teaching 2" loading="lazy" width="600" height="400"><img src="gallery/teaching4.jpg" alt="Teaching 4" loading="lazy" width="600" height="400"><img src="gallery/teaching5.jpg" alt="Teaching 5" loading="lazy" width="600" height="400"><img src="gallery/teachings.jpg" alt="Teachings" loading="lazy" width="600" height="400"><img src="gallery/teachnign.jpg" alt="Teaching" loading="lazy" width="600" height="400"><img src="gallery/newyork.jpg" alt="New York cover" loading="lazy" width="600" height="400"><img src="gallery/1871.jpg" alt="1871 event" loading="lazy" width="600" height="400"><img src="gallery/IMG_2936.jpg" alt="Event photo" loading="lazy" width="600" height="400"><img src="gallery/IMG_4171.jpg" alt="Event photo" loading="lazy" width="600" height="400"><img src="gallery/class_teaching.jpg" alt="Class teaching" loading="lazy" width="600" height="400"><img src="gallery/latest_teaching.jpg" alt="Latest teaching" loading="lazy" width="600" height="400"><img src="gallery/event.jpg" alt="Event" loading="lazy" width="600" height="400"><img src="gallery/event_recent.jpg" alt="Recent event" loading="lazy" width="600" height="400"><img src="gallery/events.JPG" alt="Events" loading="lazy" width="600" height="400"><img src="gallery/graduated.jpg" alt="Graduation" loading="lazy" width="600" height="400"><img src="gallery/microsoft.jpg" alt="Microsoft event" loading="lazy" width="600" height="400"><img src="gallery/microsoftteam.JPG" alt="Microsoft team" loading="lazy" width="600" height="400"><img src="gallery/office.jpeg" alt="Office" loading="lazy" width="600" height="400"><img src="gallery/prize.jpg" alt="Prize" loading="lazy" width="600" height="400"><img src="gallery/seminar-pro.jpg" alt="Seminar professional" loading="lazy" width="600" height="400"><img src="gallery/seminar.jpg" alt="Seminar" loading="lazy" width="600" height="400"><img src="gallery/working2.jpg" alt="Working" loading="lazy" width="600" height="400"></div></details></section>
+<section id="contact" class="contact"><div class="wrap"><p class="eyebrow">04 / LET’S CONNECT</p><h2>Have a hard AI problem?<br><em>Let’s build something useful.</em></h2><div class="contact-bottom"><a class="email-link" href="mailto:pavankonam@gmail.com">pavankonam@gmail.com ↗</a><div class="contact-links"><a href="https://www.linkedin.com/in/pavankonam/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/pavankonam" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="AI_ML_Engineer.pdf" download>Résumé ↓</a></div></div><details class="other-contact"><summary>Other contact options</summary><a href="mailto:pavankonam2026@u.northwestern.edu">pavankonam2026@u.northwestern.edu</a> · <a href="tel:+15179402499">+1 (517) 940-2499</a></details></div></section>
+</main><footer class="wrap"><span>© <span id="year">2026</span> Pavan Kartheek Konam</span><span>Chicago, Illinois</span><a href="#top">Back to top ↑</a></footer>
+</body></html>
