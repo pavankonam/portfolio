@@ -12,10 +12,13 @@ Run `python3 -m http.server 8765`, then visit http://localhost:8765.
 - `styles.css`: responsive cosmic theme, section entrances and hover motion.
 - `universe.js`: original canvas particle nebula, pointer response and motion controls. Honors reduced motion, pauses offscreen/in background tabs, caps drawing at 30fps and lowers particle count on phones. No animation dependencies or external assets.
 - `script.js`: accessible mobile navigation and current footer year.
+- `guide/`: Piko's original mascot artwork, responsive interface, portfolio knowledge, navigation, optional speech and interaction logic.
 - `AI_ML_Engineer.pdf`: downloadable résumé. Keep this filename or update both links.
 - `gallery/` and `projects/`: existing photographs and project imagery.
 
 All experience and project detail remains in static HTML and can be read without JavaScript. Industry case studies summarize proprietary systems; no invented performance metrics or inflated job titles were added. RUVAAH remains labeled as in development.
+
+Piko is intentionally local and deterministic: visitor questions are matched against a reviewed portfolio knowledge file and are never sent to an AI service. Voice output starts muted, microphone access is only requested after a visitor presses the mic button, and the typed question is not stored.
 
 ## Automation
 
@@ -25,7 +28,10 @@ The Portfolio quality workflow runs on pull requests and updates to `main`, chec
 python3 scripts/check_site.py
 node --check script.js
 node --check universe.js
+node --check guide/brain.js
+node --check guide/piko.js
 node scripts/test_motion.cjs
+node scripts/test_piko.cjs
 ```
 
 GitHub Pages continues to deploy updates to `main` through its existing branch-based publishing configuration. No deployment tokens, API keys or additional hosting accounts are required. Quality checks do not configure branch protection; review their result before merging.

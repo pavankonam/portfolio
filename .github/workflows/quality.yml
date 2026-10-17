@@ -17,5 +17,9 @@ jobs:
         run: |
           node --check script.js
           node --check universe.js
+          node --check guide/brain.js
+          node --check guide/piko.js
       - name: Test animation controls and lifecycle
         run: node scripts/test_motion.cjs
+      - name: Test Piko portfolio answers
+        run: node scripts/test_piko.cjs
