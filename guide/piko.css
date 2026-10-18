@@ -26,9 +26,6 @@
 }
 .piko-character img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; opacity: 1; transition: opacity .16s, transform .32s; }
 .piko-character img.is-changing { opacity: 0; transform: scale(.92); }
-.piko-3d { position: absolute; inset: -5%; width: 110%; height: 110%; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
-.piko-character.piko-3d-ready > img { opacity: 0; }
-.piko-character.piko-3d-ready .piko-3d { opacity: 1; }
 .piko-character.is-docked { width: 150px; height: 160px; }
 .piko-character:focus-visible { outline: 2px solid #d9ccff; outline-offset: 5px; border-radius: 48%; }
 .piko-character:hover { animation-play-state: paused; transform: translateY(-5px) rotate(2deg) scale(1.035); }
@@ -48,11 +45,13 @@
   pointer-events: none; transition: opacity .22s, transform .22s;
 }
 .piko-bubble.is-visible { opacity: 1; transform: none; }
+.piko-bubble.is-contextual { left: var(--piko-bubble-left); top: var(--piko-bubble-top); right: auto; bottom: auto; width: 300px; border-radius: 15px; }
+.piko-bubble.is-contextual::after { display: none; }
 .piko-bubble::after { content: ''; position: absolute; right: -7px; bottom: 13px; width: 13px; height: 13px; rotate: 45deg; background: #0b0914; border-right: 1px solid #ad8cff66; border-top: 1px solid #ad8cff66; }
 
 .piko-panel {
-  position: absolute; right: 190px; bottom: 16px; width: min(370px, calc(100vw - 210px)); max-height: min(540px, calc(100vh - 32px));
-  display: grid; gap: 13px; padding: 17px; border: 1px solid #b59aff55; border-radius: 22px;
+  position: absolute; right: 190px; bottom: 16px; width: min(310px, calc(100vw - 210px)); max-height: min(390px, calc(100vh - 32px));
+  display: grid; gap: 9px; padding: 12px; border: 1px solid #b59aff55; border-radius: 18px;
   background: linear-gradient(150deg, #12101cf7, var(--piko-panel)); box-shadow: 0 26px 80px #000b, inset 0 1px #fff1;
   backdrop-filter: blur(24px); opacity: 0; transform: translateY(12px) scale(.96); transform-origin: bottom right;
   pointer-events: none; transition: opacity .23s, transform .23s; overflow: auto;
@@ -60,12 +59,12 @@
 .piko-panel.is-open { opacity: 1; transform: none; pointer-events: auto; }
 .piko-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .piko-title { display: flex; align-items: center; gap: 10px; }
-.piko-title-mark { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 50%; color: #170d2b; background: #d9cdff; font-weight: 800; box-shadow: 0 0 22px #a274ff66; }
+.piko-title-mark { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; color: #170d2b; background: #d9cdff; font-weight: 800; box-shadow: 0 0 22px #a274ff66; }
 .piko-title strong { display: block; font-size: 15px; }.piko-title small { color: #9f96b2; font-size: 11px; }
 .piko-tools { display: flex; gap: 3px; }
 .piko-icon { width: 34px; height: 34px; border: 0; border-radius: 50%; color: #bcb2cf; background: transparent; cursor: pointer; }
 .piko-icon:hover, .piko-icon:focus-visible { color: white; background: #ffffff0c; }
-.piko-answer { min-height: 70px; padding: 13px 14px; border-radius: 15px; background: #ffffff08; color: #ddd6eb; font-size: 14px; line-height: 1.55; }
+.piko-answer { padding: 10px 11px; border-radius: 12px; background: #ffffff08; color: #ddd6eb; font-size: 13px; line-height: 1.48; }
 .piko-answer p { margin: 0; }
 .piko-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
 .piko-actions a, .piko-actions button, .piko-chip {
@@ -73,9 +72,8 @@
   cursor: pointer; font: inherit; font-size: 12px; text-decoration: none;
 }
 .piko-actions a:hover, .piko-actions button:hover, .piko-chip:hover { color: white; border-color: #bca3ee; background: #9c72e524; }
-.piko-chips { display: flex; flex-wrap: wrap; gap: 7px; }
-.piko-form { display: grid; grid-template-columns: 1fr 42px 42px; gap: 7px; }
-.piko-input { min-width: 0; border: 1px solid #ffffff16; border-radius: 999px; padding: 11px 14px; color: white; background: #06050bd9; font: inherit; font-size: 14px; outline: none; }
+.piko-form { display: grid; grid-template-columns: 1fr 38px 38px; gap: 6px; }
+.piko-input { min-width: 0; border: 1px solid #ffffff16; border-radius: 999px; padding: 9px 12px; color: white; background: #06050bd9; font: inherit; font-size: 13px; outline: none; }
 .piko-input:focus { border-color: #b8a0ff99; box-shadow: 0 0 0 3px #a984ff16; }
 .piko-mic, .piko-send { border: 1px solid #ffffff16; border-radius: 50%; color: #e9e2f8; background: #ffffff0a; cursor: pointer; font-size: 15px; }
 .piko-send { color: #1b102e; background: #d9cdff; }.piko-mic.is-listening { color: white; border-color: #c6adff; animation: piko-listen .9s ease-in-out infinite; }
@@ -94,12 +92,12 @@
   .nav-links .piko-launch { justify-content: center; margin: 7px 0; }
   .piko-character, .piko-character.is-docked, .piko-character[data-pose="travel"] { width: 104px; height: 111px; }
   .piko-bubble { right: 92px; bottom: 70px; width: min(245px, calc(100vw - 116px)); font-size: 13px; }
-  .piko-panel { position: fixed; left: 10px; right: 10px; bottom: 10px; width: auto; max-height: min(70vh, 520px); border-radius: 20px; transform-origin: bottom center; }
+  .piko-panel { position: fixed; left: 10px; right: 10px; bottom: 10px; width: auto; max-height: min(56vh, 390px); border-radius: 18px; transform-origin: bottom center; }
   .piko-panel.is-open + .piko-character { opacity: 0; pointer-events: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .piko-character, .piko-character::before, .piko-character.is-travelling, .piko-character[data-pose], .piko-character.is-asleep::after { animation: none !important; }
-  .piko-character, .piko-character img, .piko-3d { transition: none !important; }
+  .piko-character, .piko-character img { transition: none !important; }
   .piko-panel, .piko-bubble { transition: opacity .1s; }
 }

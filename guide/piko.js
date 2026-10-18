@@ -15,10 +15,6 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const speechInput = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recordedVoice = 'guide/voice/hello.mp3';
-  const store = {
-    get(key) { try { return localStorage.getItem(`piko.${key}`); } catch (_) { return null; } },
-    set(key, value) { try { localStorage.setItem(`piko.${key}`, value); } catch (_) {} }
-  };
 
   const launch = document.createElement('button');
   launch.type = 'button';
@@ -37,12 +33,11 @@
       <div class="piko-panel-head">
         <div class="piko-title"><span class="piko-title-mark">pk·</span><span><strong>Piko</strong><small>Pavan's cosmic co-pilot</small></span></div>
         <div class="piko-tools">
-          <button class="piko-icon piko-sound" type="button" aria-label="Play Piko's Marin voice introduction" title="Play Marin voice introduction">♬</button>
+          <button class="piko-icon piko-sound" type="button" aria-label="Replay Piko's introduction" title="Replay introduction">♬</button>
           <button class="piko-icon piko-close" type="button" aria-label="Close Piko">×</button>
         </div>
       </div>
       <div class="piko-answer" aria-live="polite"><p>${brain.intro}</p><div class="piko-actions"></div></div>
-      <div class="piko-chips" aria-label="Suggested questions"></div>
       <form class="piko-form">
         <input class="piko-input" type="text" autocomplete="off" maxlength="180" placeholder="Ask about Pavan…" aria-label="Question for Piko">
         <button class="piko-mic" type="button" aria-label="Ask with your voice">●</button>
@@ -61,7 +56,6 @@
   const bubble = shell.querySelector('.piko-bubble');
   const answer = shell.querySelector('.piko-answer p');
   const actions = shell.querySelector('.piko-actions');
-  const chips = shell.querySelector('.piko-chips');
   const form = shell.querySelector('.piko-form');
   const input = shell.querySelector('.piko-input');
   const mic = shell.querySelector('.piko-mic');
@@ -76,6 +70,7 @@
   let currentSection = 'top';
   let travelling = false;
   let voiceAudio = null;
+  let introductionPlayed = false;
   panel.hidden = true;
 
   Object.values(poseSources).forEach(source => { const image = new Image(); image.src = source; });
@@ -158,9 +153,18 @@
     }, delay);
   }
 
-  function showBubble(text, duration = 6500) {
+  function showBubble(text, duration = 6500, target = null) {
     clearTimeout(bubbleTimer);
     bubble.textContent = text;
+    bubble.classList.toggle('is-contextual', Boolean(target && window.innerWidth >= 760));
+    if (target && window.innerWidth >= 760) {
+      const rect = target.getBoundingClientRect();
+      const bubbleWidth = 300;
+      const preferRight = rect.right + bubbleWidth + 28 < window.innerWidth;
+      const left = preferRight ? rect.right + 16 : rect.left - bubbleWidth - 16;
+      bubble.style.setProperty('--piko-bubble-left', `${clamp(left, 16, window.innerWidth - bubbleWidth - 16)}px`);
+      bubble.style.setProperty('--piko-bubble-top', `${clamp(rect.top + Math.min(18, rect.height * .15), 84, window.innerHeight - 126)}px`);
+    }
     bubble.classList.add('is-visible');
     bubbleTimer = setTimeout(() => bubble.classList.remove('is-visible'), duration);
   }
@@ -184,15 +188,69 @@
   }
 
   function playIntroduction() {
+    if (introductionPlayed && voiceAudio && !voiceAudio.paused) return;
     if (voiceAudio) { voiceAudio.pause(); voiceAudio.currentTime = 0; }
     voiceAudio = new Audio(recordedVoice);
     sound.textContent = '◖))';
     voiceAudio.addEventListener('ended', () => { sound.textContent = '♬'; }, { once: true });
-    voiceAudio.play().catch(() => {
+    const playback = voiceAudio.play();
+    playback.then(() => { introductionPlayed = true; }).catch(() => {
       sound.textContent = '♬';
-      status.textContent = 'Audio could not start. Please tap the sound button again.';
+      introductionPlayed = false;
     });
+    return playback;
   }
+
+  function shorten(value, limit = 88) {
+    const clean = String(value || '').replace(/\s+/g, ' ').trim().replace(/\.$/, '');
+    if (clean.length <= limit) return clean;
+    return `${clean.slice(0, limit).replace(/\s+\S*$/, '')}…`;
+  }
+
+  function contextFor(target) {
+    if (target.matches('.case-study')) {
+      const title = target.querySelector('h3')?.textContent.trim();
+      if (title === 'Intellicore') return 'Intellicore — an enterprise RAG and multi-agent platform Pavan built at HauteCarat in 2025.';
+      if (title === 'Visionary') return 'Visionary — a generative vision pipeline Pavan built at HauteCarat in 2025 for on-model jewelry imagery.';
+    }
+    if (target.matches('.research-card')) {
+      const title = target.querySelector('h3')?.textContent.split('—')[0].trim() || 'This project';
+      const summary = target.querySelector(':scope > p:not(.meta)')?.textContent;
+      const meta = target.querySelector(':scope > .meta')?.textContent || '';
+      const date = meta.match(/(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}\s*[–-]\s*(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) )?\d{4}/)?.[0];
+      return `${shorten(title, 42)} — ${shorten(summary, 78)}${date ? ` · ${date}` : ''}.`;
+    }
+    if (target.matches('.experience-highlights article, .role')) {
+      const title = target.querySelector('h3')?.textContent.trim() || 'Professional experience';
+      const date = target.querySelector('.meta')?.textContent.split('·')[0].trim();
+      const role = target.matches('.experience-highlights article') ? target.querySelector('h3 + p')?.textContent.trim() : '';
+      return `${shorten(title, 66)}${role ? ` — ${role}` : ''}${date ? ` · ${date}` : ''}.`;
+    }
+    if (target.matches('.about-brief')) return 'Pavan is an AI engineer and educator building production systems across RAG, vision and healthcare.';
+    if (target.matches('a')) {
+      if (target.matches('[download]')) return 'Résumé — download Pavan’s current AI engineering experience and project background.';
+      if (/linkedin/i.test(target.textContent)) return 'LinkedIn — see Pavan’s professional experience, updates and network.';
+      if (/github/i.test(target.textContent)) return 'GitHub — explore Pavan’s public code and project repositories.';
+      if (/mailto:/.test(target.href)) return 'Email — the quickest way to start a professional conversation with Pavan.';
+    }
+    return '';
+  }
+
+  function introduceTarget(target) {
+    if (open || travelling) return;
+    const context = contextFor(target);
+    if (!context) return;
+    dockNear(target);
+    setPose(target.matches('.about-brief') ? 'happy' : 'point');
+    showBubble(context, 5200, target);
+    resetSleep();
+  }
+
+  const contextualTargets = document.querySelectorAll('.case-study, .research-card, .experience-highlights article, .role, #about .about-brief, #contact a, a[download]');
+  contextualTargets.forEach(target => {
+    target.addEventListener('pointerenter', () => introduceTarget(target), { passive: true });
+    target.addEventListener('focusin', () => introduceTarget(target));
+  });
 
   function renderLinks(keys = []) {
     actions.innerHTML = '';
@@ -287,13 +345,6 @@
     resetSleep();
   }
 
-  brain.chips.forEach(question => {
-    const chip = document.createElement('button');
-    chip.type = 'button'; chip.className = 'piko-chip'; chip.textContent = question;
-    chip.addEventListener('click', () => respond(question));
-    chips.append(chip);
-  });
-
   function toggleMic() {
     if (!speechInput) return;
     if (recognition) { recognition.stop(); return; }
@@ -351,14 +402,19 @@
     });
   }
 
-  // First visit gets a quiet visual introduction. Returning visitors are not interrupted.
-  if (store.get('met') !== '1') {
-    setTimeout(() => {
-      showBubble(brain.intro, 8500);
-      setPose('wave');
-      store.set('met', '1');
-    }, reducedMotion.matches ? 250 : 1200);
-  }
+  // Browsers block audible autoplay before a visitor interacts. Try on arrival,
+  // then play immediately after the first click, tap or key press anywhere.
+  playIntroduction();
+  const unlockIntroduction = () => {
+    if (!introductionPlayed) playIntroduction();
+  };
+  document.addEventListener('pointerdown', unlockIntroduction, { once: true, capture: true });
+  document.addEventListener('keydown', unlockIntroduction, { once: true, capture: true });
+  setTimeout(() => {
+    if (bubble.classList.contains('is-contextual')) return;
+    showBubble(brain.intro, 8500);
+    setPose('wave');
+  }, reducedMotion.matches ? 250 : 800);
   homeCharacter();
   resetSleep();
 })();

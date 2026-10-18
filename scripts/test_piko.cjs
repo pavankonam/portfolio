@@ -4,6 +4,7 @@ const { runInNewContext } = require('node:vm');
 const assert = require('node:assert/strict');
 
 const source = readFileSync(join(__dirname, '..', 'guide', 'brain.js'), 'utf8');
+const uiSource = readFileSync(join(__dirname, '..', 'guide', 'piko.js'), 'utf8');
 const context = { window: {} };
 runInNewContext(source, context);
 
@@ -32,7 +33,6 @@ assert.ok(brain.chips.length >= 4, 'Piko provides starter questions');
   assert.ok(existsSync(join(__dirname, '..', 'guide', `piko-${pose}.png`)), `Piko ${pose} pose exists`);
 });
 assert.ok(existsSync(join(__dirname, '..', 'guide', 'voice', 'hello.mp3')), 'Selected Marin voice introduction exists');
-assert.ok(existsSync(join(__dirname, '..', 'guide', 'piko-3d.js')), 'Piko 3D renderer exists');
-assert.ok(existsSync(join(__dirname, '..', 'guide', 'vendor', 'three.module.js')), 'Local Three.js runtime exists');
-assert.ok(existsSync(join(__dirname, '..', 'guide', 'vendor', 'three.core.js')), 'Local Three.js core exists');
+assert.match(uiSource, /pointerenter/, 'Piko provides hover conversations');
+assert.match(uiSource, /unlockIntroduction/, 'Piko unlocks voice after the first visitor interaction');
 console.log(`PASS: ${examples.length} Piko intents, fallback behavior and starter questions`);
