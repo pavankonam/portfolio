@@ -4,8 +4,17 @@
   const brain = window.PikoBrain;
   if (!brain) return;
 
+  const poseSources = {
+    wave: 'guide/piko-wave.png',
+    point: 'guide/piko-point.png',
+    think: 'guide/piko-think.png',
+    happy: 'guide/piko-celebrate.png',
+    travel: 'guide/piko-fly.png'
+  };
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const speechInput = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recordedVoice = 'guide/voice/hello.mp3';
   const store = {
     get(key) { try { return localStorage.getItem(`piko.${key}`); } catch (_) { return null; } },
     set(key, value) { try { localStorage.setItem(`piko.${key}`, value); } catch (_) {} }
@@ -28,7 +37,7 @@
       <div class="piko-panel-head">
         <div class="piko-title"><span class="piko-title-mark">pk·</span><span><strong>Piko</strong><small>Pavan's cosmic co-pilot</small></span></div>
         <div class="piko-tools">
-          <button class="piko-icon piko-sound" type="button" aria-label="Turn Piko's voice on">♬</button>
+          <button class="piko-icon piko-sound" type="button" aria-label="Play Piko's Marin voice introduction" title="Play Marin voice introduction">♬</button>
           <button class="piko-icon piko-close" type="button" aria-label="Close Piko">×</button>
         </div>
       </div>
@@ -48,6 +57,7 @@
 
   const panel = shell.querySelector('.piko-panel');
   const character = shell.querySelector('.piko-character');
+  const characterImage = character.querySelector('img');
   const bubble = shell.querySelector('.piko-bubble');
   const answer = shell.querySelector('.piko-answer p');
   const actions = shell.querySelector('.piko-actions');
@@ -58,12 +68,57 @@
   const sound = shell.querySelector('.piko-sound');
   const status = shell.querySelector('.piko-status');
   let open = false;
-  let muted = store.get('muted') !== '0';
   let recognition = null;
   let sleepTimer = 0;
   let bubbleTimer = 0;
   let poseTimer = 0;
+  let roamTimer = 0;
+  let currentSection = 'top';
+  let travelling = false;
+  let voiceAudio = null;
   panel.hidden = true;
+
+  Object.values(poseSources).forEach(source => { const image = new Image(); image.src = source; });
+
+  function clamp(value, minimum, maximum) {
+    return Math.min(Math.max(value, minimum), maximum);
+  }
+
+  function moveCharacter(left, top) {
+    character.style.setProperty('--piko-left', `${Math.round(left)}px`);
+    character.style.setProperty('--piko-top', `${Math.round(top)}px`);
+  }
+
+  function homeCharacter() {
+    const width = window.innerWidth < 760 ? 104 : 172;
+    const height = window.innerWidth < 760 ? 111 : 182;
+    moveCharacter(window.innerWidth - width - (window.innerWidth < 760 ? 7 : 30), window.innerHeight - height - (window.innerWidth < 760 ? 6 : 16));
+    character.classList.remove('is-docked');
+  }
+
+  function dockNear(target) {
+    if (!target || window.innerWidth < 760) { homeCharacter(); return; }
+    const rect = target.getBoundingClientRect();
+    const width = 150;
+    const height = 160;
+    if (/^H[1-3]$/.test(target.tagName)) {
+      moveCharacter(clamp(rect.right + 18, 18, window.innerWidth - width - 18), clamp(rect.top - 28, 88, window.innerHeight - height - 20));
+      character.classList.add('is-docked');
+      return;
+    }
+    if (rect.width > window.innerWidth * .65) {
+      moveCharacter(clamp(rect.right - width - 8, 18, window.innerWidth - width - 18), clamp(rect.top + 24, 88, window.innerHeight - height - 20));
+      character.classList.add('is-docked');
+      return;
+    }
+    const targetCenter = rect.left + rect.width / 2;
+    const left = targetCenter < window.innerWidth / 2
+      ? clamp(rect.right - 42, 18, window.innerWidth - width - 18)
+      : clamp(rect.left - width + 42, 18, window.innerWidth - width - 18);
+    const top = clamp(rect.top + Math.min(46, rect.height * .2), 88, window.innerHeight - height - 20);
+    moveCharacter(left, top);
+    character.classList.add('is-docked');
+  }
 
   function resetSleep() {
     clearTimeout(sleepTimer);
@@ -73,10 +128,34 @@
     }, 45000);
   }
 
-  function setPose(pose = 'wave') {
+  function setPose(pose = 'wave', resetAfter = 5200) {
     clearTimeout(poseTimer);
     character.dataset.pose = pose;
-    poseTimer = setTimeout(() => { character.dataset.pose = 'wave'; }, 2600);
+    const nextSource = poseSources[pose] || poseSources.wave;
+    if (!characterImage.src.endsWith(nextSource)) {
+      characterImage.classList.add('is-changing');
+      setTimeout(() => {
+        characterImage.src = nextSource;
+        characterImage.classList.remove('is-changing');
+      }, 90);
+    }
+    if (resetAfter) poseTimer = setTimeout(() => setPose('wave', 0), resetAfter);
+  }
+
+  function travelTo(target, finalPose = 'point') {
+    if (!target) return;
+    travelling = true;
+    character.classList.add('is-travelling');
+    setPose('travel', 0);
+    const delay = reducedMotion.matches ? 0 : 780;
+    setTimeout(() => {
+      dockNear(target);
+      setTimeout(() => {
+        travelling = false;
+        character.classList.remove('is-travelling');
+        setPose(finalPose);
+      }, reducedMotion.matches ? 0 : 820);
+    }, delay);
   }
 
   function showBubble(text, duration = 6500) {
@@ -93,6 +172,8 @@
       panel.hidden = false;
       requestAnimationFrame(() => panel.classList.add('is-open'));
       character.classList.remove('is-asleep');
+      homeCharacter();
+      setPose('wave');
       bubble.classList.remove('is-visible');
       if (focus) setTimeout(() => input.focus({ preventScroll: true }), 100);
     } else {
@@ -102,15 +183,15 @@
     resetSleep();
   }
 
-  function speak(text) {
-    if (muted || !('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 1.03;
-    utterance.pitch = 1.12;
-    const voices = window.speechSynthesis.getVoices();
-    utterance.voice = voices.find(voice => /Samantha|Ava|Google US English/i.test(voice.name)) || voices.find(voice => voice.lang === 'en-US') || null;
-    window.speechSynthesis.speak(utterance);
+  function playIntroduction() {
+    if (voiceAudio) { voiceAudio.pause(); voiceAudio.currentTime = 0; }
+    voiceAudio = new Audio(recordedVoice);
+    sound.textContent = '◖))';
+    voiceAudio.addEventListener('ended', () => { sound.textContent = '♬'; }, { once: true });
+    voiceAudio.play().catch(() => {
+      sound.textContent = '♬';
+      status.textContent = 'Audio could not start. Please tap the sound button again.';
+    });
   }
 
   function renderLinks(keys = []) {
@@ -137,14 +218,13 @@
     target.querySelectorAll(':scope > details').forEach(detail => { detail.open = true; });
   }
 
-  function visit(targetOrSelector) {
+  function visit(targetOrSelector, pose = 'point') {
     const target = typeof targetOrSelector === 'string' ? document.querySelector(targetOrSelector) : targetOrSelector;
     if (!target) return;
     openAncestors(target);
-    character.classList.remove('is-travelling');
-    void character.offsetWidth;
-    character.classList.add('is-travelling');
-    target.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'center' });
+    const destination = target.matches('section') ? target.querySelector('h2') || target : target;
+    target.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: target.matches('section') ? 'start' : 'center' });
+    travelTo(destination, pose);
     document.querySelectorAll('.piko-highlight').forEach(node => node.classList.remove('piko-highlight'));
     setTimeout(() => {
       target.classList.add('piko-highlight');
@@ -200,10 +280,9 @@
     answer.textContent = intent.answer;
     renderLinks(intent.links);
     addSpecialActions(intent);
-    setPose(intent.pose);
     const target = intentTarget(intent);
-    if (target) visit(target);
-    speak(intent.answer);
+    if (target) visit(target, intent.pose);
+    else setPose(intent.pose);
     status.textContent = intent.id === 'fallback' ? 'Try one of the suggested topics below.' : '';
     resetSleep();
   }
@@ -214,15 +293,6 @@
     chip.addEventListener('click', () => respond(question));
     chips.append(chip);
   });
-
-  function toggleSound() {
-    muted = !muted;
-    store.set('muted', muted ? '1' : '0');
-    sound.textContent = muted ? '♬' : '◖))';
-    sound.setAttribute('aria-label', muted ? "Turn Piko's voice on" : "Turn Piko's voice off");
-    if (muted && 'speechSynthesis' in window) window.speechSynthesis.cancel();
-    else if (!muted) speak("Voice on. I'm ready!");
-  }
 
   function toggleMic() {
     if (!speechInput) return;
@@ -245,7 +315,7 @@
   launch.addEventListener('click', () => setOpen(!open));
   character.addEventListener('click', () => setOpen(!open));
   shell.querySelector('.piko-close').addEventListener('click', () => setOpen(false, false));
-  sound.addEventListener('click', toggleSound);
+  sound.addEventListener('click', playIntroduction);
   mic.addEventListener('click', toggleMic);
   if (!speechInput) mic.hidden = true;
   form.addEventListener('submit', event => {
@@ -258,6 +328,28 @@
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && open) setOpen(false, false); });
   document.addEventListener('pointerdown', resetSleep, { passive: true });
   document.addEventListener('scroll', resetSleep, { passive: true });
+  window.addEventListener('resize', homeCharacter, { passive: true });
+
+  // Piko changes stations as the visitor moves through the portfolio instead
+  // of living permanently in one corner.
+  if ('IntersectionObserver' in window && !reducedMotion.matches) {
+    const roamObserver = new IntersectionObserver(entries => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      const sectionKey = visible?.target.matches('.hero') ? 'top' : visible?.target.id;
+      if (!visible || sectionKey === currentSection) return;
+      currentSection = sectionKey;
+      clearTimeout(roamTimer);
+      roamTimer = setTimeout(() => {
+        if (open || travelling) return;
+        if (currentSection === 'top' || currentSection === 'contact') homeCharacter();
+        else travelTo(visible.target.querySelector('h2') || visible.target, currentSection === 'about' ? 'happy' : 'wave');
+      }, 520);
+    }, { threshold: [.3, .55] });
+    ['.hero', '#projects', '#experience', '#about', '#contact'].forEach(selector => {
+      const section = document.querySelector(selector);
+      if (section) roamObserver.observe(section);
+    });
+  }
 
   // First visit gets a quiet visual introduction. Returning visitors are not interrupted.
   if (store.get('met') !== '1') {
@@ -267,5 +359,6 @@
       store.set('met', '1');
     }, reducedMotion.matches ? 250 : 1200);
   }
+  homeCharacter();
   resetSleep();
 })();
