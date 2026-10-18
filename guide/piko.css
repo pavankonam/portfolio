@@ -26,6 +26,9 @@
 }
 .piko-character img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; opacity: 1; transition: opacity .16s, transform .32s; }
 .piko-character img.is-changing { opacity: 0; transform: scale(.92); }
+.piko-3d { position: absolute; inset: -5%; width: 110%; height: 110%; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+.piko-character.piko-3d-ready > img { opacity: 0; }
+.piko-character.piko-3d-ready .piko-3d { opacity: 1; }
 .piko-character.is-docked { width: 150px; height: 160px; }
 .piko-character:focus-visible { outline: 2px solid #d9ccff; outline-offset: 5px; border-radius: 48%; }
 .piko-character:hover { animation-play-state: paused; transform: translateY(-5px) rotate(2deg) scale(1.035); }
@@ -97,6 +100,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .piko-character, .piko-character::before, .piko-character.is-travelling, .piko-character[data-pose], .piko-character.is-asleep::after { animation: none !important; }
-  .piko-character, .piko-character img { transition: none !important; }
+  .piko-character, .piko-character img, .piko-3d { transition: none !important; }
   .piko-panel, .piko-bubble { transition: opacity .1s; }
 }

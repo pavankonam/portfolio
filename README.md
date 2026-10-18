@@ -12,7 +12,7 @@ Run `python3 -m http.server 8765`, then visit http://localhost:8765.
 - `styles.css`: responsive cosmic theme, section entrances and hover motion.
 - `universe.js`: original canvas particle nebula, pointer response and motion controls. Honors reduced motion, pauses offscreen/in background tabs, caps drawing at 30fps and lowers particle count on phones. No animation dependencies or external assets.
 - `script.js`: accessible mobile navigation and current footer year.
-- `guide/`: Piko's original multi-pose mascot artwork, responsive interface, portfolio knowledge, section-to-section movement, recorded voice assets, navigation and interaction logic.
+- `guide/`: Piko's interactive 3D character, illustrated compatibility poses, responsive interface, portfolio knowledge, section-to-section movement, recorded voice assets, navigation and interaction logic. The Three.js runtime is pinned locally so Piko does not depend on a third-party CDN.
 - `AI_ML_Engineer.pdf`: downloadable résumé. Keep this filename or update both links.
 - `gallery/` and `projects/`: existing photographs and project imagery.
 
