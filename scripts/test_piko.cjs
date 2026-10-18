@@ -1,4 +1,4 @@
-const { readFileSync } = require('node:fs');
+const { existsSync, readFileSync } = require('node:fs');
 const { join } = require('node:path');
 const { runInNewContext } = require('node:vm');
 const assert = require('node:assert/strict');
@@ -28,4 +28,8 @@ examples.forEach(([question, expected]) => {
 
 assert.ok(brain.intents.length >= 20, 'Piko covers the major portfolio topics');
 assert.ok(brain.chips.length >= 4, 'Piko provides starter questions');
+['wave', 'point', 'think', 'fly', 'celebrate'].forEach(pose => {
+  assert.ok(existsSync(join(__dirname, '..', 'guide', `piko-${pose}.png`)), `Piko ${pose} pose exists`);
+});
+assert.ok(existsSync(join(__dirname, '..', 'guide', 'voice', 'hello.mp3')), 'Selected Marin voice introduction exists');
 console.log(`PASS: ${examples.length} Piko intents, fallback behavior and starter questions`);
