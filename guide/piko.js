@@ -237,16 +237,19 @@
   }
 
   function introduceTarget(target) {
-    if (open || travelling) return;
+    if (open) return;
     const context = contextFor(target);
     if (!context) return;
+    clearTimeout(roamTimer);
+    travelling = false;
+    character.classList.remove('is-travelling');
     dockNear(target);
     setPose(target.matches('.about-brief') ? 'happy' : 'point');
     showBubble(context, 5200, target);
     resetSleep();
   }
 
-  const contextualTargets = document.querySelectorAll('.case-study, .research-card, .experience-highlights article, .role, #about .about-brief, #contact a, a[download]');
+  const contextualTargets = document.querySelectorAll('.case-study, .research-card, .experience-highlights article, .role, #about .about-brief, #contact a');
   contextualTargets.forEach(target => {
     target.addEventListener('pointerenter', () => introduceTarget(target), { passive: true });
     target.addEventListener('focusin', () => introduceTarget(target));
