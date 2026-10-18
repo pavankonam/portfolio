@@ -32,4 +32,7 @@ assert.ok(brain.chips.length >= 4, 'Piko provides starter questions');
   assert.ok(existsSync(join(__dirname, '..', 'guide', `piko-${pose}.png`)), `Piko ${pose} pose exists`);
 });
 assert.ok(existsSync(join(__dirname, '..', 'guide', 'voice', 'hello.mp3')), 'Selected Marin voice introduction exists');
+assert.ok(existsSync(join(__dirname, '..', 'guide', 'piko-3d.js')), 'Piko 3D renderer exists');
+assert.ok(existsSync(join(__dirname, '..', 'guide', 'vendor', 'three.module.js')), 'Local Three.js runtime exists');
+assert.ok(existsSync(join(__dirname, '..', 'guide', 'vendor', 'three.core.js')), 'Local Three.js core exists');
 console.log(`PASS: ${examples.length} Piko intents, fallback behavior and starter questions`);
