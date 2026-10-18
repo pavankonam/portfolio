@@ -15,6 +15,19 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const speechInput = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recordedVoice = 'guide/voice/hello.mp3';
+  const marinVoices = {
+    hello: recordedVoice,
+    piko: recordedVoice,
+    about: 'guide/voice/contexts/about.mp3',
+    current: 'guide/voice/contexts/ruvaah.mp3',
+    ruvaah: 'guide/voice/contexts/ruvaah.mp3',
+    intellicore: 'guide/voice/contexts/intellicore.mp3',
+    visionary: 'guide/voice/contexts/visionary.mp3',
+    projects: 'guide/voice/intents/projects.mp3',
+    healthcare: 'guide/voice/intents/healthcare.mp3',
+    nlp: 'guide/voice/intents/nlp.mp3',
+    hautecarat: 'guide/voice/contexts/hautecarat.mp3'
+  };
 
   const launch = document.createElement('button');
   launch.type = 'button';
@@ -28,7 +41,6 @@
   const shell = document.createElement('div');
   shell.className = 'piko-shell';
   shell.innerHTML = `
-    <div class="piko-bubble" role="status" aria-live="polite"></div>
     <section class="piko-panel" role="dialog" aria-modal="false" aria-label="Ask Piko about Pavan">
       <div class="piko-panel-head">
         <div class="piko-title"><span class="piko-title-mark">pk·</span><span><strong>Piko</strong><small>Pavan's cosmic co-pilot</small></span></div>
@@ -37,13 +49,13 @@
           <button class="piko-icon piko-close" type="button" aria-label="Close Piko">×</button>
         </div>
       </div>
-      <div class="piko-answer" aria-live="polite"><p>${brain.intro}</p><div class="piko-actions"></div></div>
+      <div class="piko-answer" aria-live="polite"><p>Ask about Pavan.</p><div class="piko-actions"></div></div>
       <form class="piko-form">
         <input class="piko-input" type="text" autocomplete="off" maxlength="180" placeholder="Ask about Pavan…" aria-label="Question for Piko">
         <button class="piko-mic" type="button" aria-label="Ask with your voice">●</button>
         <button class="piko-send" type="submit" aria-label="Send question">↗</button>
       </form>
-      <p class="piko-status" aria-live="polite"></p>
+      <p class="piko-status" aria-live="polite">AI-generated voice · Marin</p>
     </section>
     <button class="piko-character" type="button" data-pose="wave" aria-label="Piko, Pavan's portfolio guide. Open assistant.">
       <img src="guide/piko-wave.png" alt="" width="601" height="640">
@@ -53,7 +65,6 @@
   const panel = shell.querySelector('.piko-panel');
   const character = shell.querySelector('.piko-character');
   const characterImage = character.querySelector('img');
-  const bubble = shell.querySelector('.piko-bubble');
   const answer = shell.querySelector('.piko-answer p');
   const actions = shell.querySelector('.piko-actions');
   const form = shell.querySelector('.piko-form');
@@ -64,12 +75,12 @@
   let open = false;
   let recognition = null;
   let sleepTimer = 0;
-  let bubbleTimer = 0;
   let poseTimer = 0;
   let roamTimer = 0;
   let currentSection = 'top';
   let travelling = false;
   let voiceAudio = null;
+  let speakingUtterance = null;
   let introductionPlayed = false;
   panel.hidden = true;
 
@@ -153,22 +164,6 @@
     }, delay);
   }
 
-  function showBubble(text, duration = 6500, target = null) {
-    clearTimeout(bubbleTimer);
-    bubble.textContent = text;
-    bubble.classList.toggle('is-contextual', Boolean(target && window.innerWidth >= 760));
-    if (target && window.innerWidth >= 760) {
-      const rect = target.getBoundingClientRect();
-      const bubbleWidth = 300;
-      const preferRight = rect.right + bubbleWidth + 28 < window.innerWidth;
-      const left = preferRight ? rect.right + 16 : rect.left - bubbleWidth - 16;
-      bubble.style.setProperty('--piko-bubble-left', `${clamp(left, 16, window.innerWidth - bubbleWidth - 16)}px`);
-      bubble.style.setProperty('--piko-bubble-top', `${clamp(rect.top + Math.min(18, rect.height * .15), 84, window.innerHeight - 126)}px`);
-    }
-    bubble.classList.add('is-visible');
-    bubbleTimer = setTimeout(() => bubble.classList.remove('is-visible'), duration);
-  }
-
   function setOpen(next, focus = true) {
     open = next;
     launch.setAttribute('aria-expanded', String(open));
@@ -178,7 +173,6 @@
       character.classList.remove('is-asleep');
       homeCharacter();
       setPose('wave');
-      bubble.classList.remove('is-visible');
       if (focus) setTimeout(() => input.focus({ preventScroll: true }), 100);
     } else {
       panel.classList.remove('is-open');
@@ -201,6 +195,69 @@
     return playback;
   }
 
+  function stopSpeaking() {
+    if (voiceAudio) {
+      voiceAudio.pause();
+      voiceAudio.currentTime = 0;
+      voiceAudio = null;
+    }
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    speakingUtterance = null;
+    character.classList.remove('is-speaking');
+    sound.textContent = '♬';
+  }
+
+  function preferredSystemVoice() {
+    if (!('speechSynthesis' in window)) return null;
+    const voices = window.speechSynthesis.getVoices().filter(voice => /^en[-_]/i.test(voice.lang));
+    const preferred = [
+      /Microsoft Aria.*Online/i,
+      /Google US English/i,
+      /Samantha.*Premium/i,
+      /Ava.*Premium/i,
+      /Zoe.*Premium/i,
+      /Samantha/i,
+      /Ava/i,
+      /Zoe/i,
+      /Allison/i,
+      /Alex/i
+    ];
+    for (const pattern of preferred) {
+      const match = voices.find(voice => pattern.test(voice.name));
+      if (match) return match;
+    }
+    return voices.find(voice => voice.localService) || voices[0] || null;
+  }
+
+  function speak(text, voiceId = '') {
+    stopSpeaking();
+    const source = marinVoices[voiceId];
+    character.classList.add('is-speaking');
+    sound.textContent = '◖))';
+    if (source) {
+      voiceAudio = new Audio(source);
+      voiceAudio.addEventListener('ended', stopSpeaking, { once: true });
+      voiceAudio.addEventListener('error', () => speak(text), { once: true });
+      voiceAudio.play().catch(() => {
+        character.classList.remove('is-speaking');
+        sound.textContent = '♬';
+      });
+      return;
+    }
+    if (!('speechSynthesis' in window)) {
+      stopSpeaking();
+      return;
+    }
+    speakingUtterance = new SpeechSynthesisUtterance(text);
+    speakingUtterance.voice = preferredSystemVoice();
+    speakingUtterance.lang = 'en-US';
+    speakingUtterance.rate = 1.04;
+    speakingUtterance.pitch = 1.02;
+    speakingUtterance.onend = stopSpeaking;
+    speakingUtterance.onerror = stopSpeaking;
+    window.speechSynthesis.speak(speakingUtterance);
+  }
+
   function shorten(value, limit = 88) {
     const clean = String(value || '').replace(/\s+/g, ' ').trim().replace(/\.$/, '');
     if (clean.length <= limit) return clean;
@@ -210,30 +267,31 @@
   function contextFor(target) {
     if (target.matches('.case-study')) {
       const title = target.querySelector('h3')?.textContent.trim();
-      if (title === 'Intellicore') return 'Intellicore — an enterprise RAG and multi-agent platform Pavan built at HauteCarat in 2025.';
-      if (title === 'Visionary') return 'Visionary — a generative vision pipeline Pavan built at HauteCarat in 2025 for on-model jewelry imagery.';
+      if (title === 'Intellicore') return { text: 'Intellicore — an enterprise RAG and multi-agent platform Pavan built at HauteCarat in 2025.', voice: 'intellicore' };
+      if (title === 'Visionary') return { text: 'Visionary — a generative vision pipeline Pavan built at HauteCarat in 2025 for on-model jewelry imagery.', voice: 'visionary' };
     }
     if (target.matches('.research-card')) {
       const title = target.querySelector('h3')?.textContent.split('—')[0].trim() || 'This project';
       const summary = target.querySelector(':scope > p:not(.meta)')?.textContent;
       const meta = target.querySelector(':scope > .meta')?.textContent || '';
       const date = meta.match(/(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}\s*[–-]\s*(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) )?\d{4}/)?.[0];
-      return `${shorten(title, 42)} — ${shorten(summary, 78)}${date ? ` · ${date}` : ''}.`;
+      return { text: `${shorten(title, 42)} — ${shorten(summary, 78)}${date ? ` · ${date}` : ''}.`, voice: '' };
     }
     if (target.matches('.experience-highlights article, .role')) {
       const title = target.querySelector('h3')?.textContent.trim() || 'Professional experience';
       const date = target.querySelector('.meta')?.textContent.split('·')[0].trim();
       const role = target.matches('.experience-highlights article') ? target.querySelector('h3 + p')?.textContent.trim() : '';
-      return `${shorten(title, 66)}${role ? ` — ${role}` : ''}${date ? ` · ${date}` : ''}.`;
+      const key = /ruvaah|founding engineer/i.test(title) ? 'ruvaah' : /hautecarat|ai software engineer/i.test(title) ? 'hautecarat' : '';
+      return { text: `${shorten(title, 66)}${role ? ` — ${role}` : ''}${date ? ` · ${date}` : ''}.`, voice: key };
     }
-    if (target.matches('.about-brief')) return 'Pavan is an AI engineer and educator building production systems across RAG, vision and healthcare.';
+    if (target.matches('.about-brief')) return { text: 'Pavan is an AI engineer and educator building production systems across RAG, vision and healthcare.', voice: 'about' };
     if (target.matches('a')) {
-      if (target.matches('[download]')) return 'Résumé — download Pavan’s current AI engineering experience and project background.';
-      if (/linkedin/i.test(target.textContent)) return 'LinkedIn — see Pavan’s professional experience, updates and network.';
-      if (/github/i.test(target.textContent)) return 'GitHub — explore Pavan’s public code and project repositories.';
-      if (/mailto:/.test(target.href)) return 'Email — the quickest way to start a professional conversation with Pavan.';
+      if (target.matches('[download]')) return { text: 'Résumé — download Pavan’s current AI engineering experience and project background.', voice: '' };
+      if (/linkedin/i.test(target.textContent)) return { text: 'LinkedIn — see Pavan’s professional experience, updates and network.', voice: '' };
+      if (/github/i.test(target.textContent)) return { text: 'GitHub — explore Pavan’s public code and project repositories.', voice: '' };
+      if (/mailto:/.test(target.href)) return { text: 'Email — the quickest way to start a professional conversation with Pavan.', voice: '' };
     }
-    return '';
+    return null;
   }
 
   function introduceTarget(target) {
@@ -245,7 +303,8 @@
     character.classList.remove('is-travelling');
     dockNear(target);
     setPose(target.matches('.about-brief') ? 'happy' : 'point');
-    showBubble(context, 5200, target);
+    // Hover guidance is spoken, not duplicated in a large transcript bubble.
+    speak(context.text, context.voice);
     resetSleep();
   }
 
@@ -338,13 +397,26 @@
 
   function respond(question) {
     const intent = brain.match(question);
-    answer.textContent = intent.answer;
+    const topicNames = {
+      hello: 'Piko', piko: 'Piko', about: 'Pavan', current: 'Pavan’s current work',
+      ruvaah: 'RUVAAH', intellicore: 'Intellicore', visionary: 'Visionary', projects: 'Pavan’s projects',
+      healthcare: 'healthcare AI', nlp: 'language AI', vision: 'computer vision', experience: 'Pavan’s experience',
+      hautecarat: 'HauteCarat', cognizant: 'Cognizant', teaching: 'teaching', skills: 'Pavan’s toolkit',
+      education: 'education', leadership: 'leadership', location: 'location', contact: 'contact options',
+      resume: 'the résumé', github: 'GitHub', linkedin: 'LinkedIn', tour: 'the portfolio tour'
+    };
+    answer.textContent = intent.id === 'fallback'
+      ? 'Try asking about a project or role.'
+      : `Speaking about ${topicNames[intent.id] || 'that'}…`;
     renderLinks(intent.links);
     addSpecialActions(intent);
     const target = intentTarget(intent);
     if (target) visit(target, intent.pose);
     else setPose(intent.pose);
-    status.textContent = intent.id === 'fallback' ? 'Try one of the suggested topics below.' : '';
+    status.textContent = intent.id === 'fallback'
+      ? 'Try a suggested topic · AI-generated voice'
+      : `AI-generated voice · ${marinVoices[intent.id] ? 'Marin' : 'system fallback'}`;
+    speak(intent.answer, intent.id);
     resetSleep();
   }
 
@@ -369,7 +441,7 @@
   launch.addEventListener('click', () => setOpen(!open));
   character.addEventListener('click', () => setOpen(!open));
   shell.querySelector('.piko-close').addEventListener('click', () => setOpen(false, false));
-  sound.addEventListener('click', playIntroduction);
+  sound.addEventListener('click', () => speak(brain.intro, 'hello'));
   mic.addEventListener('click', toggleMic);
   if (!speechInput) mic.hidden = true;
   form.addEventListener('submit', event => {
@@ -413,11 +485,7 @@
   };
   document.addEventListener('pointerdown', unlockIntroduction, { once: true, capture: true });
   document.addEventListener('keydown', unlockIntroduction, { once: true, capture: true });
-  setTimeout(() => {
-    if (bubble.classList.contains('is-contextual')) return;
-    showBubble(brain.intro, 8500);
-    setPose('wave');
-  }, reducedMotion.matches ? 250 : 800);
+  setTimeout(() => setPose('wave'), reducedMotion.matches ? 250 : 800);
   homeCharacter();
   resetSleep();
 })();
