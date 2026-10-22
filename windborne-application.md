@@ -1,7 +1,5 @@
 # WindBorne Systems - Software Engineer, Machine Learning Systems
 
-Application challenge responses - draft for review before submission.
-
 ## 1. Tell us about a problem you couldn’t leave alone. What did you build to fix it?
 
 I kept running into the same problem when working with AI agents: getting a good answer once was easy, but getting a reliable process around it was much harder.
