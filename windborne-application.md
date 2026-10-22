@@ -1,6 +1,6 @@
-# WindBorne Systems — Software Engineer, Machine Learning Systems
+# WindBorne Systems - Software Engineer, Machine Learning Systems
 
-Application challenge responses — draft for review before submission.
+Application challenge responses - draft for review before submission.
 
 ## 1. Tell us about a problem you couldn’t leave alone. What did you build to fix it?
 
